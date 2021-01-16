@@ -1,0 +1,20 @@
+{
+    "name": "Laravel Vue",
+    "short_name": "Laravel",
+    "icons": [
+        {
+            "src": "/laravue.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/",
+    "scope": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "theme_color": "#000",
+    "description": "Laravel Vue Admin for Career",
+    "dir": "ltr",
+    "lang": "id-ID",
+    "offline_enabled": true
+}
