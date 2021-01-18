@@ -22,28 +22,46 @@
                 </v-list-item>
             </v-list>
             <v-list nav>
-                <v-list-item
-                    link
+                <inertia-link
                     v-for="menu_item in menu"
                     :key="menu_item.title"
-                    class="font-bold"
+                    href="/"
+                    class="no-underline"
                 >
-                    <v-icon small color="secondary">{{
-                        menu_item.icon
-                    }}</v-icon>
-                    <v-list-item-content>
-                        <v-list-item-title class="text-left ml-2">{{
-                            menu_item.title
-                        }}</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
+                    <v-list-item link :key="menu_item.title" class="font-bold">
+                        <v-icon small color="secondary">{{
+                            menu_item.icon
+                        }}</v-icon>
+
+                        <v-list-item-content>
+                            <v-list-item-title class="text-left ml-2">{{
+                                menu_item.title
+                            }}</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                </inertia-link>
             </v-list>
             <template v-slot:append>
                 <div class="p-2">
-                    <v-btn block color="secondary" class="font-bold">
-                        <v-icon small class="mr-2">fas fa-sign-out-alt</v-icon>
-                        {{ $vuetify.lang.t("$vuetify.logout") }}
-                    </v-btn>
+                    <form method="POST" @submit.prevent="logout">
+                        <v-btn
+                            block
+                            color="secondary"
+                            class="font-bold no-underline"
+                            type="submit"
+                            :loading="isLogouting"
+                            @click="
+                                isLogouting
+                                    ? (isLogoutButtonDisabled = true)
+                                    : (isLogoutButtonDisabled = false)
+                            "
+                        >
+                            <v-icon small class="mr-2"
+                                >fas fa-sign-out-alt</v-icon
+                            >
+                            {{ $vuetify.lang.t("$vuetify.logout") }}
+                        </v-btn>
+                    </form>
                 </div>
             </template>
             <v-divider></v-divider>
@@ -268,6 +286,8 @@ export default {
     },
     data() {
         return {
+            isLogoutButtonDisabled: false,
+            isLogouting: false,
             drawer: true,
             dialog: false,
             dialogDelete: false,
@@ -286,7 +306,9 @@ export default {
                 carbs: 0,
                 protein: 0,
             },
-            menu: [{ title: "Dashboard", icon: "fas fa-home" }],
+            menu: [
+                { title: "Dashboard", href: "/dashboard", icon: "fas fa-home" },
+            ],
             headers: [
                 {
                     text: this.$vuetify.lang.t("$vuetify.name"),
@@ -336,6 +358,12 @@ export default {
         this.initialize();
     },
     methods: {
+        logout() {
+            this.isLogouting = true;
+            axios.post(route("logout").url()).then((response) => {
+                window.location = "/";
+            });
+        },
         initialize() {
             this.desserts = [];
             this.customers.forEach((customer) => {
