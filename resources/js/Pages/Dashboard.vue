@@ -83,7 +83,9 @@
                 >
                     <template v-slot:top>
                         <v-toolbar flat>
-                            <v-toolbar-title>Nutritions</v-toolbar-title>
+                            <v-toolbar-title>{{
+                                $vuetify.lang.t("$vuetify.nutritions")
+                            }}</v-toolbar-title>
                             <v-divider class="mx-4" inset vertical></v-divider>
                             <v-spacer></v-spacer>
                             <v-dialog v-model="dialog" max-width="500px">
@@ -98,7 +100,9 @@
                                         <v-icon small class="mr-2"
                                             >fas fa-plus</v-icon
                                         >
-                                        Tambah Item
+                                        {{
+                                            $vuetify.lang.t("$vuetify.addItem")
+                                        }}
                                     </v-btn>
                                 </template>
                                 <v-card>
@@ -157,12 +161,16 @@
                                         <v-spacer></v-spacer>
                                         <v-btn
                                             rounded
-                                            color="blue darken-1"
+                                            color="grey darken-1"
                                             text
                                             @click="close"
                                             class="px-4"
                                         >
-                                            Batal
+                                            {{
+                                                $vuetify.lang.t(
+                                                    "$vuetify.cancel"
+                                                )
+                                            }}
                                         </v-btn>
                                         <v-btn
                                             rounded
@@ -173,19 +181,24 @@
                                             <v-icon small class="mr-2"
                                                 >fas fa-save</v-icon
                                             >
-                                            Simpan
+                                            {{
+                                                $vuetify.lang.t("$vuetify.save")
+                                            }}
                                         </v-btn>
                                     </v-card-actions>
                                 </v-card>
                             </v-dialog>
                             <v-dialog v-model="dialogDelete" max-width="500px">
                                 <v-card>
-                                    <v-card-title class="headline"
-                                        >Yakin?</v-card-title
-                                    >
+                                    <v-card-title class="headline">{{
+                                        $vuetify.lang.t("$vuetify.youSure")
+                                    }}</v-card-title>
                                     <v-card-text>
-                                        Setelah dihapus maka tidak akan bisa
-                                        dikembalikan lagi.
+                                        {{
+                                            $vuetify.lang.t(
+                                                "$vuetify.canNotBeUndone"
+                                            )
+                                        }}
                                     </v-card-text>
                                     <v-card-actions>
                                         <v-spacer></v-spacer>
@@ -193,7 +206,11 @@
                                             color="blue darken-1"
                                             text
                                             @click="closeDelete"
-                                            >Batal</v-btn
+                                            >{{
+                                                $vuetify.lang.t(
+                                                    "$vuetify.cancel"
+                                                )
+                                            }}</v-btn
                                         >
                                         <v-btn
                                             color="error"
@@ -202,7 +219,11 @@
                                             ><v-icon small class="mr-2"
                                                 >fas fa-trash</v-icon
                                             >
-                                            Hapus</v-btn
+                                            {{
+                                                $vuetify.lang.t(
+                                                    "$vuetify.delete"
+                                                )
+                                            }}</v-btn
                                         >
                                         <v-spacer></v-spacer>
                                     </v-card-actions>
@@ -230,7 +251,7 @@
                             @click="initialize"
                         >
                             <v-icon small class="mr-2">fas fa-redo</v-icon>
-                            Reload
+                            {{ $vuetify.lang.t("$vuetify.reload") }}
                         </v-btn>
                     </template>
                 </v-data-table>
@@ -246,7 +267,7 @@
                     >fas fa-copyright</v-icon
                 >
                 {{ new Date().getFullYear() }}
-                Company A
+                {{ $vuetify.lang.t("$vuetify.company") }}
             </v-row>
         </v-footer>
     </v-app>

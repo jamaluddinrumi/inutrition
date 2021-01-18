@@ -73,6 +73,15 @@
         "fat": "Fat",
         "carbs": "Karbohidrat",
         "protein": "Protein",
-        "actions": "Tindakan"
+        "actions": "Tindakan",
+        "nutritions": "Nutrisi",
+        "company": "PT Abc Def, tbk",
+        "reload": "Muat Ulang",
+        "delete": "Hapus",
+        "cancel": "Batal",
+        "youSure": "Anda Yakin?",
+        "canNotBeUndone": "Setelah dihapus tidak dapat dikembalikan lagi.",
+        "save": "Simpan",
+        "addItem": "Tambah Item"
     }
 }

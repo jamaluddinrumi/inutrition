@@ -73,6 +73,15 @@
         "fat": "Fat",
         "carbs": "Carbs",
         "protein": "Protein",
-        "actions": "Actions"
+        "actions": "Actions",
+        "nutritions": "Nutritions",
+        "company": "Company, Inc",
+        "reload": "Reload",
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "youSure": "You Sure?",
+        "canNotBeUndone": "This is can not be undone.",
+        "save": "Save",
+        "addItem": "Add Item"
     }
 }
