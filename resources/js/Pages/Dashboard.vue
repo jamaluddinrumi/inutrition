@@ -361,7 +361,7 @@ export default {
         logout() {
             this.isLogouting = true;
             axios.post(route("logout").url()).then((response) => {
-                window.location = "/";
+                window.location = "login";
             });
         },
         initialize() {
