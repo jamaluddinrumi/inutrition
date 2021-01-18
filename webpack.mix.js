@@ -12,7 +12,8 @@ require("vuetifyjs-mix-extension");
  |
  */
 
-mix.js("resources/js/app.js", "public/js")
+mix.scripts("resources/js/login.js", "public/js/login.js")
+    .js("resources/js/app.js", "public/js")
     .vuetify()
     .postCss("resources/css/app.css", "public/css", [
         require("postcss-import"),

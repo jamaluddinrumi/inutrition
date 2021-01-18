@@ -51,11 +51,6 @@
                             class="font-bold no-underline"
                             type="submit"
                             :loading="isLogouting"
-                            @click="
-                                isLogouting
-                                    ? (isLogoutButtonDisabled = true)
-                                    : (isLogoutButtonDisabled = false)
-                            "
                         >
                             <v-icon small class="mr-2"
                                 >fas fa-sign-out-alt</v-icon
@@ -89,7 +84,7 @@
                             }}</v-toolbar-title>
                             <v-divider class="mx-4" inset vertical></v-divider>
                             <v-spacer></v-spacer>
-                            <v-dialog v-model="dialog" max-width="500px">
+                            <v-dialog v-model="dialog" max-width="600px">
                                 <template v-slot:activator="{ on, attrs }">
                                     <v-btn
                                         color="primary"
@@ -189,7 +184,11 @@
                                     </v-card-actions>
                                 </v-card>
                             </v-dialog>
-                            <v-dialog v-model="dialogDelete" max-width="500px">
+                            <v-dialog
+                                v-model="dialogDelete"
+                                max-width="600px"
+                                transition="dialog-top-transition"
+                            >
                                 <v-card>
                                     <v-card-title class="headline">{{
                                         $vuetify.lang.t("$vuetify.youSure")
@@ -201,10 +200,11 @@
                                             )
                                         }}
                                     </v-card-text>
-                                    <v-card-actions>
+                                    <v-card-actions class="justify-end">
                                         <v-spacer></v-spacer>
                                         <v-btn
                                             color="blue darken-1"
+                                            rounded
                                             text
                                             @click="closeDelete"
                                             >{{
@@ -215,6 +215,7 @@
                                         >
                                         <v-btn
                                             color="error"
+                                            rounded
                                             class="px-4 font-bold"
                                             @click="deleteItemConfirm"
                                             ><v-icon small class="mr-2"
