@@ -12,7 +12,7 @@ require("vuetifyjs-mix-extension");
  |
  */
 
-mix.scripts("resources/js/login.js", "public/js/login.js")
+mix.combine("resources/js/login.js", "public/js/login.js")
     .js("resources/js/app.js", "public/js")
     .vuetify()
     .postCss("resources/css/app.css", "public/css", [
