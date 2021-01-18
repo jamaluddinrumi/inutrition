@@ -46,6 +46,7 @@
                     <form method="POST" @submit.prevent="logout">
                         <v-btn
                             block
+                            rounded
                             color="secondary"
                             class="font-bold no-underline"
                             type="submit"
