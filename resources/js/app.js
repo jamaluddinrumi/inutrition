@@ -5,7 +5,15 @@ import Vue from "vue";
 import Vuex from "vuex";
 import { InertiaApp } from "@inertiajs/inertia-vue";
 import { InertiaForm } from "laravel-jetstream";
+import { InertiaProgress } from "@inertiajs/progress";
 import PortalVue from "portal-vue";
+
+InertiaProgress.init({
+    delay: 0,
+    color: "#424242",
+    includeCSS: true,
+    showSpinner: false
+});
 
 Vue.use(Vuex);
 Vue.mixin({ methods: { route } });
@@ -22,9 +30,7 @@ const store = new Vuex.Store({
             state.count++;
         }
     },
-    actions: {
-
-    }
+    actions: {}
 });
 
 store.commit("increment");
