@@ -25,10 +25,10 @@
                 <x-jet-input id="password" class="block mt-1 w-full ring-1 ring-gray-300 bg-gray-50 bg-opacity-50" type="password" name="password" required autocomplete="current-password" />
             </div>
 
-            <div class="block mt-4">
+            <div class="block mt-4 cursor-pointer">
                 <label for="remember_me" class="flex items-center">
-                    <input id="remember_me" type="checkbox" class="form-checkbox rounded ring-1 ring-gray-300" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    <input id="remember_me" type="checkbox" class="form-checkbox rounded ring-1 ring-gray-300 cursor-pointer" name="remember">
+                    <span class="ml-2 text-sm text-gray-600 cursor-pointer">{{ __('Remember me') }}</span>
                 </label>
             </div>
 
