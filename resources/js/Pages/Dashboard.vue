@@ -278,6 +278,7 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout";
 import Welcome from "@/Jetstream/Welcome";
+import { mapMutations } from "vuex";
 
 export default {
     components: {
@@ -381,6 +382,7 @@ export default {
         this.initialize();
     },
     methods: {
+        ...mapMutations(["INCREMENT"]),
         logout() {
             this.isLogouting = true;
             axios.post(route("logout").url()).then((response) => {
