@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'failed' => 'Email & password ini tidak cocok dengan yang ada di database kami.',
+    'failed' => 'Email & password yang anda masukkan tidak cocok dengan yang ada di database kami.',
     'password' => 'Password yang diketikkan salah.',
-    'throttle' => 'Terlalu banyak login. Anda bisa coba lagi setelah :seconds detik.',
+    'throttle' => 'Terlalu banyak percobaan untuk login. Anda bisa mencoba login kembali setelah :seconds detik.',
 
 ];
