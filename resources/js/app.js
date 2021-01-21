@@ -35,7 +35,6 @@ const store = new Vuex.Store({
 
 store.commit("increment");
 
-window.Vue = require("vue");
 import vuetify from "@/Plugins/vuetify";
 
 const app = document.getElementById("app");
