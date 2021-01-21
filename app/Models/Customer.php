@@ -9,7 +9,7 @@ class Customer extends Model
 {
     use HasFactory;
 
-    protected $table = 'Customer';
+    protected $table = 'customer';
 
     public function nutrition() {
         return $this->hasOne(Nutrition::class);
