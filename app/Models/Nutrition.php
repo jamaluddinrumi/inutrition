@@ -9,7 +9,7 @@ class Nutrition extends Model
 {
     use HasFactory;
 
-    protected $table = 'Nutrition';
+    protected $table = 'nutrition';
 
     public function customer() {
         return $this->belongsTo(Customer::class);
