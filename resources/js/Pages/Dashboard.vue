@@ -184,11 +184,7 @@
                                     </v-card-actions>
                                 </v-card>
                             </v-dialog>
-                            <v-dialog
-                                v-model="dialogDelete"
-                                max-width="600px"
-                                transition="dialog-top-transition"
-                            >
+                            <v-dialog v-model="dialogDelete" max-width="600px">
                                 <v-card>
                                     <v-card-title class="headline">{{
                                         $vuetify.lang.t("$vuetify.youSure")
