@@ -256,12 +256,12 @@
             </v-container>
         </v-main>
 
-        <v-footer app>
+        <v-footer app dark padless>
             <v-row
                 justify="center"
-                class="py-6 font-bold text-gray-600 text-opacity-90"
+                class="py-6 font-bold"
             >
-                <v-icon small class="mr-1 text-gray-600 text-opacity-90"
+                <v-icon small class="mr-1"
                     >fas fa-copyright</v-icon
                 >
                 {{ new Date().getFullYear() }}
@@ -306,9 +306,10 @@ export default {
     },
     data() {
         return {
+            footer: !this.$vuetify.breakpoint.mobile,
             isLogoutButtonDisabled: false,
             isLogouting: false,
-            drawer: true,
+            drawer: !this.$vuetify.breakpoint.mobile,
             dialog: false,
             dialogDelete: false,
             editedIndex: -1,
