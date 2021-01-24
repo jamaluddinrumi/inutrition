@@ -1,7 +1,8 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <!-- replace this div below with your logo -->
+            <div class="h-20"></div>
         </x-slot>
 
         <div x-data="{ recovery: false }">
@@ -29,18 +30,14 @@
                 </div>
 
                 <div class="flex items-center justify-end mt-4">
-                    <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer"
-                                    x-show="! recovery"
-                                    x-on:click="
+                    <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer" x-show="! recovery" x-on:click="
                                         recovery = true;
                                         $nextTick(() => { $refs.recovery_code.focus() })
                                     ">
                         {{ __('Use a recovery code') }}
                     </button>
 
-                    <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer"
-                                    x-show="recovery"
-                                    x-on:click="
+                    <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer" x-show="recovery" x-on:click="
                                         recovery = false;
                                         $nextTick(() => { $refs.code.focus() })
                                     ">

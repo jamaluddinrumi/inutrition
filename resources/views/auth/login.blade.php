@@ -1,7 +1,8 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-
+            <!-- replace this div below with your logo -->
+            <div class="h-20"></div>
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
