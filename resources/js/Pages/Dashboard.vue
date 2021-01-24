@@ -72,7 +72,7 @@
             <v-container fluid class="bg-gray-50">
                 <v-data-table
                     :headers="headers"
-                    :items="desserts"
+                    :items="nutritions"
                     :items-per-page="10"
                     sort-by="name"
                     class="elevation-1"
@@ -359,7 +359,7 @@ export default {
                     sortable: false,
                 },
             ],
-            desserts: [],
+            nutritions: [],
         };
     },
     computed: {
@@ -387,9 +387,9 @@ export default {
             });
         },
         initialize() {
-            this.desserts = [];
+            this.nutritions = [];
             this.customers.forEach((customer) => {
-                this.desserts.push({
+                this.nutritions.push({
                     name: customer.first_name + " " + customer.last_name,
                     calories: customer.nutrition.calories,
                     fat: customer.nutrition.fat,
@@ -400,19 +400,19 @@ export default {
         },
 
         editItem(item) {
-            this.editedIndex = this.desserts.indexOf(item);
+            this.editedIndex = this.nutritions.indexOf(item);
             this.editedItem = Object.assign({}, item);
             this.dialog = true;
         },
 
         deleteItem(item) {
-            this.editedIndex = this.desserts.indexOf(item);
+            this.editedIndex = this.nutritions.indexOf(item);
             this.editedItem = Object.assign({}, item);
             this.dialogDelete = true;
         },
 
         deleteItemConfirm() {
-            this.desserts.splice(this.editedIndex, 1);
+            this.nutritions.splice(this.editedIndex, 1);
             this.closeDelete();
         },
 
@@ -434,9 +434,9 @@ export default {
 
         save() {
             if (this.editedIndex > -1) {
-                Object.assign(this.desserts[this.editedIndex], this.editedItem);
+                Object.assign(this.nutritions[this.editedIndex], this.editedItem);
             } else {
-                this.desserts.push(this.editedItem);
+                this.nutritions.push(this.editedItem);
             }
             this.close();
         },
