@@ -33,7 +33,7 @@ const store = new Vuex.Store({
     actions: {}
 });
 
-store.commit("increment");
+// store.commit("increment");
 
 import vuetify from "@/Plugins/vuetify";
 
