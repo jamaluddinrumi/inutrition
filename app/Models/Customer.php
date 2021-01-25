@@ -9,9 +9,12 @@ class Customer extends Model
 {
     use HasFactory;
 
-    protected $table = 'customer';
+    protected $table = 'customers';
 
-    public function nutrition() {
+    public function nutrition()
+    {
         return $this->hasOne(Nutrition::class);
     }
+
+    protected $hidden = ['created_at', 'updated_at'];
 }
