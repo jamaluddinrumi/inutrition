@@ -7,7 +7,7 @@
 
         <x-jet-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" onsubmit="onSubmit()">
             @csrf
 
             <div>
@@ -35,8 +35,11 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-jet-button class="ml-4 font-bold rounded-full v-btn--is-elevated">
-                    {{ __('Register') }}
+                <x-jet-button id="submit-button" class="ml-4 font-bold rounded-full v-btn v-btn--contained v-btn--is-elevated v-btn--has-bg v-btn--rounded theme--light v-size--default elevation-1">
+                    <span class="v-btn__content">
+                        <i aria-hidden="true" class="v-icon notranslate mr-1 fas fa-user-plus theme--light" style="font-size: 14px;"></i>
+                        {{ __('Register') }}
+                    </span>
                 </x-jet-button>
             </div>
         </form>

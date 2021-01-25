@@ -28,8 +28,11 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <x-jet-button class="font-bold rounded-full v-btn--is-elevated">
-                    {{ __('Reset Password') }}
+                <x-jet-button id="submit-button" class="ml-4 font-bold rounded-full v-btn v-btn--contained v-btn--is-elevated v-btn--has-bg v-btn--rounded theme--light v-size--default elevation-1">
+                    <span class="v-btn__content">
+                        <i aria-hidden="true" class="v-icon notranslate mr-1 fas fa-key theme--light" style="font-size: 14px;"></i>
+                        {{ __('Reset Password') }}
+                    </span>
                 </x-jet-button>
             </div>
         </form>

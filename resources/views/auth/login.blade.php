@@ -13,7 +13,7 @@
         </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}" onsubmit="onLoginSubmit()">
+        <form method="POST" action="{{ route('login') }}" onsubmit="onSubmit()">
             @csrf
 
             <div>
@@ -40,9 +40,9 @@
                 </a>
                 @endif
 
-                <x-jet-button id="login-button" class="ml-4 font-bold rounded-full v-btn v-btn--contained v-btn--is-elevated v-btn--has-bg v-btn--rounded theme--light v-size--default elevation-2">
+                <x-jet-button id="submit-button" class="ml-4 font-bold rounded-full v-btn v-btn--contained v-btn--is-elevated v-btn--has-bg v-btn--rounded theme--light v-size--default elevation-1">
                     <span class="v-btn__content">
-                    <i aria-hidden="true" class="v-icon notranslate mr-1 fas fa-sign-out-alt theme--light" style="font-size: 14px;"></i>
+                        <i aria-hidden="true" class="v-icon notranslate mr-1 fas fa-sign-out-alt theme--light" style="font-size: 14px;"></i>
                         {{ __('Login') }}
                     </span>
                 </x-jet-button>
