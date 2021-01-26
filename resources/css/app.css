@@ -5,3 +5,28 @@
 #app {
     font-family: "IBM Plex Sans", sans;
 }
+
+[type="text"],
+[type="email"],
+[type="url"],
+[type="password"],
+[type="number"],
+[type="date"],
+[type="datetime-local"],
+[type="month"],
+[type="search"],
+[type="tel"],
+[type="time"],
+[type="week"],
+[multiple],
+textarea,
+select {
+    @apply ring-1;
+    @apply ring-gray-300;
+    @apply bg-gray-50;
+    @apply bg-opacity-50;
+}
+
+button {
+    @apply font-bold;
+}
