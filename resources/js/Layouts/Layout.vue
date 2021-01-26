@@ -23,26 +23,28 @@
             </v-list>
             <v-divider></v-divider>
             <v-list nav>
-                <inertia-link
-                    v-for="menu_item in menu"
-                    :key="menu_item.id"
-                    :href="menu_item.href"
-                    class="no-underline"
-                >
-                    <v-list-item link :key="menu_item.id" class="font-bold">
-                        <v-list-item-icon
-                            ><v-icon small color="secondary">{{
-                                menu_item.icon
-                            }}</v-icon></v-list-item-icon
-                        >
+                <v-list-item-group>
+                    <inertia-link
+                        v-for="menu_item in menu"
+                        :key="menu_item.id"
+                        :href="menu_item.href"
+                        class="no-underline"
+                    >
+                        <v-list-item :key="menu_item.id" class="font-bold">
+                            <v-list-item-icon
+                                ><v-icon small>{{
+                                    menu_item.icon
+                                }}</v-icon></v-list-item-icon
+                            >
 
-                        <v-list-item-content>
-                            <v-list-item-title class="text-left ml-2">{{
-                                menu_item.title
-                            }}</v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                </inertia-link>
+                            <v-list-item-content>
+                                <v-list-item-title class="text-left ml-2">{{
+                                    menu_item.title
+                                }}</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </inertia-link>
+                </v-list-item-group>
             </v-list>
             <template v-slot:append>
                 <div class="p-2">
@@ -50,7 +52,6 @@
                         <v-btn
                             block
                             rounded
-                            color="secondary"
                             class="font-bold no-underline"
                             type="submit"
                             :loading="isLogouting"
@@ -66,15 +67,19 @@
             <v-divider></v-divider>
         </v-navigation-drawer>
 
-        <v-app-bar app elevate-on-scroll color="rgba(249, 250, 251, 1)">
+        <v-app-bar app elevate-on-scroll>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-app-bar-title shrink-on-scroll>{{
                 $vuetify.lang.t("$vuetify.title." + $page.title)
             }}</v-app-bar-title>
+            <v-spacer></v-spacer>
+            <v-switch inset v-model="$vuetify.theme.dark"
+                ><v-icon>fas fa-sun</v-icon></v-switch
+            >
         </v-app-bar>
 
         <v-main>
-            <v-container fluid class="bg-gray-50">
+            <v-container fluid>
                 <slot></slot>
             </v-container>
         </v-main>
@@ -100,18 +105,19 @@ export default {
             drawer: !this.$vuetify.breakpoint.mobile,
             menu: [
                 {
-                    id: 1,
+                    id: 0,
                     title: this.$vuetify.lang.t("$vuetify.title.dashboard"),
                     href: "/dashboard",
                     icon: "fas fa-home",
                 },
                 {
-                    id: 2,
+                    id: 1,
                     title: this.$vuetify.lang.t("$vuetify.title.profile"),
                     href: "/profile",
                     icon: "fas fa-user",
                 },
             ],
+            group: 0,
         };
     },
     computed: {},

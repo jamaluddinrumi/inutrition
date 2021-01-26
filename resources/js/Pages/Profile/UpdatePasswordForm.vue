@@ -62,7 +62,6 @@
 
         <template #actions>
             <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-                <v-icon small class="text-green-600">fas fa-check</v-icon>
                 {{ $vuetify.lang.t("$vuetify.profile.saved") }}
             </jet-action-message>
 

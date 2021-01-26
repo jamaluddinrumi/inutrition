@@ -310,7 +310,7 @@ export default {
     },
 };
 </script>
-<style scoped>
+<style>
 [type="text"],
 [type="email"],
 [type="url"],
