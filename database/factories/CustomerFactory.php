@@ -29,6 +29,7 @@ class CustomerFactory extends Factory
             'postcode' => $this->faker->postcode(),
             'street_address' => $this->faker->streetAddress(),
             'phone_number' => $this->faker->e164PhoneNumber(),
+            'email' => $this->faker->unique()->email,
         ];
     }
 }
