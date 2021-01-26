@@ -13,10 +13,12 @@
                 <v-list-item>
                     <v-list-item-content>
                         <v-list-item-title class="text-left">
-                            {{ $page.user.name }}
+                            <!-- <v-skeleton-loader class="mx-auto" type="text"></v-skeleton-loader> -->
+                            <span>{{ $page.user.name }}</span>
                         </v-list-item-title>
                         <v-list-item-subtitle class="text-left">
-                            {{ $page.user.email }}
+                            <!-- <v-skeleton-loader class="mx-auto" type="text"></v-skeleton-loader> -->
+                            <span>{{ $page.user.email }}</span>
                         </v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
@@ -73,15 +75,21 @@
                 $vuetify.lang.t("$vuetify.title." + $page.title)
             }}</v-app-bar-title>
             <v-spacer></v-spacer>
+            <v-btn icon>
+                <v-icon small>fas fa-bell</v-icon>
+            </v-btn>
             <v-switch
                 dense
                 hide-details
                 inset
                 v-model="$vuetify.theme.dark"
-                :prepend-icon="
-                    $vuetify.theme.dark ? 'fas fa-moon' : 'fas fa-sun'
-                "
-            ></v-switch>
+                class="ml-4"
+            >
+            <template v-slot:label>
+                <v-icon v-if="$vuetify.theme.dark" small class="-ml-2">fas fa-moon</v-icon>
+                <v-icon v-else small class="-ml-2">fas fa-sun</v-icon>
+            </template>
+            </v-switch>
         </v-app-bar>
 
         <v-main>

@@ -1,7 +1,11 @@
 <template>
     <layout>
         <div class="text-h4 mt-6 mb-4">Customers</div>
-        <calories-table :customers="customers"></calories-table>
+        <v-row>
+            <v-col>
+                <calories-table :customers="customers"></calories-table>
+            </v-col>
+        </v-row>
         <div class="text-h4 mt-6 mb-4">Staffs</div>
         <v-row>
             <v-col v-for="user_item in users" :key="user_item.id"
