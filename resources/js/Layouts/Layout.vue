@@ -22,7 +22,7 @@
                 </v-list-item>
             </v-list>
             <v-divider></v-divider>
-            <v-list nav rounded>
+            <v-list rounded>
                 <v-list-item-group>
                     <inertia-link
                         v-for="menu_item in menu"
@@ -30,7 +30,7 @@
                         :href="menu_item.href"
                         class="no-underline"
                     >
-                        <v-list-item :key="menu_item.id" class="font-bold">
+                        <v-list-item :key="menu_item.id" class="font-bold px-4">
                             <v-list-item-icon
                                 ><v-icon small>{{
                                     menu_item.icon
