@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,5 +28,9 @@ class AppServiceProvider extends ServiceProvider
         if (env('APP_ENV') == 'production') {
             URL::forceScheme('https');
         }
+
+        Inertia::share('storagePath', storage_path());
+        Inertia::share('publicPath', public_path());
+        Inertia::share('storageUrl', asset('storage'));
     }
 }
