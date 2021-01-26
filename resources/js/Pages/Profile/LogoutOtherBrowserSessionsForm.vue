@@ -14,7 +14,7 @@
             </div>
 
             <!-- Other Browser Sessions -->
-            <div class="mt-5 space-y-6" v-if="sessions.length > 0">
+            <div class="mt-5 space-y-6" v-if="sessionsIsNotNull">
                 <div class="flex items-center" v-for="(session, i) in sessions" :key="i">
                     <div>
                         <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8 text-gray-500" v-if="session.agent.is_desktop">
@@ -142,5 +142,13 @@
                 })
             },
         },
+
+        computed: {
+            sessionsIsNotNull() {
+                if(this.sessions) {
+                    return sessions.length > 0 ? true : false;
+                }
+            }
+        }
     }
 </script>

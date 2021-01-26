@@ -1,83 +1,137 @@
 <template>
     <jet-form-section @submitted="updatePassword">
-        <template #title>
-            Update Password
-        </template>
+        <template #title>{{
+            $vuetify.lang.t("$vuetify.profile.updatePassword")
+        }}</template>
 
         <template #description>
-            Ensure your account is using a long, random password to stay secure.
+            {{ $vuetify.lang.t("$vuetify.profile.ensurePassword") }}
         </template>
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
-                <jet-label for="current_password" value="Current Password" />
-                <jet-input id="current_password" type="password" class="mt-1 block w-full" v-model="form.current_password" ref="current_password" autocomplete="current-password" />
-                <jet-input-error :message="form.error('current_password')" class="mt-2" />
+                <v-text-field
+                    :label="$vuetify.lang.t('$vuetify.profile.currentPassword')"
+                    id="current_password"
+                    type="password"
+                    class="mt-1 block w-full"
+                    v-model="form.current_password"
+                    ref="current_password"
+                    autocomplete="current-password"
+                />
+                <jet-input-error
+                    :message="form.error('current_password')"
+                    class="mt-2"
+                />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <jet-label for="password" value="New Password" />
-                <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" autocomplete="new-password" />
-                <jet-input-error :message="form.error('password')" class="mt-2" />
+                <v-text-field
+                    :label="$vuetify.lang.t('$vuetify.profile.newPassword')"
+                    id="password"
+                    type="password"
+                    class="mt-1 block w-full"
+                    v-model="form.password"
+                    autocomplete="new-password"
+                />
+                <jet-input-error
+                    :message="form.error('password')"
+                    class="mt-2"
+                />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <jet-label for="password_confirmation" value="Confirm Password" />
-                <jet-input id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" autocomplete="new-password" />
-                <jet-input-error :message="form.error('password_confirmation')" class="mt-2" />
+                <v-text-field
+                    :label="$vuetify.lang.t('$vuetify.profile.confirmPassword')"
+                    id="password_confirmation"
+                    type="password"
+                    class="mt-1 block w-full"
+                    v-model="form.password_confirmation"
+                    autocomplete="new-password"
+                />
+                <jet-input-error
+                    :message="form.error('password_confirmation')"
+                    class="mt-2"
+                />
             </div>
+
+            <v-overlay absolute="absolute" :value="isSubmitted">
+                <v-progress-circular indeterminate></v-progress-circular>
+            </v-overlay>
         </template>
 
         <template #actions>
             <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-                Saved.
+                <v-icon small class="text-green-600">fas fa-check</v-icon>
+                {{ $vuetify.lang.t("$vuetify.profile.saved") }}
             </jet-action-message>
 
-            <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Save
-            </jet-button>
+            <v-btn
+                type="submit"
+                rounded
+                color="primary"
+                class="font-bold"
+                :class="{ 'opacity-25': form.processing }"
+                :disabled="form.processing"
+            >
+                <v-icon small class="mr-2">fa fa-save</v-icon>
+                {{ $vuetify.lang.t("$vuetify.save") }}
+            </v-btn>
         </template>
     </jet-form-section>
 </template>
 
 <script>
-    import JetActionMessage from '@/Jetstream/ActionMessage'
-    import JetButton from '@/Jetstream/Button'
-    import JetFormSection from '@/Jetstream/FormSection'
-    import JetInput from '@/Jetstream/Input'
-    import JetInputError from '@/Jetstream/InputError'
-    import JetLabel from '@/Jetstream/Label'
+import JetActionMessage from "@/Jetstream/ActionMessage";
+import JetButton from "@/Jetstream/Button";
+import JetFormSection from "@/Jetstream/FormSection";
+import JetInput from "@/Jetstream/Input";
+import JetInputError from "@/Jetstream/InputError";
+import JetLabel from "@/Jetstream/Label";
 
-    export default {
-        components: {
-            JetActionMessage,
-            JetButton,
-            JetFormSection,
-            JetInput,
-            JetInputError,
-            JetLabel,
-        },
+export default {
+    components: {
+        JetActionMessage,
+        JetButton,
+        JetFormSection,
+        JetInput,
+        JetInputError,
+        JetLabel,
+    },
 
-        data() {
-            return {
-                form: this.$inertia.form({
-                    current_password: '',
-                    password: '',
-                    password_confirmation: '',
-                }, {
-                    bag: 'updatePassword',
-                }),
-            }
-        },
+    data() {
+        return {
+            form: this.$inertia.form(
+                {
+                    current_password: "",
+                    password: "",
+                    password_confirmation: "",
+                },
+                {
+                    bag: "updatePassword",
+                }
+            ),
 
-        methods: {
-            updatePassword() {
-                this.form.put(route('user-password.update'), {
-                    preserveScroll: true
-                }).then(() => {
-                    this.$refs.current_password.focus()
+            isSubmitted: false,
+        };
+    },
+
+    methods: {
+        updatePassword() {
+            this.form
+                .put(route("user-password.update"), {
+                    preserveScroll: true,
+                    onStart: (visit) => {
+                        this.isSubmitted = true;
+                    },
+                    onFinish: () => {
+                        this.isSubmitted = false;
+                    },
                 })
-            },
+                .then(() => {
+                    this.$refs.current_password.focus();
+                });
         },
-    }
+    },
+};
 </script>

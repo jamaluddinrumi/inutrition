@@ -1,143 +1,229 @@
 <template>
     <jet-form-section @submitted="updateProfileInformation">
-        <template #title>
-            Profile Information
-        </template>
+        <template #title>{{
+            $vuetify.lang.t("$vuetify.profile.profileInformation")
+        }}</template>
 
         <template #description>
-            Update your account's profile information and email address.
+            {{ $vuetify.lang.t("$vuetify.profile.updateProfileInfo") }}
         </template>
 
         <template #form>
             <!-- Profile Photo -->
-            <div class="col-span-6 sm:col-span-4" v-if="$page.jetstream.managesProfilePhotos">
+            <div
+                class="col-span-6 sm:col-span-4"
+                v-if="$page.jetstream.managesProfilePhotos"
+            >
                 <!-- Profile Photo File Input -->
-                <input type="file" class="hidden"
-                            ref="photo"
-                            @change="updatePhotoPreview">
+                <input
+                    type="file"
+                    class="hidden"
+                    ref="photo"
+                    @change="updatePhotoPreview"
+                />
 
-                <jet-label for="photo" value="Photo" />
+                <h4>{{ $vuetify.lang.t("$vuetify.profile.photo") }}</h4>
 
                 <!-- Current Profile Photo -->
-                <div class="mt-2" v-show="! photoPreview">
-                    <img :src="user.profile_photo_url" alt="Current Profile Photo" class="rounded-full h-20 w-20 object-cover">
+                <div class="mt-2" v-show="!photoPreview">
+                    <img
+                        :src="user.profile_photo_url"
+                        alt="Current Profile Photo"
+                        class="rounded-full h-20 w-20 object-cover"
+                    />
                 </div>
 
                 <!-- New Profile Photo Preview -->
                 <div class="mt-2" v-show="photoPreview">
-                    <span class="block rounded-full w-20 h-20"
-                          :style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
+                    <span
+                        class="block rounded-full w-20 h-20"
+                        :style="
+                            'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' +
+                            photoPreview +
+                            '\');'
+                        "
+                    >
                     </span>
                 </div>
 
-                <jet-secondary-button class="mt-2 mr-2" type="button" @click.native.prevent="selectNewPhoto">
-                    Select A New Photo
-                </jet-secondary-button>
+                <v-btn
+                    small
+                    fab
+                    color="primary"
+                    class="mt-2 mr-2"
+                    @click="selectNewPhoto"
+                >
+                    <v-icon small>fas fa-camera</v-icon>
+                </v-btn>
 
-                <jet-secondary-button type="button" class="mt-2" @click.native.prevent="deletePhoto" v-if="user.profile_photo_path">
-                    Remove Photo
-                </jet-secondary-button>
+                <v-btn
+                    small
+                    fab
+                    color="error"
+                    class="mt-2"
+                    @click.native.prevent="deletePhoto"
+                    v-if="user.profile_photo_path"
+                >
+                    <v-icon small>fas fa-trash</v-icon>
+                </v-btn>
 
                 <jet-input-error :message="form.error('photo')" class="mt-2" />
             </div>
 
             <!-- Name -->
             <div class="col-span-6 sm:col-span-4">
-                <jet-label for="name" value="Name" />
-                <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" autocomplete="name" />
+                <v-text-field
+                    :label="$vuetify.lang.t('$vuetify.name')"
+                    id="name"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.name"
+                    autocomplete="name"
+                />
                 <jet-input-error :message="form.error('name')" class="mt-2" />
             </div>
 
             <!-- Email -->
             <div class="col-span-6 sm:col-span-4">
-                <jet-label for="email" value="Email" />
-                <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" />
+                <v-text-field
+                    :label="$vuetify.lang.t('$vuetify.email')"
+                    id="email"
+                    type="email"
+                    class="mt-1 block w-full"
+                    v-model="form.email"
+                />
                 <jet-input-error :message="form.error('email')" class="mt-2" />
             </div>
+
+            <v-overlay absolute="absolute" :value="isSubmitted">
+                <v-progress-circular indeterminate></v-progress-circular>
+            </v-overlay>
         </template>
 
         <template #actions>
             <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-                Saved.
+                <v-icon small class="text-green-600">fas fa-check</v-icon>
+                {{ $vuetify.lang.t("$vuetify.profile.saved") }}
             </jet-action-message>
 
-            <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Save
-            </jet-button>
+            <v-btn
+                rounded
+                type="submit"
+                color="primary"
+                class="font-bold"
+                :class="{ 'opacity-25': form.processing }"
+                :disabled="form.processing"
+            >
+                <v-icon small dark class="mr-2">fas fa-save</v-icon>
+                {{ $vuetify.lang.t("$vuetify.save") }}
+            </v-btn>
         </template>
     </jet-form-section>
 </template>
 
 <script>
-    import JetButton from '@/Jetstream/Button'
-    import JetFormSection from '@/Jetstream/FormSection'
-    import JetInput from '@/Jetstream/Input'
-    import JetInputError from '@/Jetstream/InputError'
-    import JetLabel from '@/Jetstream/Label'
-    import JetActionMessage from '@/Jetstream/ActionMessage'
-    import JetSecondaryButton from '@/Jetstream/SecondaryButton'
+import JetButton from "@/Jetstream/Button";
+import JetFormSection from "@/Jetstream/FormSection";
+import JetInput from "@/Jetstream/Input";
+import JetInputError from "@/Jetstream/InputError";
+import JetLabel from "@/Jetstream/Label";
+import JetActionMessage from "@/Jetstream/ActionMessage";
+import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 
-    export default {
-        components: {
-            JetActionMessage,
-            JetButton,
-            JetFormSection,
-            JetInput,
-            JetInputError,
-            JetLabel,
-            JetSecondaryButton,
-        },
+export default {
+    components: {
+        JetActionMessage,
+        JetButton,
+        JetFormSection,
+        JetInput,
+        JetInputError,
+        JetLabel,
+        JetSecondaryButton,
+    },
 
-        props: ['user'],
+    props: ["user"],
 
-        data() {
-            return {
-                form: this.$inertia.form({
-                    '_method': 'PUT',
+    data() {
+        return {
+            form: this.$inertia.form(
+                {
+                    _method: "PUT",
                     name: this.user.name,
                     email: this.user.email,
                     photo: null,
-                }, {
-                    bag: 'updateProfileInformation',
+                },
+                {
+                    bag: "updateProfileInformation",
                     resetOnSuccess: false,
-                }),
-
-                photoPreview: null,
-            }
-        },
-
-        methods: {
-            updateProfileInformation() {
-                if (this.$refs.photo) {
-                    this.form.photo = this.$refs.photo.files[0]
                 }
+            ),
 
-                this.form.post(route('user-profile-information.update'), {
-                    preserveScroll: true
-                });
-            },
+            photoPreview: null,
+            isSubmitted: false,
+        };
+    },
 
-            selectNewPhoto() {
-                this.$refs.photo.click();
-            },
+    methods: {
+        updateProfileInformation() {
+            // this.isSubmitted = true;
 
-            updatePhotoPreview() {
-                const reader = new FileReader();
+            if (this.$refs.photo) {
+                this.form.photo = this.$refs.photo.files[0];
+            }
 
-                reader.onload = (e) => {
-                    this.photoPreview = e.target.result;
-                };
-
-                reader.readAsDataURL(this.$refs.photo.files[0]);
-            },
-
-            deletePhoto() {
-                this.$inertia.delete(route('current-user-photo.destroy'), {
-                    preserveScroll: true,
-                }).then(() => {
-                    this.photoPreview = null
-                });
-            },
+            this.form.post(route("user-profile-information.update"), {
+                preserveScroll: true,
+                onStart: (visit) => {
+                    this.isSubmitted = true;
+                },
+                onFinish: () => {
+                    this.isSubmitted = false;
+                },
+            });
         },
-    }
+
+        selectNewPhoto() {
+            this.$refs.photo.click();
+        },
+
+        updatePhotoPreview() {
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                this.photoPreview = e.target.result;
+            };
+
+            reader.readAsDataURL(this.$refs.photo.files[0]);
+        },
+
+        deletePhoto() {
+            this.$inertia
+                .delete(route("current-user-photo.destroy"), {
+                    preserveScroll: true,
+                })
+                .then(() => {
+                    this.photoPreview = null;
+                });
+        },
+    },
+};
 </script>
+<style scope>
+[type="text"],
+[type="email"],
+[type="url"],
+[type="password"],
+[type="number"],
+[type="date"],
+[type="datetime-local"],
+[type="month"],
+[type="search"],
+[type="tel"],
+[type="time"],
+[type="week"],
+[multiple],
+textarea,
+select {
+    @apply ring-0;
+}
+</style>
