@@ -73,9 +73,15 @@
                 $vuetify.lang.t("$vuetify.title." + $page.title)
             }}</v-app-bar-title>
             <v-spacer></v-spacer>
-            <v-switch inset v-model="$vuetify.theme.dark"
-                ><v-icon>fas fa-sun</v-icon></v-switch
-            >
+            <v-switch
+                dense
+                hide-details
+                inset
+                v-model="$vuetify.theme.dark"
+                :prepend-icon="
+                    $vuetify.theme.dark ? 'fas fa-moon' : 'fas fa-sun'
+                "
+            ></v-switch>
         </v-app-bar>
 
         <v-main>
