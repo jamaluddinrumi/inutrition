@@ -207,22 +207,3 @@ export default {
     },
 };
 </script>
-<style scope>
-[type="text"],
-[type="email"],
-[type="url"],
-[type="password"],
-[type="number"],
-[type="date"],
-[type="datetime-local"],
-[type="month"],
-[type="search"],
-[type="tel"],
-[type="time"],
-[type="week"],
-[multiple],
-textarea,
-select {
-    @apply ring-0;
-}
-</style>
