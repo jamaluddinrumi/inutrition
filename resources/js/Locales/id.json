@@ -67,8 +67,10 @@
                 "icon": "Rating {0} of {1}"
             }
         },
+        "dashboard": "Dashboard",
         "logout": "Keluar",
         "name": "Nama",
+        "email": "Email",
         "calories": "Kalori",
         "fat": "Fat",
         "carbs": "Karbohidrat",
@@ -82,6 +84,24 @@
         "youSure": "Anda Yakin?",
         "canNotBeUndone": "Setelah dihapus tidak dapat dikembalikan lagi.",
         "save": "Simpan",
-        "addItem": "Tambah Item"
+        "addItem": "Tambah Item",
+        "title": {
+            "dashboard": "Dashboard",
+            "profile": "Profil"
+        },
+        "profile": {
+            "profileInformation": "Profil",
+            "profile": "Profil",
+            "photo": "Foto Profil",
+            "updateProfileInfo": "Ubah nama & alamat email anda di sini.",
+            "selectNewPhoto": "Pilih Foto Baru",
+            "removePhoto": "Hapus Foto",
+            "saved": "Tersimpan.",
+            "updatePassword": "Ubah Password",
+            "ensurePassword": "Pastikan untuk menggunakan password yang panjang & acak agar tetap aman.",
+            "currentPassword": "Password Saat Ini",
+            "newPassword": "Password Baru",
+            "confirmPassword": "Konfirmasi Password"
+        }
     }
 }

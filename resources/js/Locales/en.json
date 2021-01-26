@@ -67,7 +67,9 @@
                 "icon": "Rating {0} of {1}"
             }
         },
+        "dashboard": "Dashboard",
         "logout": "Logout",
+        "email": "Email",
         "name": "Name",
         "calories": "Calories",
         "fat": "Fat",
@@ -82,6 +84,24 @@
         "youSure": "You Sure?",
         "canNotBeUndone": "This is can not be undone.",
         "save": "Save",
-        "addItem": "Add Item"
+        "addItem": "Add Item",
+        "title": {
+            "dashboard": "Dashboard",
+            "profile": "Profile"
+        },
+        "profile": {
+            "profileInformation": "Profile Information",
+            "profile": "Profile",
+            "photo": "Photo",
+            "updateProfileInfo": "Update your account's profile information and email address.",
+            "selectNewPhoto": "Select A New Photo",
+            "removePhoto": "Remove Photo",
+            "saved": "Saved.",
+            "updatePassword": "Update Password",
+            "ensurePassword": "Ensure your account is using a long, random password to stay secure.",
+            "currentPassword": "Current Password",
+            "newPassword": "New Password",
+            "confirmPassword": "Confirm Password"
+        }
     }
 }
