@@ -11,7 +11,7 @@ class Dashboard extends Controller
         $customers = \App\Models\Customer::with('nutrition')->get();
 
         $data = [
-            "title" => "Dashboard",
+            "title" => "dashboard",
             "customers" => $customers,
         ];
         return Inertia::render("Dashboard", $data);
