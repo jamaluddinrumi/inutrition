@@ -22,7 +22,7 @@
                 </v-list-item>
             </v-list>
             <v-divider></v-divider>
-            <v-list nav>
+            <v-list nav rounded>
                 <v-list-item-group>
                     <inertia-link
                         v-for="menu_item in menu"
