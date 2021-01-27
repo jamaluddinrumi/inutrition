@@ -55,9 +55,7 @@ export default {
     },
 
     props: {
-        sessions: {
-            type: Array,
-        },
+        sessions: {},
         currentRouteName: {
             type: String,
         },
