@@ -91,7 +91,7 @@
                         </v-card-actions>
                     </v-card>
                 </v-dialog>
-                <v-dialog v-model="dialogDelete" max-width="600px">
+                <v-dialog v-model="dialogDelete" max-width="500px">
                     <v-card>
                         <v-card-title class="headline">{{
                             $vuetify.lang.t("$vuetify.youSure")
@@ -99,26 +99,32 @@
                         <v-card-text>
                             {{ $vuetify.lang.t("$vuetify.canNotBeUndone") }}
                         </v-card-text>
-                        <v-card-actions class="justify-end">
-                            <v-spacer></v-spacer>
-                            <v-btn
-                                color="blue darken-1"
-                                rounded
-                                text
-                                @click="closeDelete"
-                                >{{ $vuetify.lang.t("$vuetify.cancel") }}</v-btn
-                            >
-                            <v-btn
-                                color="error"
-                                rounded
-                                class="px-4 font-bold"
-                                @click="deleteItemConfirm"
-                                ><v-icon small class="mr-2"
-                                    >fas fa-trash</v-icon
-                                >
-                                {{ $vuetify.lang.t("$vuetify.delete") }}</v-btn
-                            >
-                            <v-spacer></v-spacer>
+                        <v-card-actions>
+                            <v-col>
+                                <v-row justify="end">
+                                    <v-btn
+                                        color="blue darken-1"
+                                        rounded
+                                        text
+                                        @click="closeDelete"
+                                        >{{
+                                            $vuetify.lang.t("$vuetify.cancel")
+                                        }}</v-btn
+                                    >
+                                    <v-btn
+                                        color="error"
+                                        rounded
+                                        class="px-4 ml-2 font-bold"
+                                        @click="deleteItemConfirm"
+                                        ><v-icon small class="mr-2"
+                                            >fas fa-trash</v-icon
+                                        >
+                                        {{
+                                            $vuetify.lang.t("$vuetify.delete")
+                                        }}</v-btn
+                                    >
+                                </v-row>
+                            </v-col>
                         </v-card-actions>
                     </v-card>
                 </v-dialog>
@@ -146,8 +152,8 @@ import { mapMutations } from "vuex";
 export default {
     props: {
         customers: {
-            type: Array
-        }
+            type: Array,
+        },
     },
     data() {
         return {
@@ -278,7 +284,7 @@ export default {
     },
 };
 </script>
-<style scoped>
+<style>
 [type="text"],
 [type="email"],
 [type="url"],
