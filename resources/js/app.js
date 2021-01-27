@@ -7,6 +7,7 @@ import { InertiaApp } from "@inertiajs/inertia-vue";
 import { InertiaForm } from "laravel-jetstream";
 import { InertiaProgress } from "@inertiajs/progress";
 import PortalVue from "portal-vue";
+import Title from "@/Mixins/Title";
 
 InertiaProgress.init({
     delay: 0,
@@ -20,6 +21,7 @@ Vue.mixin({ methods: { route } });
 Vue.use(InertiaApp);
 Vue.use(InertiaForm);
 Vue.use(PortalVue);
+Vue.mixin(Title);
 
 const store = new Vuex.Store({
     state: {

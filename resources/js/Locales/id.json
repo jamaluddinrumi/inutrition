@@ -85,6 +85,8 @@
         "canNotBeUndone": "Setelah dihapus tidak dapat dikembalikan lagi.",
         "save": "Simpan",
         "addItem": "Tambah Item",
+        "customers": "Customer",
+        "staffs": "Staf",
         "title": {
             "dashboard": "Dashboard",
             "profile": "Profil"

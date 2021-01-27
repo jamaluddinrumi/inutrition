@@ -41,7 +41,48 @@ import UpdatePasswordForm from "./UpdatePasswordForm";
 import UpdateProfileInformationForm from "./UpdateProfileInformationForm";
 
 export default {
-    props: ["sessions"],
+    title() {
+        if (this.title) {
+            let translationTitle = this.$vuetify.lang.t(
+                "$vuetify.title." + this.title
+            );
+            if (translationTitle) {
+                return translationTitle;
+            } else {
+                return _.capitalize(this.title);
+            }
+        }
+    },
+
+    props: {
+        sessions: {
+            type: Array,
+        },
+        currentRouteName: {
+            type: String,
+        },
+        errorBags: {
+            type: Array,
+        },
+        errors: {
+            type: Object,
+        },
+        jetstream: {
+            type: Object,
+        },
+        user: {
+            type: Object,
+        },
+        customers: {
+            type: Array,
+        },
+        users: {
+            type: Array,
+        },
+        title: {
+            type: String,
+        },
+    },
 
     components: {
         Layout,

@@ -85,6 +85,8 @@
         "canNotBeUndone": "This is can not be undone.",
         "save": "Save",
         "addItem": "Add Item",
+        "customers": "Customers",
+        "staffs": "Staffs",
         "title": {
             "dashboard": "Dashboard",
             "profile": "Profile"

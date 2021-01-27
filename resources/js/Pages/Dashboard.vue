@@ -1,12 +1,16 @@
 <template>
     <layout>
-        <div class="text-h4 mt-6 mb-4">Customers</div>
+        <div class="text-h4 mt-6 mb-4">
+            {{ $vuetify.lang.t("$vuetify.customers") }}
+        </div>
         <v-row>
             <v-col>
                 <calories-table :customers="customers"></calories-table>
             </v-col>
         </v-row>
-        <div class="text-h4 mt-6 mb-4">Staffs</div>
+        <div class="text-h4 mt-6 mb-4">
+            {{ $vuetify.lang.t("$vuetify.staffs") }}
+        </div>
         <v-row>
             <v-col v-for="user_item in users" :key="user_item.id"
                 ><contact-card :user="user_item"></contact-card
@@ -20,11 +24,25 @@ import CaloriesTable from "@/Components/Table/Calories";
 import ContactCard from "@/Components/Card/Contact";
 
 export default {
+    title() {
+        if (this.title) {
+            let translationTitle = this.$vuetify.lang.t(
+                "$vuetify.title." + this.title
+            );
+            if (translationTitle) {
+                return translationTitle;
+            } else {
+                return _.capitalize(this.title);
+            }
+        }
+    },
+
     components: {
         Layout,
         CaloriesTable,
         ContactCard,
     },
+
     props: {
         currentRouteName: {
             type: String,
@@ -47,13 +65,19 @@ export default {
         users: {
             type: Array,
         },
+        title: {
+            type: String,
+        },
     },
+
     data() {
         return {};
     },
+
     computed: {},
+
     watch: {},
-    created() {},
+
     methods: {},
 };
 </script>
