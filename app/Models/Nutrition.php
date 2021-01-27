@@ -16,5 +16,5 @@ class Nutrition extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    protected $hidden = ['created_at', 'hidden_at'];
+    protected $hidden = ['created_at', 'updated_at'];
 }
