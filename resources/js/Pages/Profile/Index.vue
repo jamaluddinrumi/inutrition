@@ -22,11 +22,11 @@
             <!-- <logout-other-browser-sessions-form
                 :sessions="sessions"
                 class="mt-10 sm:mt-0"
-            />
+            /> -->
 
             <jet-section-border />
 
-            <delete-user-form class="mt-10 sm:mt-0" /> -->
+            <!-- <delete-user-form class="mt-10 sm:mt-0" /> -->
         </div>
     </layout>
 </template>
