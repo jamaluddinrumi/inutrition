@@ -24,7 +24,10 @@ const opts = {
                 info: "#2196F3",
                 success: "#4CAF50",
                 warning: "#FFC107",
-                anchor: "#1976D2"
+                anchor: "#424242"
+            },
+            dark: {
+                anchor: "#ffffff"
             }
         },
         options: {
