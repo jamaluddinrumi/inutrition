@@ -31,6 +31,7 @@
         "sass-loader": "^10.1.0",
         "tailwindcss": "^2.0.1-compat",
         "vue": "^2.5.17",
+        "vue-country-flag": "^2.0.3",
         "vue-i18n": "^8.22.3",
         "vue-template-compiler": "^2.6.10",
         "vuetify": "^2.4.0",
