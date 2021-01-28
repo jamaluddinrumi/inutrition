@@ -48,25 +48,14 @@
                     </inertia-link>
                 </v-list-item-group>
             </v-list>
-            <template v-slot:append>
-                <div class="p-2">
-                    <form method="POST" @submit.prevent="logout">
-                        <v-btn
-                            block
-                            rounded
-                            class="font-bold no-underline"
-                            type="submit"
-                            :loading="isLogouting"
-                        >
-                            <v-icon small class="mr-2"
-                                >fas fa-sign-out-alt</v-icon
-                            >
-                            {{ $vuetify.lang.t("$vuetify.logout") }}
-                        </v-btn>
-                    </form>
-                </div>
-            </template>
             <v-divider></v-divider>
+            <template v-slot:append>
+                <v-row justify="center" class="py-6 font-bold text-sm opacity-50 hover:opacity-100 transition-opacity">
+                    <v-icon small class="mr-1">fas fa-copyright</v-icon>
+                    {{ new Date().getFullYear() }}
+                    {{ $vuetify.lang.t("$vuetify.company") }}
+                </v-row>
+            </template>
         </v-navigation-drawer>
 
         <v-app-bar app elevate-on-scroll>
@@ -75,21 +64,76 @@
                 $vuetify.lang.t("$vuetify.title." + $page.title)
             }}</v-app-bar-title>
             <v-spacer></v-spacer>
-            <v-btn icon>
-                <v-icon small>fas fa-bell</v-icon>
-            </v-btn>
             <v-switch
                 dense
                 hide-details
                 inset
                 v-model="$vuetify.theme.dark"
-                class="ml-4"
+                class="mr-4"
             >
-            <template v-slot:label>
-                <v-icon v-if="$vuetify.theme.dark" small class="-ml-2">fas fa-moon</v-icon>
-                <v-icon v-else small class="-ml-2">fas fa-sun</v-icon>
-            </template>
+                <template v-slot:label>
+                    <v-icon v-if="$vuetify.theme.dark" small class="-ml-2"
+                        >fas fa-moon</v-icon
+                    >
+                    <v-icon v-else small class="-ml-2">fas fa-sun</v-icon>
+                </template>
             </v-switch>
+            <v-btn icon>
+                <v-icon small>fas fa-bell</v-icon>
+            </v-btn>
+            <!-- <inertia-link href="/profile">
+                <v-btn icon>
+                    <v-icon small>fas fa-user</v-icon>
+                </v-btn>
+            </inertia-link> -->
+            <v-menu offset-y>
+                <template v-slot:activator="{ on, attrs }">
+                    <v-btn icon v-bind="attrs" v-on="on">
+                        <v-icon small>fas fa-user</v-icon>
+                    </v-btn>
+                </template>
+                <v-list rounded>
+                    <v-list-item-group>
+                        <v-list-item
+                            v-for="(menu_item, index) in user_menu"
+                            :key="index"
+                        >
+                            <template v-slot:default="{ active }">
+                                <v-list-item-content
+                                    v-if="menu_item.href !== '/logout'"
+                                >
+                                    <v-list-item-title>
+                                        <inertia-link
+                                            :href="menu_item.href"
+                                            class="no-underline font-bold"
+                                        >
+                                            <v-icon small class="mr-2">{{
+                                                menu_item.icon
+                                            }}</v-icon>
+                                            {{ menu_item.title }}
+                                        </inertia-link>
+                                    </v-list-item-title>
+                                </v-list-item-content>
+                                <v-list-item-content
+                                    v-else-if="menu_item.href === '/logout'"
+                                >
+                                    <form
+                                        method="POST"
+                                        @submit.prevent="logout"
+                                    >
+                                        <div @click="logout" class="font-bold">
+                                            <v-icon small class="mr-2">{{
+                                                menu_item.icon
+                                            }}</v-icon>
+                                            {{ menu_item.title }}
+                                        </div>
+                                    </form>
+                                </v-list-item-content>
+                            </template>
+                        </v-list-item>
+                    </v-list-item-group>
+                </v-list>
+            </v-menu>
         </v-app-bar>
 
         <v-main>
@@ -98,13 +142,7 @@
             </v-container>
         </v-main>
 
-        <v-footer app dark padless>
-            <v-row justify="center" class="py-6 font-bold text-sm">
-                <v-icon small class="mr-1">fas fa-copyright</v-icon>
-                {{ new Date().getFullYear() }}
-                {{ $vuetify.lang.t("$vuetify.company") }}
-            </v-row>
-        </v-footer>
+        <v-footer app dark padless> </v-footer>
     </v-app>
 </template>
 <script>
@@ -124,11 +162,19 @@ export default {
                     href: "/dashboard",
                     icon: "fas fa-home",
                 },
+            ],
+            user_menu: [
+                {
+                    id: 0,
+                    title: this.$vuetify.lang.t("$vuetify.profile.profile"),
+                    href: "/profile",
+                    icon: "fas fa-cog",
+                },
                 {
                     id: 1,
-                    title: this.$vuetify.lang.t("$vuetify.title.profile"),
-                    href: "/profile",
-                    icon: "fas fa-user",
+                    title: this.$vuetify.lang.t("$vuetify.logout"),
+                    href: "/logout",
+                    icon: "fas fa-sign-out-alt",
                 },
             ],
             group: 0,
