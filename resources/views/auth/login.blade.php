@@ -1,3 +1,8 @@
+<style>
+    td:first-child {
+        padding-right: 1rem;
+    }
+</style>
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
@@ -12,6 +17,26 @@
             {{ session('status') }}
         </div>
         @endif
+
+        <section class="p-4 bg-gradient-to-tr from-gray-100 to-gray-200 rounded-lg mb-4">
+            <header class="">
+                <h3 class="text-gray-600">Demo Account Credential</h3>
+            </header>
+            <table id="demo-account-credential" class="table-auto text-gray-600">
+                <tbody>
+                    <tr>
+                        <td class="font-bold">Email</td>
+                        <td>:</td>
+                        <td class="italic">demo@demo.com</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">Password</td>
+                        <td>:</td>
+                        <td class="italic">demo1234</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
         <form method="POST" action="{{ route('login') }}" onsubmit="onSubmit()">
             @csrf
