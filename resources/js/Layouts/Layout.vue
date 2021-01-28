@@ -50,7 +50,10 @@
             </v-list>
             <v-divider></v-divider>
             <template v-slot:append>
-                <v-row justify="center" class="py-6 font-bold text-sm opacity-50 hover:opacity-100 transition-opacity">
+                <v-row
+                    justify="center"
+                    class="py-6 font-bold text-sm opacity-50 hover:opacity-100 transition-opacity"
+                >
                     <v-icon small class="mr-1">fas fa-copyright</v-icon>
                     {{ new Date().getFullYear() }}
                     {{ $vuetify.lang.t("$vuetify.company") }}
@@ -69,7 +72,7 @@
                 hide-details
                 inset
                 v-model="$vuetify.theme.dark"
-                class="mr-4"
+                class="mx-4"
             >
                 <template v-slot:label>
                     <v-icon v-if="$vuetify.theme.dark" small class="-ml-2"
@@ -86,7 +89,7 @@
                     <v-icon small>fas fa-user</v-icon>
                 </v-btn>
             </inertia-link> -->
-            <v-menu offset-y>
+            <v-menu offset-y transition="slide-y-transition">
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn icon v-bind="attrs" v-on="on">
                         <v-icon small>fas fa-user</v-icon>
@@ -114,6 +117,7 @@
                                         </inertia-link>
                                     </v-list-item-title>
                                 </v-list-item-content>
+
                                 <v-list-item-content
                                     v-else-if="menu_item.href === '/logout'"
                                 >
@@ -121,7 +125,7 @@
                                         method="POST"
                                         @submit.prevent="logout"
                                     >
-                                        <div @click="logout" class="font-bold">
+                                        <div class="font-bold" @click="logout">
                                             <v-icon small class="mr-2">{{
                                                 menu_item.icon
                                             }}</v-icon>
@@ -147,7 +151,9 @@
 </template>
 <script>
 export default {
-    components: {},
+    components: {
+        CountryFlag,
+    },
     props: {},
     data() {
         return {

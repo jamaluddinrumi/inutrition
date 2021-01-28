@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\Dashboard;
-use App\Http\Controllers\Profile;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Http\Resources\UserCollection;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/', [Dashboard::class, 'index'])->name('welcome');
+Route::middleware(['auth:sanctum', 'verified'])->get('/', [DashboardController::class, 'index'])->name('welcome');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/profile', [Profile::class, 'index'])->name('profile.index');
+Route::middleware(['auth:sanctum', 'verified'])->get('/profile', [ProfileController::class, 'index'])->name('profile.index');

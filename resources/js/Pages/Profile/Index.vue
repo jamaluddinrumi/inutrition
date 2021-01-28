@@ -41,6 +41,7 @@ import UpdatePasswordForm from "./UpdatePasswordForm";
 import UpdateProfileInformationForm from "./UpdateProfileInformationForm";
 
 export default {
+    mounted() {},
     title() {
         if (this.title) {
             let translationTitle = this.$vuetify.lang.t(

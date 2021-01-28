@@ -11,6 +11,13 @@ class Nutrition extends Model
 
     protected $table = 'nutritions';
 
+    protected $fillable = [
+        'calories',
+        'fat',
+        'carbs',
+        'protein',
+    ];
+
     public function customer()
     {
         return $this->belongsTo(Customer::class);
