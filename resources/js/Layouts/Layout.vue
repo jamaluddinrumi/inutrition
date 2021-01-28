@@ -77,18 +77,20 @@
                 false-value="id"
             >
                 <template v-slot:label>
-                    <country-flag
-                        v-if="$i18n.locale === 'id'"
-                        country="id"
-                        size="small"
-                        rounded
-                    ></country-flag>
-                    <country-flag
-                        v-else
-                        country="gb"
-                        size="small"
-                        rounded
-                    ></country-flag>
+                    <div class="-ml-2" v-if="$i18n.locale === 'id'">
+                        <country-flag
+                            country="id"
+                            size="small"
+                            rounded
+                        ></country-flag>
+                    </div>
+                    <div class="-ml-2" v-else>
+                        <country-flag
+                            country="gb"
+                            size="small"
+                            rounded
+                        ></country-flag>
+                    </div>
                 </template>
             </v-switch>
             <v-switch
