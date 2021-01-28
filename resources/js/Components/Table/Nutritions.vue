@@ -186,7 +186,15 @@ export default {
                 carbs: 0,
                 protein: 0,
             },
-            headers: [
+            nutritions: [],
+        };
+    },
+    computed: {
+        formTitle() {
+            return this.editedIndex === -1 ? "Tambah Item" : "Ubah Item";
+        },
+        headers() {
+            return [
                 {
                     text: this.$vuetify.lang.t("$vuetify.name"),
                     align: "start",
@@ -214,13 +222,7 @@ export default {
                     value: "actions",
                     sortable: false,
                 },
-            ],
-            nutritions: [],
-        };
-    },
-    computed: {
-        formTitle() {
-            return this.editedIndex === -1 ? "Tambah Item" : "Ubah Item";
+            ];
         },
     },
     watch: {

@@ -87,6 +87,7 @@
         "addItem": "Add Item",
         "customers": "Customers",
         "staffs": "Staffs",
+        "search": "Search",
         "title": {
             "dashboard": "Dashboard",
             "profile": "Profile"

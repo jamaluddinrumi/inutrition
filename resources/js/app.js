@@ -7,6 +7,8 @@ import { InertiaApp } from "@inertiajs/inertia-vue";
 import { InertiaForm } from "laravel-jetstream";
 import { InertiaProgress } from "@inertiajs/progress";
 import PortalVue from "portal-vue";
+import vuetify from "@/Plugins/vuetify";
+import { i18n } from "@/Plugins/vuetify";
 import Title from "@/Mixins/Title";
 
 InertiaProgress.init({
@@ -37,11 +39,10 @@ const store = new Vuex.Store({
 
 // store.commit("increment");
 
-import vuetify from "@/Plugins/vuetify";
-
 const app = document.getElementById("app");
 
 new Vue({
+    i18n,
     store,
     vuetify,
     render: h =>

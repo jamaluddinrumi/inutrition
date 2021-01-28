@@ -71,6 +71,30 @@
                 dense
                 hide-details
                 inset
+                v-model="$i18n.locale"
+                class="mr-4"
+                true-value="en"
+                false-value="id"
+            >
+                <template v-slot:label>
+                    <country-flag
+                        v-if="$i18n.locale === 'id'"
+                        country="id"
+                        size="small"
+                        rounded
+                    ></country-flag>
+                    <country-flag
+                        v-else
+                        country="gb"
+                        size="small"
+                        rounded
+                    ></country-flag>
+                </template>
+            </v-switch>
+            <v-switch
+                dense
+                hide-details
+                inset
                 v-model="$vuetify.theme.dark"
                 class="mx-4"
             >
@@ -150,6 +174,8 @@
     </v-app>
 </template>
 <script>
+import CountryFlag from "vue-country-flag";
+
 export default {
     components: {
         CountryFlag,

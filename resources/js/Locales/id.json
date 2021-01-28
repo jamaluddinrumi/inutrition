@@ -87,6 +87,7 @@
         "addItem": "Tambah Item",
         "customers": "Customer",
         "staffs": "Staf",
+        "search": "Cari",
         "title": {
             "dashboard": "Dashboard",
             "profile": "Profil"
@@ -94,7 +95,7 @@
         "profile": {
             "profileInformation": "Profil",
             "profile": "Profil",
-            "photo": "Foto Profil",
+            "photo": "Foto",
             "updateProfileInfo": "Ubah nama & alamat email anda di sini.",
             "selectNewPhoto": "Pilih Foto Baru",
             "removePhoto": "Hapus Foto",

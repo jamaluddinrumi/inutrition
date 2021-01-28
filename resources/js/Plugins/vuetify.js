@@ -7,7 +7,7 @@ import { messages } from "@/Locales/index.js";
 Vue.use(Vuetify);
 Vue.use(VueI18n);
 
-const i18n = new VueI18n({
+export const i18n = new VueI18n({
     locale: process.env.VUE_APP_I18N_LOCALE || "id",
     fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || "en",
     messages
