@@ -463,7 +463,7 @@ export default {
                 // this.customers.push(this.editedItem);
 
                 axios
-                    .post("/api/customer/", self.editedItem)
+                    .post("/api/customer", self.editedItem)
                     .then(function (response) {
                         console.log(response);
 
