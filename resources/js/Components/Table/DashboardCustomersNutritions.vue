@@ -9,7 +9,7 @@
         :search="search"
     >
         <template v-slot:no-data>
-            <v-btn color="primary" class="font-bold" @click="loadingData">
+            <v-btn rounded color="primary" class="font-bold" @click="loadingData">
                 <v-icon small class="mr-2">fas fa-redo</v-icon>
                 {{ $vuetify.lang.t("$vuetify.reload") }}
             </v-btn>
