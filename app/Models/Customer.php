@@ -11,6 +11,8 @@ class Customer extends Model
 
     protected $table = 'customers';
 
+    protected $fillable = ['first_name', 'last_name', 'title', 'city', 'postcode', 'street_address', 'phone_number', 'email'];
+
     public function nutrition()
     {
         return $this->hasOne(Nutrition::class);
