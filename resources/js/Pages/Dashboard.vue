@@ -5,7 +5,7 @@
         </div>
         <v-row>
             <v-col>
-                <nutritions-table :customers="customers"></nutritions-table>
+                <dashboard-customers-nutritions-table :items-per-page="15"></dashboard-customers-nutritions-table>
             </v-col>
         </v-row>
         <div class="text-h4 mt-6 mb-4">
@@ -20,7 +20,7 @@
 </template>
 <script>
 import Layout from "@/Layouts/Layout";
-import NutritionsTable from "@/Components/Table/Nutritions";
+import DashboardCustomersNutritionsTable from "@/Components/Table/DashboardCustomersNutritions";
 import ContactCard from "@/Components/Card/Contact";
 
 export default {
@@ -39,7 +39,7 @@ export default {
 
     components: {
         Layout,
-        NutritionsTable,
+        DashboardCustomersNutritionsTable,
         ContactCard,
     },
 
