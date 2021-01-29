@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -23,3 +24,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/', [DashboardController::
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/customer', [CustomerController::class, 'index'])->name('customer.index');
