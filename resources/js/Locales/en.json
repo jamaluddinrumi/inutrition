@@ -76,6 +76,7 @@
         "carbs": "Carbs",
         "protein": "Protein",
         "actions": "Actions",
+        "customersNutritions": "Customers Nutritions",
         "nutritions": "Nutritions",
         "company": "Company, Inc",
         "reload": "Reload",
@@ -86,11 +87,28 @@
         "save": "Save",
         "addItem": "Add Item",
         "customers": "Customers",
+        "addCustomer": "Add",
         "staffs": "Staffs",
         "search": "Search",
+        "fieldIsRequired": "This field is required.",
         "title": {
             "dashboard": "Dashboard",
+            "customer": "Customer",
             "profile": "Profile"
+        },
+        "customer": {
+            "customer": "Customer",
+            "customersDetail": "Customer's Detail",
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "title": "Title",
+            "city": "City",
+            "postcode": "Postcode",
+            "streetAddress": "Street Address",
+            "phoneNumber": "Phone Number",
+            "email": "Email",
+            "editUser": "Edit User",
+            "deleteUser": "Delete User"
         },
         "profile": {
             "profileInformation": "Profile Information",

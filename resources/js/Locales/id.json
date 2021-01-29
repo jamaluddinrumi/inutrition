@@ -75,6 +75,7 @@
         "fat": "Fat",
         "carbs": "Karbohidrat",
         "protein": "Protein",
+        "customersNutritions": "Nutrisi Customer",
         "actions": "Tindakan",
         "nutritions": "Nutrisi",
         "company": "PT Abc Def, tbk",
@@ -86,11 +87,28 @@
         "save": "Simpan",
         "addItem": "Tambah Item",
         "customers": "Customer",
+        "addCustomer": "Tambah",
         "staffs": "Staf",
         "search": "Cari",
+        "fieldIsRequired": "Kolom ini harus diisi.",
         "title": {
             "dashboard": "Dashboard",
+            "customer": "Customer",
             "profile": "Profil"
+        },
+        "customer": {
+            "customer": "Customer",
+            "customersDetail": "Detail Customer",
+            "firstName": "Nama Pertama",
+            "lastName": "Nama Terakhir",
+            "title": "Gelar",
+            "city": "Kota",
+            "postcode": "Kode Pos",
+            "streetAddress": "Alamat",
+            "phoneNumber": "No. Telepon",
+            "email": "Email",
+            "editUser": "Edit User",
+            "deleteUser": "Delete User"
         },
         "profile": {
             "profileInformation": "Profil",
