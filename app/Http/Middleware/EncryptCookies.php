@@ -20,5 +20,5 @@ class EncryptCookies extends Middleware
      *
      * @var bool
      */
-    protected static $serialize = false;
+    // protected static $serialize = false;
 }
