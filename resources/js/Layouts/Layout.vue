@@ -196,6 +196,12 @@ export default {
                     href: "/dashboard",
                     icon: "fas fa-home",
                 },
+                {
+                    id: 1,
+                    title: this.$vuetify.lang.t("$vuetify.title.customer"),
+                    href: "/customer",
+                    icon: "fas fa-user",
+                },
             ],
             user_menu: [
                 {
