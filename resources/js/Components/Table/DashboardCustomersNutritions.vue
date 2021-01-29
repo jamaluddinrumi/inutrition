@@ -9,7 +9,12 @@
         :search="search"
     >
         <template v-slot:no-data>
-            <v-btn rounded color="primary" class="font-bold" @click="loadingData">
+            <v-btn
+                rounded
+                color="primary"
+                class="font-bold"
+                @click="loadingData"
+            >
                 <v-icon small class="mr-2">fas fa-redo</v-icon>
                 {{ $vuetify.lang.t("$vuetify.reload") }}
             </v-btn>
@@ -101,22 +106,26 @@ export default {
                     console.log(response);
 
                     response.data.forEach((customer) => {
-                        self.customersNutritions.push({
-                            name:
-                                customer.first_name + " " + customer.last_name,
-                            calories: customer.nutrition
-                                ? customer.nutrition.calories
-                                : null,
-                            fat: customer.nutrition
-                                ? customer.nutrition.fat
-                                : null,
-                            carbs: customer.nutrition
-                                ? customer.nutrition.carbs
-                                : null,
-                            protein: customer.nutrition
-                                ? customer.nutrition.protein
-                                : null,
-                        });
+                        if (customer.nutrition) {
+                            self.customersNutritions.push({
+                                name:
+                                    customer.first_name +
+                                    " " +
+                                    customer.last_name,
+                                calories: customer.nutrition
+                                    ? customer.nutrition.calories
+                                    : null,
+                                fat: customer.nutrition
+                                    ? customer.nutrition.fat
+                                    : null,
+                                carbs: customer.nutrition
+                                    ? customer.nutrition.carbs
+                                    : null,
+                                protein: customer.nutrition
+                                    ? customer.nutrition.protein
+                                    : null,
+                            });
+                        }
                     });
                 })
                 .catch(function (response) {
