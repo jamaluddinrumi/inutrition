@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\Nutrition;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\NutritionResource;
 
 class NutritionController extends Controller
 {
@@ -15,9 +16,11 @@ class NutritionController extends Controller
      */
     public function index()
     {
-        $nutritions = Nutrition::all()->with('customer');
+        // $nutritions = Nutrition::all()->with('customer');
 
-        return response()->json($nutritions);
+        // return response()->json($nutritions);
+
+        return NutritionResource::collection(Nutrition::all()->load('customer'));
     }
 
     /**
@@ -39,9 +42,11 @@ class NutritionController extends Controller
      */
     public function show($id)
     {
-        $nutrition = Nutrition::findOrFail($id)->with('customer');
+        // $nutrition = Nutrition::findOrFail($id)->with('customer');
 
-        return response()->json($nutrition);
+        // return response()->json($nutrition);
+
+        return new NutritionResource(Nutrition::findOrFail($id)->load('customer'));
     }
 
     /**

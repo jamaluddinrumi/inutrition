@@ -12,6 +12,7 @@ class Nutrition extends Model
     protected $table = 'nutritions';
 
     protected $fillable = [
+        'customer_id',
         'calories',
         'fat',
         'carbs',
@@ -20,7 +21,7 @@ class Nutrition extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
 
     protected $hidden = ['created_at', 'updated_at'];

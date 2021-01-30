@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CustomerCollection;
+use App\Http\Resources\CustomerResource;
 use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
@@ -16,9 +18,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::with('nutrition')->orderBy('first_name', 'asc')->get();
-
-        return response()->json($customers, 200);
+        return CustomerResource::collection(Customer::all()->load('nutrition'));
     }
 
     /**
@@ -45,7 +45,7 @@ class CustomerController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
-        $customer = Customer::create([
+        return new CustomerResource(Customer::create([
             'first_name' => $request->firstName,
             'last_name' => $request->lastName,
             'title' => $request->title,
@@ -54,16 +54,7 @@ class CustomerController extends Controller
             'street_address' => $request->streetAddress,
             'phone_number' => $request->phoneNumber,
             'email' => $request->email,
-        ]);
-
-        if ($customer) {
-
-            return response()->json(
-                true
-            );
-
-            return response()->json(false, 400);
-        }
+        ]));
     }
 
     /**
@@ -74,9 +65,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        $customer = Customer::with('nutrition')->findOrFail($id);
-
-        return response()->json($customer);
+        return new CustomerResource(Customer::findOrFail($id)->load('nutrition'));
     }
 
     /**
@@ -109,26 +98,21 @@ class CustomerController extends Controller
 
         if ($customer) {
 
-            $customer_updated = $customer->update([
-                'first_name' => $request->firstName,
-                'last_name' => $request->lastName,
-                'title' => $request->title,
-                'city' => $request->city,
-                'postcode' => $request->postcode,
-                'street_address' => $request->streetAddress,
-                'phone_number' => $request->phoneNumber,
-                'email' => $request->email,
-            ]);
+            $customer->id = $request->id;
+            $customer->first_name = $request->firstName;
+            $customer->last_name = $request->lastName;
+            $customer->title = $request->title;
+            $customer->city = $request->city;
+            $customer->postcode = $request->postcode;
+            $customer->street_address = $request->streetAddress;
+            $customer->phone_number = $request->phoneNumber;
+            $customer->email = $request->email;
+            $customer->save();
 
-            if ($customer_updated) {
-
-                return response()->json(
-                    $customer_updated
-                );
-            }
-
-            return response()->json(false, 400);
+            return new CustomerResource($customer);
         }
+
+        return response()->json(false, 400);
     }
 
     /**
