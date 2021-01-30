@@ -1,250 +1,275 @@
 <template>
-    <v-data-table
-        :headers="headers"
-        :items="customers"
-        :items-per-page="itemsPerPage"
-        sort-by="name"
-        class="elevation-1"
-        :loading="isLoading"
-        :search="search"
-    >
-        <template v-slot:top>
-            <v-toolbar flat>
-                <v-toolbar-title>{{
-                    $vuetify.lang.t("$vuetify.customer.customersDetail")
-                }}</v-toolbar-title>
-                <v-divider class="mx-4" inset vertical></v-divider>
-                <v-spacer></v-spacer>
-                <v-text-field
-                    v-model="search"
-                    :label="$vuetify.lang.t('$vuetify.search')"
-                    single-line
-                    hide-details
-                    class="mr-4"
-                >
-                    <template v-slot:append>
-                        <v-icon small>fas fa-search</v-icon>
-                    </template>
-                </v-text-field>
-                <v-dialog v-model="dialog" max-width="600px">
-                    <template v-slot:activator="{ on, attrs }">
-                        <v-btn
-                            color="primary"
-                            rounded
-                            class="mb-2 font-bold"
-                            v-bind="attrs"
-                            v-on="on"
-                        >
-                            <v-icon small class="mr-2">fas fa-user-plus</v-icon>
-                            {{ $vuetify.lang.t("$vuetify.addCustomer") }}
-                        </v-btn>
-                    </template>
-                    <v-card>
-                        <v-card-title>
-                            <span class="headline">{{ formTitle }}</span>
-                        </v-card-title>
-
-                        <v-card-text>
-                            <v-container>
-                                <v-row>
-                                    <v-col cols="12" sm="6" md="4">
-                                        <v-text-field
-                                            v-model="editedItem.firstName"
-                                            :label="
-                                                $vuetify.lang.t(
-                                                    '$vuetify.customer.firstName'
-                                                )
-                                            "
-                                            :rules="required"
-                                        ></v-text-field>
-                                    </v-col>
-                                    <v-col cols="12" sm="6" md="4">
-                                        <v-text-field
-                                            v-model="editedItem.lastName"
-                                            :label="
-                                                $vuetify.lang.t(
-                                                    '$vuetify.customer.lastName'
-                                                )
-                                            "
-                                            :rules="required"
-                                        ></v-text-field>
-                                    </v-col>
-                                    <v-col cols="12" sm="6" md="4">
-                                        <v-text-field
-                                            v-model="editedItem.title"
-                                            :label="
-                                                $vuetify.lang.t(
-                                                    '$vuetify.customer.title'
-                                                )
-                                            "
-                                            :rules="required"
-                                        ></v-text-field>
-                                    </v-col>
-                                    <v-col cols="12" sm="6" md="4">
-                                        <v-text-field
-                                            v-model="editedItem.city"
-                                            :label="
-                                                $vuetify.lang.t(
-                                                    '$vuetify.customer.city'
-                                                )
-                                            "
-                                            :rules="required"
-                                        ></v-text-field>
-                                    </v-col>
-                                    <v-col cols="12" sm="6" md="4">
-                                        <v-text-field
-                                            v-model="editedItem.postcode"
-                                            :label="
-                                                $vuetify.lang.t(
-                                                    '$vuetify.customer.postcode'
-                                                )
-                                            "
-                                            :rules="required"
-                                        ></v-text-field>
-                                    </v-col>
-                                    <v-col cols="12" sm="6" md="4">
-                                        <v-text-field
-                                            v-model="editedItem.streetAddress"
-                                            :label="
-                                                $vuetify.lang.t(
-                                                    '$vuetify.customer.streetAddress'
-                                                )
-                                            "
-                                            :rules="required"
-                                        ></v-text-field>
-                                    </v-col>
-                                    <v-col cols="12" sm="6" md="4">
-                                        <v-text-field
-                                            v-model="editedItem.phoneNumber"
-                                            :label="
-                                                $vuetify.lang.t(
-                                                    '$vuetify.customer.phoneNumber'
-                                                )
-                                            "
-                                            :rules="required"
-                                        ></v-text-field>
-                                    </v-col>
-                                    <v-col cols="12" sm="6" md="4">
-                                        <v-text-field
-                                            v-model="editedItem.email"
-                                            :label="
-                                                $vuetify.lang.t(
-                                                    '$vuetify.customer.email'
-                                                )
-                                            "
-                                            :rules="required"
-                                        ></v-text-field>
-                                    </v-col>
-                                </v-row>
-                            </v-container>
-                        </v-card-text>
-
-                        <v-card-actions>
-                            <v-spacer></v-spacer>
+    <div>
+        <v-data-table
+            :headers="headers"
+            :items="customers"
+            :items-per-page="itemsPerPage"
+            sort-by="name"
+            class="elevation-1"
+            :loading="isLoading"
+            :search="search"
+        >
+            <template v-slot:top>
+                <v-toolbar flat>
+                    <v-toolbar-title>{{
+                        $vuetify.lang.t("$vuetify.customer.customersDetail")
+                    }}</v-toolbar-title>
+                    <v-divider class="mx-4" inset vertical></v-divider>
+                    <v-spacer></v-spacer>
+                    <v-text-field
+                        v-model="search"
+                        :label="$vuetify.lang.t('$vuetify.search')"
+                        single-line
+                        hide-details
+                        class="mr-4"
+                    >
+                        <template v-slot:append>
+                            <v-icon small>fas fa-search</v-icon>
+                        </template>
+                    </v-text-field>
+                    <v-dialog v-model="dialog" max-width="600px">
+                        <template v-slot:activator="{ on, attrs }">
                             <v-btn
-                                rounded
-                                color="grey darken-1"
-                                text
-                                @click="close"
-                                class="px-4"
-                            >
-                                {{ $vuetify.lang.t("$vuetify.cancel") }}
-                            </v-btn>
-                            <v-btn
-                                rounded
                                 color="primary"
-                                class="font-bold px-4"
-                                @click="save"
+                                rounded
+                                class="mb-2 font-bold"
+                                v-bind="attrs"
+                                v-on="on"
                             >
-                                <v-icon small class="mr-2">fas fa-save</v-icon>
-                                {{ $vuetify.lang.t("$vuetify.save") }}
+                                <v-icon small class="mr-2"
+                                    >fas fa-user-plus</v-icon
+                                >
+                                {{ $vuetify.lang.t("$vuetify.addCustomer") }}
                             </v-btn>
-                        </v-card-actions>
-                    </v-card>
-                </v-dialog>
-                <v-dialog v-model="dialogDelete" max-width="500px">
-                    <v-card>
-                        <v-card-title class="headline">{{
-                            $vuetify.lang.t("$vuetify.youSure")
-                        }}</v-card-title>
-                        <v-card-text>
-                            {{ $vuetify.lang.t("$vuetify.canNotBeUndone") }}
-                        </v-card-text>
-                        <v-card-actions>
-                            <v-col>
-                                <v-row justify="end">
-                                    <v-btn
-                                        color="blue darken-1"
-                                        rounded
-                                        text
-                                        @click="closeDelete"
-                                        >{{
-                                            $vuetify.lang.t("$vuetify.cancel")
-                                        }}</v-btn
+                        </template>
+                        <v-card>
+                            <v-card-title>
+                                <span class="headline">{{ formTitle }}</span>
+                            </v-card-title>
+
+                            <v-card-text>
+                                <v-container>
+                                    <v-row>
+                                        <v-col cols="12" sm="6" md="4">
+                                            <v-text-field
+                                                v-model="editedItem.firstName"
+                                                :label="
+                                                    $vuetify.lang.t(
+                                                        '$vuetify.customer.firstName'
+                                                    )
+                                                "
+                                                :rules="required"
+                                            ></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="6" md="4">
+                                            <v-text-field
+                                                v-model="editedItem.lastName"
+                                                :label="
+                                                    $vuetify.lang.t(
+                                                        '$vuetify.customer.lastName'
+                                                    )
+                                                "
+                                                :rules="required"
+                                            ></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="6" md="4">
+                                            <v-text-field
+                                                v-model="editedItem.title"
+                                                :label="
+                                                    $vuetify.lang.t(
+                                                        '$vuetify.customer.title'
+                                                    )
+                                                "
+                                                :rules="required"
+                                            ></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="6" md="4">
+                                            <v-text-field
+                                                v-model="editedItem.city"
+                                                :label="
+                                                    $vuetify.lang.t(
+                                                        '$vuetify.customer.city'
+                                                    )
+                                                "
+                                                :rules="required"
+                                            ></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="6" md="4">
+                                            <v-text-field
+                                                v-model="editedItem.postcode"
+                                                :label="
+                                                    $vuetify.lang.t(
+                                                        '$vuetify.customer.postcode'
+                                                    )
+                                                "
+                                                :rules="required"
+                                            ></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="6" md="4">
+                                            <v-text-field
+                                                v-model="
+                                                    editedItem.streetAddress
+                                                "
+                                                :label="
+                                                    $vuetify.lang.t(
+                                                        '$vuetify.customer.streetAddress'
+                                                    )
+                                                "
+                                                :rules="required"
+                                            ></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="6" md="4">
+                                            <v-text-field
+                                                v-model="editedItem.phoneNumber"
+                                                :label="
+                                                    $vuetify.lang.t(
+                                                        '$vuetify.customer.phoneNumber'
+                                                    )
+                                                "
+                                                :rules="required"
+                                            ></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="6" md="4">
+                                            <v-text-field
+                                                v-model="editedItem.email"
+                                                :label="
+                                                    $vuetify.lang.t(
+                                                        '$vuetify.customer.email'
+                                                    )
+                                                "
+                                                :rules="required"
+                                            ></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                </v-container>
+                            </v-card-text>
+
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                    rounded
+                                    color="grey darken-1"
+                                    text
+                                    @click="close"
+                                    class="px-4"
+                                >
+                                    {{ $vuetify.lang.t("$vuetify.cancel") }}
+                                </v-btn>
+                                <v-btn
+                                    rounded
+                                    color="primary"
+                                    class="font-bold px-4"
+                                    @click="save"
+                                >
+                                    <v-icon small class="mr-2"
+                                        >fas fa-save</v-icon
                                     >
-                                    <v-btn
-                                        color="error"
-                                        rounded
-                                        class="px-4 ml-2 font-bold"
-                                        @click="deleteItemConfirm"
-                                        ><v-icon small class="mr-2"
-                                            >fas fa-trash</v-icon
+                                    {{ $vuetify.lang.t("$vuetify.save") }}
+                                </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
+                    <v-dialog v-model="dialogDelete" max-width="500px">
+                        <v-card>
+                            <v-card-title class="headline">{{
+                                $vuetify.lang.t("$vuetify.youSure")
+                            }}</v-card-title>
+                            <v-card-text>
+                                {{ $vuetify.lang.t("$vuetify.canNotBeUndone") }}
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-col>
+                                    <v-row justify="end">
+                                        <v-btn
+                                            color="blue darken-1"
+                                            rounded
+                                            text
+                                            @click="closeDelete"
+                                            >{{
+                                                $vuetify.lang.t(
+                                                    "$vuetify.cancel"
+                                                )
+                                            }}</v-btn
                                         >
-                                        {{
-                                            $vuetify.lang.t("$vuetify.delete")
-                                        }}</v-btn
-                                    >
-                                </v-row>
-                            </v-col>
-                        </v-card-actions>
-                    </v-card>
-                </v-dialog>
-            </v-toolbar>
-        </template>
-        <template v-slot:item.actions="{ item }" class="justify">
-            <div class="d-flex">
-                <v-tooltip left>
-                    <template v-slot:activator="{ on, attrs }">
-                        <v-btn
-                            icon
-                            color="primary"
-                            @click="editItem(item)"
-                            class="mr-1"
-                            v-bind="attrs"
-                            v-on="on"
-                        >
-                            <v-icon small>fas fa-user-edit</v-icon>
-                        </v-btn>
-                    </template>
-                    <span>{{
-                        $vuetify.lang.t("$vuetify.customer.editUser")
-                    }}</span>
-                </v-tooltip>
-                <v-tooltip bottom>
-                    <template v-slot:activator="{ on, attrs }">
-                        <v-btn
-                            icon
-                            color="error"
-                            @click="deleteItem(item)"
-                            v-bind="attrs"
-                            v-on="on"
-                        >
-                            <v-icon small>fas fa-user-slash</v-icon>
-                        </v-btn>
-                    </template>
-                    <span>{{
-                        $vuetify.lang.t("$vuetify.customer.deleteUser")
-                    }}</span>
-                </v-tooltip>
-            </div>
-        </template>
-        <template v-slot:no-data>
-            <v-btn rounded color="primary" class="font-bold" @click="loadingData">
-                <v-icon small class="mr-2">fas fa-redo</v-icon>
-                {{ $vuetify.lang.t("$vuetify.reload") }}
-            </v-btn>
-        </template>
-    </v-data-table>
+                                        <v-btn
+                                            color="error"
+                                            rounded
+                                            class="px-4 ml-2 font-bold"
+                                            @click="deleteItemConfirm"
+                                            ><v-icon small class="mr-2"
+                                                >fas fa-trash</v-icon
+                                            >
+                                            {{
+                                                $vuetify.lang.t(
+                                                    "$vuetify.delete"
+                                                )
+                                            }}</v-btn
+                                        >
+                                    </v-row>
+                                </v-col>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
+                </v-toolbar>
+            </template>
+            <template v-slot:item.actions="{ item }" class="justify">
+                <div class="d-flex">
+                    <v-tooltip left>
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn
+                                icon
+                                color="primary"
+                                @click="editItem(item)"
+                                class="mr-1"
+                                v-bind="attrs"
+                                v-on="on"
+                            >
+                                <v-icon small>fas fa-user-edit</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>{{
+                            $vuetify.lang.t("$vuetify.customer.editUser")
+                        }}</span>
+                    </v-tooltip>
+                    <v-tooltip bottom color="error">
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn
+                                icon
+                                color="error"
+                                @click="deleteItem(item)"
+                                v-bind="attrs"
+                                v-on="on"
+                            >
+                                <v-icon small>fas fa-user-slash</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>{{
+                            $vuetify.lang.t("$vuetify.customer.deleteUser")
+                        }}</span>
+                    </v-tooltip>
+                </div>
+            </template>
+            <template v-slot:no-data>
+                <v-btn
+                    rounded
+                    color="primary"
+                    class="font-bold"
+                    @click="loadingData"
+                >
+                    <v-icon small class="mr-2">fas fa-redo</v-icon>
+                    {{ $vuetify.lang.t("$vuetify.reload") }}
+                </v-btn>
+            </template>
+        </v-data-table>
+        <v-snackbar v-model="snackbar" :timeout="3000">
+            {{ snackbarMessage }}
+            <template v-slot:action="{ attrs }">
+                <v-btn icon x-small v-bind="attrs" @click="snackbar = false">
+                    <v-icon x-small>fas fa-window-close</v-icon>
+                </v-btn>
+            </template>
+        </v-snackbar>
+    </div>
 </template>
 <script>
 export default {
@@ -259,6 +284,8 @@ export default {
     },
     data() {
         return {
+            snackbar: false,
+            snackbarMessage: "",
             required: [
                 (v) => !!v || this.$vuetify.lang.t("$vuetify.fieldIsRequired"),
             ],
@@ -408,11 +435,20 @@ export default {
             self.customers = [];
 
             axios
-                .delete(`/api/customer/${this.editedIndex}`)
+                .delete(`/api/customer/${self.editedIndex}`)
                 .then(function (response) {
                     console.log(response);
 
                     self.loadingData();
+                    self.snackbarMessage =
+                        self.editedItem.firstName +
+                        " " +
+                        self.editedItem.lastName +
+                        " " +
+                        self.$vuetify.lang.t(
+                            "$vuetify.customer.successfullyDeleted"
+                        );
+                    self.snackbar = true;
                 })
                 .catch(function (response) {
                     console.error(response);
@@ -451,9 +487,20 @@ export default {
                     .then(function (response) {
                         console.log(response);
 
+                        self.snackbarMessage =
+                        self.editedItem.firstName +
+                        " " +
+                        self.editedItem.lastName +
+                        " " +
+                        self.$vuetify.lang.t(
+                            "$vuetify.customer.successfullyEdited"
+                        );
+
                         self.closeDelete();
                         self.close();
                         self.loadingData();
+
+                        self.snackbar = true;
                     })
                     .catch(function (response) {
                         console.error(response);
@@ -467,9 +514,20 @@ export default {
                     .then(function (response) {
                         console.log(response);
 
+                        self.snackbarMessage =
+                        self.editedItem.firstName +
+                        " " +
+                        self.editedItem.lastName +
+                        " " +
+                        self.$vuetify.lang.t(
+                            "$vuetify.customer.successfullyAdded"
+                        );
+
                         self.closeDelete();
                         self.close();
                         self.loadingData();
+
+                        self.snackbar = true;
                     })
                     .catch(function (response) {
                         console.error(response);

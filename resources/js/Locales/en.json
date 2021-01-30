@@ -108,7 +108,10 @@
             "phoneNumber": "Phone Number",
             "email": "Email",
             "editUser": "Edit User",
-            "deleteUser": "Delete User"
+            "deleteUser": "Delete User",
+            "successfullyDeleted": "is successfully deleted",
+            "successfullyEdited": "is successfully edited",
+            "successfullyAdded": "is successfully added"
         },
         "profile": {
             "profileInformation": "Profile Information",

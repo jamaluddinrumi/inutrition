@@ -108,7 +108,10 @@
             "phoneNumber": "No. Telepon",
             "email": "Email",
             "editUser": "Edit User",
-            "deleteUser": "Delete User"
+            "deleteUser": "Delete User",
+            "successfullyDeleted": "telah berhasil dihapus",
+            "successfullyEdited": "telah berhasil diubah",
+            "successfullyAdded": "telah berhasil ditambahkan"
         },
         "profile": {
             "profileInformation": "Profil",
