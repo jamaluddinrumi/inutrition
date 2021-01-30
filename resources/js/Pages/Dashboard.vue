@@ -1,7 +1,7 @@
 <template>
     <layout>
         <div class="text-h4 mt-6 mb-4">
-            {{ $vuetify.lang.t("$vuetify.customers") }}
+            {{ $vuetify.lang.t("$vuetify.customersNutrition") }}
         </div>
         <v-row>
             <v-col>
