@@ -173,6 +173,20 @@
         </v-main>
 
         <v-footer app dark padless> </v-footer>
+        <v-fab-transition>
+            <v-btn
+                v-scroll="onScroll"
+                v-show="fab"
+                fab
+                color="primary"
+                fixed
+                right
+                bottom
+                @click="$vuetify.goTo(0)"
+            >
+                <v-icon small>fas fa-arrow-up</v-icon>
+            </v-btn>
+        </v-fab-transition>
     </v-app>
 </template>
 <script>
@@ -185,6 +199,7 @@ export default {
     props: {},
     data() {
         return {
+            fab: false,
             footer: !this.$vuetify.breakpoint.mobile,
             isLogoutButtonDisabled: false,
             isLogouting: false,
@@ -224,6 +239,11 @@ export default {
     watch: {},
     created() {},
     methods: {
+        onScroll(e) {
+            if (typeof window === "undefined") return;
+            const top = window.pageYOffset || e.target.scrollTop || 0;
+            this.fab = top > 20;
+        },
         logout() {
             this.isLogouting = true;
             axios.post(route("logout").url()).then((response) => {
