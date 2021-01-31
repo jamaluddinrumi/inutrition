@@ -27,10 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(UrlGenerator $url)
     {
-        if (env('APP_ENV') === 'production') {
-            $url->forceScheme('https');
-        }
-
         Inertia::share('storagePath', storage_path());
         Inertia::share('publicPath', public_path());
         Inertia::share('storageUrl', asset('storage'));
