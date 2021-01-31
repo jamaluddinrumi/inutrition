@@ -205,13 +205,20 @@ export default {
             isLogoutButtonDisabled: false,
             isLogouting: false,
             drawer: !this.$vuetify.breakpoint.mobile,
-            menu: [
+            group: 0,
+        };
+    },
+    watch: {},
+    computed: {
+        menu: function () {
+            return [
                 {
                     id: 0,
                     title: this.$vuetify.lang.t("$vuetify.title.dashboard"),
                     href: "/dashboard",
                     icon: "fas fa-home",
-                },{
+                },
+                {
                     id: 1,
                     title: this.$vuetify.lang.t("$vuetify.title.nutrition"),
                     href: "/nutrition",
@@ -223,8 +230,10 @@ export default {
                     href: "/customer",
                     icon: "fas fa-user",
                 },
-            ],
-            user_menu: [
+            ];
+        },
+        user_menu: function () {
+            return [
                 {
                     id: 0,
                     title: this.$vuetify.lang.t("$vuetify.profile.profile"),
@@ -237,12 +246,9 @@ export default {
                     href: "/logout",
                     icon: "fas fa-sign-out-alt",
                 },
-            ],
-            group: 0,
-        };
+            ];
+        },
     },
-    computed: {},
-    watch: {},
     created() {},
     methods: {
         onLocaleChange() {
