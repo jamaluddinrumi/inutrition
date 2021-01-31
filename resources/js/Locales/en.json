@@ -95,7 +95,8 @@
         "title": {
             "dashboard": "Dashboard",
             "customer": "Customer",
-            "profile": "Profile"
+            "profile": "Profile",
+            "nutrition": "Nutrition"
         },
         "customer": {
             "customer": "Customer",
@@ -110,9 +111,25 @@
             "email": "Email",
             "editUser": "Edit User",
             "deleteUser": "Delete User",
-            "successfullyDeleted": "is successfully deleted",
-            "successfullyEdited": "is successfully edited",
-            "successfullyAdded": "is successfully added"
+            "successfullyDeleted": "{0} is successfully deleted",
+            "successfullyEdited": "{0} is successfully edited",
+            "successfullyAdded": "{0} is successfully added"
+        },
+        "nutrition": {
+            "customerId": "Customer ID",
+            "customerFullName": "Customer Name",
+            "calories": "Calories",
+            "fat": "Fat",
+            "carbs": "Carbs",
+            "protein": "Protein",
+            "nutritionsDetail": "Customer's Nutrition Detail",
+            "editUser": "Edit User",
+            "deleteUser": "Delete User",
+            "successfullyDeleted": "Nutrition for {0} is successfully deleted",
+            "successfullyEdited": "Nutrition for {0} is successfully edited",
+            "successfullyAdded": "Nutrition for {0} is successfully added",
+            "created_at": "Created At",
+            "updated_at": "Updated At"
         },
         "profile": {
             "profileInformation": "Profile Information",

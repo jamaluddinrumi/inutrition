@@ -5,7 +5,7 @@
             :items="customers"
             :items-per-page="itemsPerPage"
             sort-by="name"
-            class="elevation-1"
+            class="elevation-1 mb-20"
             :loading="isLoading"
             :search="search"
         >
@@ -440,14 +440,14 @@ export default {
                     console.log(response);
 
                     self.loadingData();
-                    self.snackbarMessage =
-                        self.editedItem.firstName +
-                        " " +
-                        self.editedItem.lastName +
-                        " " +
-                        self.$vuetify.lang.t(
-                            "$vuetify.customer.successfullyDeleted"
-                        );
+                    self.snackbarMessage = self.$vuetify.lang.t(
+                        "$vuetify.customer.successfullyDeleted",
+                        [
+                            _.capitalize(response.data.first_name) +
+                                " " +
+                                _.capitalize(response.data.last_name),
+                        ]
+                    );
                     self.snackbar = true;
                 })
                 .catch(function (response) {
@@ -487,13 +487,13 @@ export default {
                     .then(function (response) {
                         console.log(response);
 
-                        self.snackbarMessage =
-                        self.editedItem.firstName +
-                        " " +
-                        self.editedItem.lastName +
-                        " " +
-                        self.$vuetify.lang.t(
-                            "$vuetify.customer.successfullyEdited"
+                        self.snackbarMessage = self.$vuetify.lang.t(
+                            "$vuetify.customer.successfullyEdited",
+                            [
+                                _.capitalize(response.data.first_name) +
+                                    " " +
+                                    _.capitalize(response.data.last_name),
+                            ]
                         );
 
                         self.closeDelete();
@@ -514,13 +514,13 @@ export default {
                     .then(function (response) {
                         console.log(response);
 
-                        self.snackbarMessage =
-                        self.editedItem.firstName +
-                        " " +
-                        self.editedItem.lastName +
-                        " " +
-                        self.$vuetify.lang.t(
-                            "$vuetify.customer.successfullyAdded"
+                        self.snackbarMessage = self.$vuetify.lang.t(
+                            "$vuetify.customer.successfullyAdded",
+                            [
+                                _.capitalize(response.data.first_name) +
+                                    " " +
+                                    _.capitalize(response.data.last_name),
+                            ]
                         );
 
                         self.closeDelete();

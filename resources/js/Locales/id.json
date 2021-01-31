@@ -95,7 +95,8 @@
         "title": {
             "dashboard": "Dashboard",
             "customer": "Customer",
-            "profile": "Profil"
+            "profile": "Profil",
+            "nutrition": "Nutrisi"
         },
         "customer": {
             "customer": "Customer",
@@ -110,9 +111,25 @@
             "email": "Email",
             "editUser": "Edit User",
             "deleteUser": "Delete User",
-            "successfullyDeleted": "telah berhasil dihapus",
-            "successfullyEdited": "telah berhasil diubah",
-            "successfullyAdded": "telah berhasil ditambahkan"
+            "successfullyDeleted": "Customer {0} telah berhasil dihapus",
+            "successfullyEdited": "Customer {0} telah berhasil diubah",
+            "successfullyAdded": "Customer {0} telah berhasil ditambahkan"
+        },
+        "nutrition": {
+            "customerId": "ID Customer",
+            "customerFullName": "Nama Customer",
+            "calories": "Kalori",
+            "fat": "Lemak",
+            "carbs": "Karbo",
+            "protein": "Protein",
+            "nutritionsDetail": "Detail Nutrisi Customer",
+            "editUser": "Edit User",
+            "deleteUser": "Delete User",
+            "successfullyDeleted": "Nutrisi untuk {0} telah berhasil dihapus",
+            "successfullyEdited": "Nutrisi untuk {0} telah berhasil diubah",
+            "successfullyAdded": "Nutrisi untuk {0} telah berhasil ditambahkan",
+            "created_at": "Dibuat pada",
+            "updated_at": "Terakhir diubah pada"
         },
         "profile": {
             "profileInformation": "Profil",
