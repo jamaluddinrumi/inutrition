@@ -4,7 +4,7 @@
             :headers="headers"
             :items="customers"
             :items-per-page="itemsPerPage"
-            sort-by="name"
+            sort-by="firstName"
             class="elevation-1 mb-20"
             :loading="isLoading"
             :search="search"

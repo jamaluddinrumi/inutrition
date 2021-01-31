@@ -4,7 +4,7 @@
             :headers="headers"
             :items="nutritions"
             :items-per-page="itemsPerPage"
-            sort-by="name"
+            sort-by="updatedAt"
             class="elevation-1 mb-20"
             :loading="isLoadingNutritionsData"
             :search="search"
