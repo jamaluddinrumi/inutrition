@@ -138,7 +138,6 @@ class CustomerController extends Controller
                 return response()->json($deleted_customer_id);
             }
 
-
             return response()->json(false, 404);
         }
     }
