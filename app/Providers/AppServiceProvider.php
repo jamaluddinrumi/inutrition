@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
@@ -24,10 +25,10 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(UrlGenerator $url)
     {
-        if (env('APP_ENV') == 'production') {
-            URL::forceScheme('https');
+        if (env('APP_ENV') === 'production') {
+            $url->forceScheme('https');
         }
 
         Inertia::share('storagePath', storage_path());
