@@ -61,7 +61,6 @@ export default {
             type: String,
         },
         errorBags: {
-            type: Array,
         },
         errors: {
             type: Object,

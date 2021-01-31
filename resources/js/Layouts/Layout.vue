@@ -75,6 +75,7 @@
                 class="mr-4"
                 true-value="en"
                 false-value="id"
+                @change="onLocaleChange"
             >
                 <template v-slot:label>
                     <div class="-ml-2" v-if="$i18n.locale === 'id'">
@@ -239,6 +240,23 @@ export default {
     watch: {},
     created() {},
     methods: {
+        onLocaleChange() {
+            axios.defaults.headers.common[
+                "Accept-Language"
+            ] = this.$i18n.locale;
+
+            axios
+                .post(`/lang/${this.$i18n.locale}`)
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.error(error);
+                })
+                .then(function (response) {
+                    console.log(response);
+                });
+        },
         onScroll(e) {
             if (typeof window === "undefined") return;
             const top = window.pageYOffset || e.target.scrollTop || 0;
