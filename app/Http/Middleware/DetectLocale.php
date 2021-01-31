@@ -20,10 +20,12 @@ class DetectLocale
     public function handle(Request $request, Closure $next)
     {
 
-        if (session('locale')) {
-            App::setLocale(session('locale'));
-        } else {
-            App::setLocale(config('app.fallback_locale'));
+        if (!App::isLocale(session('locale'))) {
+            if (!in_array(session('locale'), [config('app.locale'), config('app.fallback_locale')])) {
+                App::setLocale(session('locale'));
+            } else {
+                App::setLocale(config('app.fallback_locale'));
+            }
         }
 
         return $next($request);
