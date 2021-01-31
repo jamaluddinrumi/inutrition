@@ -6,6 +6,7 @@ use App\Models\Nutrition;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\NutritionResource;
+use Illuminate\Support\Facades\Validator;
 
 class NutritionController extends Controller
 {
@@ -16,10 +17,6 @@ class NutritionController extends Controller
      */
     public function index()
     {
-        // $nutritions = Nutrition::all()->with('customer');
-
-        // return response()->json($nutritions);
-
         return NutritionResource::collection(Nutrition::all()->load('customer'));
     }
 
@@ -31,7 +28,27 @@ class NutritionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            // 'id' => 'required',
+            'customerId' => 'required',
+            'calories' => 'required',
+            'fat' => 'required',
+            'carbs' => 'required',
+            'protein' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+
+            return response()->json($validator->errors(), 400);
+        }
+
+        return new NutritionResource(Nutrition::create([
+            'customer_id' => $request->customerId,
+            'calories' => $request->calories,
+            'fat' => $request->fat,
+            'carbs' => $request->carbs,
+            'protein' => $request->protein,
+        ])->load('customer'));
     }
 
     /**
@@ -42,7 +59,7 @@ class NutritionController extends Controller
      */
     public function show($id)
     {
-        // $nutrition = Nutrition::findOrFail($id)->with('customer');
+        // $nutrition = Nutrition::findOrFail($id)->with('nutrition');
 
         // return response()->json($nutrition);
 
@@ -56,9 +73,37 @@ class NutritionController extends Controller
      * @param  \App\Models\Nutrition  $nutrition
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nutrition $nutrition)
+    public function update(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+            // 'customerId' => 'required',
+            // 'calories' => 'required',
+            // 'fat' => 'required',
+            // 'carbs' => 'required',
+            // 'protein' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+
+            return response()->json($validator->errors(), 400);
+        }
+
+        $nutrition = Nutrition::findOrFail($request->id);
+
+        if ($nutrition) {
+
+            $nutrition->id = $request->id;
+            $nutrition->calories = $request->calories;
+            $nutrition->fat = $request->fat;
+            $nutrition->carbs = $request->carbs;
+            $nutrition->protein = $request->protein;
+            $nutrition->save();
+
+            return new NutritionResource($nutrition);
+        }
+
+        return response()->json(false, 400);
     }
 
     /**
@@ -67,8 +112,21 @@ class NutritionController extends Controller
      * @param  \App\Models\Nutrition  $nutrition
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Nutrition $nutrition)
+    public function destroy($id)
     {
-        //
+        $nutrition = Nutrition::findOrFail($id);
+
+        if ($nutrition) {
+
+            $deleted_nutrition_id = $nutrition->delete();
+
+            if ($deleted_nutrition_id) {
+
+                return response()->json($deleted_nutrition_id);
+            }
+
+
+            return response()->json(false, 404);
+        }
     }
 }
