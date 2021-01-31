@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-// Route::group(function () {
+// Route::group([], function () {
 Route::middleware('auth:sanctum', 'verified')->group(function () {
 
     Route::apiResource('/user', UserController::class);

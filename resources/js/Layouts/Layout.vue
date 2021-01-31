@@ -211,9 +211,14 @@ export default {
                     title: this.$vuetify.lang.t("$vuetify.title.dashboard"),
                     href: "/dashboard",
                     icon: "fas fa-home",
+                },{
+                    id: 1,
+                    title: this.$vuetify.lang.t("$vuetify.title.nutrition"),
+                    href: "/nutrition",
+                    icon: "fas fa-utensils",
                 },
                 {
-                    id: 1,
+                    id: 2,
                     title: this.$vuetify.lang.t("$vuetify.title.customer"),
                     href: "/customer",
                     icon: "fas fa-user",

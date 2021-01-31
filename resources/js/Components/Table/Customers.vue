@@ -39,7 +39,7 @@
                                 <v-icon small class="mr-2"
                                     >fas fa-user-plus</v-icon
                                 >
-                                {{ $vuetify.lang.t("$vuetify.addCustomer") }}
+                                {{ $vuetify.lang.t("$vuetify.add") }}
                             </v-btn>
                         </template>
                         <v-card>
