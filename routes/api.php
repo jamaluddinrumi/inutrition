@@ -17,15 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+// Route::get('/user', function (Request $request) {
 //     return $request->user();
 // });
 
-Route::middleware('auth:sanctum')->apiResource('/user', UserController::class);
-// Route::apiResource('/user', UserController::class);
+// Route::group(function () {
+Route::middleware('auth:sanctum', 'verified')->group(function () {
 
-Route::middleware('auth:sanctum')->apiResource('/customer', CustomerController::class);
-// Route::apiResource('/customer', CustomerController::class);
+    Route::apiResource('/user', UserController::class);
 
-Route::middleware('auth:sanctum')->apiResource('/nutrition', NutritionController::class);
-// Route::apiResource('/nutrition', NutritionController::class);
+    Route::apiResource('/customer', CustomerController::class);
+
+    Route::apiResource('/nutrition', NutritionController::class);
+});
