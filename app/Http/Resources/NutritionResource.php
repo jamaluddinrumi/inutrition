@@ -23,6 +23,8 @@ class NutritionResource extends JsonResource
             'fat' => $this->fat,
             'carbs' => $this->carbs,
             'protein' => $this->protein,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
             'customer' => new CustomerResource($this->whenLoaded('customer')),
         ];
     }
