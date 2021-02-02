@@ -92,6 +92,9 @@
         "staffs": "Staf",
         "search": "Cari",
         "fieldIsRequired": "Kolom ini harus diisi.",
+        "readMore": "Lihat selengkapnya",
+        "positiveTrend": "Tren Positif",
+        "negativeTrend": "Tren Negatif",
         "title": {
             "dashboard": "Dashboard",
             "customer": "Customer",

@@ -92,6 +92,9 @@
         "staffs": "Staffs",
         "search": "Search",
         "fieldIsRequired": "This field is required.",
+        "readMore": "Read more",
+        "positiveTrend": "Positive Trend",
+        "negativeTrend": "Negative Trend",
         "title": {
             "dashboard": "Dashboard",
             "customer": "Customer",
