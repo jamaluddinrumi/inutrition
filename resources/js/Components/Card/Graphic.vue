@@ -22,7 +22,10 @@
         <v-divider></v-divider>
 
         <v-card-actions class="justify-center">
-            <v-btn block text>{{ $vuetify.lang.t("$vuetify.readMore") }}</v-btn>
+            <v-btn block text>
+                <v-icon small class="mr-2">fas fa-table</v-icon>
+                {{ $vuetify.lang.t("$vuetify.readMore") }}</v-btn
+            >
         </v-card-actions>
     </v-card>
 </template>
