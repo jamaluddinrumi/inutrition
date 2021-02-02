@@ -19,6 +19,7 @@
         "laravel/passport": "^10.0",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
+        "phpoffice/phpword": "^0.17.0",
         "tightenco/ziggy": "^0.9.4"
     },
     "require-dev": {
