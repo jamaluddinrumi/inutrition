@@ -191,6 +191,11 @@
             <template v-slot:item.updatedAt="{ item }">
                 <span>{{ new Date(item.updatedAt).toLocaleString() }}</span>
             </template>
+            <template v-slot:item.downloadPdfSummary="{ item }">
+                <v-btn icon color="primary">
+                    <v-icon small>fa-file-pdf</v-icon>
+                </v-btn>
+            </template>
             <template v-slot:item.actions="{ item }" class="justify">
                 <div class="d-flex">
                     <v-tooltip left>
@@ -336,6 +341,13 @@ export default {
                     text: this.$vuetify.lang.t("$vuetify.nutrition.updated_at"),
                     // sortable: false,
                     value: "updatedAt",
+                },
+                {
+                    text: this.$vuetify.lang.t(
+                        "$vuetify.nutrition.downloadPdfSummary"
+                    ),
+                    // sortable: false,
+                    value: "downloadPdfSummary",
                 },
                 {
                     text: this.$vuetify.lang.t("$vuetify.actions"),

@@ -129,7 +129,8 @@
             "successfullyEdited": "Nutrisi untuk {0} telah berhasil diubah",
             "successfullyAdded": "Nutrisi untuk {0} telah berhasil ditambahkan",
             "created_at": "Dibuat pada",
-            "updated_at": "Terakhir diubah pada"
+            "updated_at": "Terakhir diubah pada",
+            "downloadPdfSummary": "PDF"
         },
         "profile": {
             "profileInformation": "Profil",

@@ -129,7 +129,8 @@
             "successfullyEdited": "Nutrition for {0} is successfully edited",
             "successfullyAdded": "Nutrition for {0} is successfully added",
             "created_at": "Created At",
-            "updated_at": "Updated At"
+            "updated_at": "Updated At",
+            "downloadPdfSummary": "PDF"
         },
         "profile": {
             "profileInformation": "Profile Information",

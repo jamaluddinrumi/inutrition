@@ -8,6 +8,11 @@
         :loading="isLoading"
         :search="search"
     >
+        <template v-slot:item.downloadPdfSummary="{ item }">
+            <v-btn icon color="primary">
+                <v-icon small>fa-file-pdf</v-icon>
+            </v-btn>
+        </template>
         <template v-slot:no-data>
             <v-btn
                 rounded
@@ -82,6 +87,12 @@ export default {
                 {
                     text: this.$vuetify.lang.t("$vuetify.protein") + " (g)",
                     value: "protein",
+                },
+                {
+                    text: this.$vuetify.lang.t(
+                        "$vuetify.nutrition.downloadPdfSummary"
+                    ),
+                    value: "downloadPdfSummary",
                 },
             ];
         },
