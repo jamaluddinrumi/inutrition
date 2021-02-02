@@ -44,7 +44,7 @@ export default {
     },
     computed: {
         userName: function () {
-            return _.startCase(this.$page.user.name);
+            return _.startCase(this.user.name);
         },
     },
 };
