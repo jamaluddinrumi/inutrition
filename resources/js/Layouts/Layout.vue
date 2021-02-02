@@ -14,7 +14,7 @@
                     <v-list-item-content>
                         <v-list-item-title class="text-left">
                             <!-- <v-skeleton-loader class="mx-auto" type="text"></v-skeleton-loader> -->
-                            <span>{{ $page.user.name }}</span>
+                            <span>{{ userName }}</span>
                         </v-list-item-title>
                         <v-list-item-subtitle class="text-left">
                             <!-- <v-skeleton-loader class="mx-auto" type="text"></v-skeleton-loader> -->
@@ -210,6 +210,9 @@ export default {
     },
     watch: {},
     computed: {
+        userName: function () {
+            return _.startCase(this.$page.user.name);
+        },
         menu: function () {
             return [
                 {
