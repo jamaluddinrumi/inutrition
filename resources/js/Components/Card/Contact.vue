@@ -14,7 +14,7 @@
                     </v-list-item-avatar>
                     <v-list-item-content>
                         <v-list-item-title
-                            v-text="user.name"
+                            v-text="userName"
                         ></v-list-item-title>
                         <v-list-item-subtitle
                             v-text="user.email"
@@ -40,6 +40,11 @@ export default {
     props: {
         user: {
             type: Object,
+        },
+    },
+    computed: {
+        userName: function () {
+            return _.startCase(this.$page.user.name);
         },
     },
 };
