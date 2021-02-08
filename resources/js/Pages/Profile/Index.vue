@@ -1,19 +1,19 @@
 <template>
     <layout>
         <div class="p-4">
-            <div v-if="$page.jetstream.canUpdateProfileInformation">
-                <update-profile-information-form :user="$page.user" />
+            <div v-if="$page.props.jetstream.canUpdateProfileInformation">
+                <update-profile-information-form :user="$page.props.user" />
 
                 <jet-section-border />
             </div>
 
-            <div v-if="$page.jetstream.canUpdatePassword">
+            <div v-if="$page.props.jetstream.canUpdatePassword">
                 <update-password-form class="mt-10 sm:mt-0" />
 
                 <!-- <jet-section-border /> -->
             </div>
 
-            <!-- <div v-if="$page.jetstream.canManageTwoFactorAuthentication">
+            <!-- <div v-if="$page.props.jetstream.canManageTwoFactorAuthentication">
                 <two-factor-authentication-form class="mt-10 sm:mt-0" />
 
                 <jet-section-border />
@@ -60,8 +60,7 @@ export default {
         currentRouteName: {
             type: String,
         },
-        errorBags: {
-        },
+        errorBags: {},
         errors: {
             type: Object,
         },
@@ -93,7 +92,7 @@ export default {
     },
 };
 </script>
-<style scoped>
+<style>
 [type="text"],
 [type="email"],
 [type="url"],
@@ -113,9 +112,8 @@ select [role="button"],
 [type="reset"],
 [type="submit"],
 button {
-    @apply ring-1;
-    @apply ring-gray-300;
-    @apply bg-gray-50;
-    @apply bg-opacity-50;
+    @apply ring-0;
+    @apply bg-transparent;
+    @apply bg-opacity-0;
 }
 </style>

@@ -1,13 +1,13 @@
 <template>
     <div class="md:col-span-1">
         <div class="px-4 sm:px-0">
-            <div class="text-lg font-medium text-h5">
+            <h3 class="text-lg font-medium text-gray-900">
                 <slot name="title"></slot>
-            </div>
+            </h3>
 
-            <div class="mt-1 text-sm text-subtitle-2">
+            <p class="mt-1 text-sm text-gray-600">
                 <slot name="description"></slot>
-            </div>
+            </p>
         </div>
     </div>
 </template>

@@ -112,7 +112,7 @@ export default {
             self.isLoading = true;
 
             axios
-                .get("/api/customer")
+                .get(route("customer.index"))
                 .then(function (response) {
                     console.log(response);
 
@@ -210,7 +210,6 @@ export default {
 [multiple],
 textarea,
 select {
-    @apply ring-0;
     @apply bg-transparent;
 }
 .v-data-table-header th.sortable {

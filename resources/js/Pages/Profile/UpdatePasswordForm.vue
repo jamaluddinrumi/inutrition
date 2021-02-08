@@ -55,7 +55,7 @@
                 />
             </div>
 
-            <v-overlay absolute="absolute" :value="isSubmitted">
+            <v-overlay absolute :value="isSubmitted">
                 <v-progress-circular indeterminate></v-progress-circular>
             </v-overlay>
         </template>
@@ -69,8 +69,7 @@
                 type="submit"
                 rounded
                 color="primary"
-                class="font-bold"
-                :class="{ 'opacity-25': form.processing }"
+                class="font-bold elevation-2 px-4"
                 :disabled="form.processing"
             >
                 <v-icon small class="mr-2">fa fa-save</v-icon>
@@ -134,3 +133,42 @@ export default {
     },
 };
 </script>
+<style>
+[type="text"],
+[type="email"],
+[type="url"],
+[type="password"],
+[type="number"],
+[type="date"],
+[type="datetime-local"],
+[type="month"],
+[type="search"],
+[type="tel"],
+[type="time"],
+[type="week"],
+[multiple],
+textarea,
+select,
+[type="text"]:focus,
+[type="email"]:focus,
+[type="url"]:focus,
+[type="password"]:focus,
+[type="number"]:focus,
+[type="date"]:focus,
+[type="datetime-local"]:focus,
+[type="month"]:focus,
+[type="search"]:focus,
+[type="tel"]:focus,
+[type="time"]:focus,
+[type="week"]:focus,
+[multiple]:focus,
+textarea:focus,
+select:focus {
+    @apply ring-0;
+    @apply bg-transparent;
+}
+
+.v-data-table-header th.sortable {
+    white-space: nowrap;
+}
+</style>

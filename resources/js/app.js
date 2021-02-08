@@ -3,7 +3,7 @@ require("moment");
 
 import Vue from "vue";
 import Vuex from "vuex";
-import { InertiaApp } from "@inertiajs/inertia-vue";
+import { InertiaApp, plugin as InertiaPlugin } from "@inertiajs/inertia-vue";
 import { InertiaForm } from "laravel-jetstream";
 import { InertiaProgress } from "@inertiajs/progress";
 import PortalVue from "portal-vue";
@@ -18,11 +18,11 @@ InertiaProgress.init({
     showSpinner: false
 });
 
-Vue.use(Vuex);
-Vue.mixin({ methods: { route } });
-Vue.use(InertiaApp);
+Vue.use(InertiaPlugin);
 Vue.use(InertiaForm);
 Vue.use(PortalVue);
+Vue.use(Vuex);
+Vue.mixin({ methods: { route } });
 Vue.mixin(Title);
 
 const store = new Vuex.Store({
@@ -38,7 +38,6 @@ const store = new Vuex.Store({
 });
 
 // store.commit("increment");
-
 const app = document.getElementById("app");
 
 new Vue({

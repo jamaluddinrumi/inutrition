@@ -1,5 +1,9 @@
 {
     "$vuetify": {
+        "laravel": {
+            "forgotYourPassword": "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.",
+            "emailPasswordResetLink": "Email Password Reset Link"
+        },
         "badge": "Badge",
         "close": "Close",
         "dataIterator": {
@@ -89,6 +93,7 @@
         "customers": "Customers",
         "customersNutrition": "Customer's Nutritions",
         "add": "Add",
+        "edit": "Edit",
         "staffs": "Staffs",
         "search": "Search",
         "fieldIsRequired": "This field is required.",
@@ -99,7 +104,10 @@
             "dashboard": "Dashboard",
             "customer": "Customer",
             "profile": "Profile",
-            "nutrition": "Nutrition"
+            "nutrition": "Nutrition",
+            "login": "Login",
+            "resetPassword": "Reset password",
+            "register": "Registration"
         },
         "customer": {
             "customer": "Customer",
@@ -116,7 +124,9 @@
             "deleteUser": "Delete User",
             "successfullyDeleted": "{0} is successfully deleted",
             "successfullyEdited": "{0} is successfully edited",
-            "successfullyAdded": "{0} is successfully added"
+            "successfullyAdded": "{0} is successfully added",
+            "addCustomer": "Add Customer",
+            "editCustomer": "Edit Customer"
         },
         "nutrition": {
             "customerId": "Customer ID",
@@ -131,9 +141,11 @@
             "successfullyDeleted": "Nutrition for {0} is successfully deleted",
             "successfullyEdited": "Nutrition for {0} is successfully edited",
             "successfullyAdded": "Nutrition for {0} is successfully added",
-            "created_at": "Created At",
-            "updated_at": "Updated At",
-            "downloadPdfSummary": "PDF"
+            "createdAt": "Created At",
+            "updateAt": "Updated At",
+            "downloadPdfSummary": "PDF",
+            "addNutrition": "Add Nutrition",
+            "editNutrition": "Edit Nutrition"
         },
         "profile": {
             "profileInformation": "Profile Information",
@@ -148,6 +160,14 @@
             "currentPassword": "Current Password",
             "newPassword": "New Password",
             "confirmPassword": "Confirm Password"
-        }
+        },
+        "rememberMe": "Remember me",
+        "login": "Login",
+        "forgotPassword": "Forgot your password?",
+        "password": "Password",
+        "register": "Register",
+        "alreadyRegistered": "Already registered?",
+        "iAgreeToThe": "I agree to the",
+        "and": "and"
     }
 }

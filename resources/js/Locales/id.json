@@ -1,5 +1,9 @@
 {
     "$vuetify": {
+        "laravel": {
+            "forgotYourPassword": "Lupa kata sandi Anda? Tidak masalah. Beri tahu kami alamat surel Anda dan kami akan mengirimkan surel berisi tautan pengaturan ulang kata sandi yang memungkinkan Anda memilih kata sandi yang baru.",
+            "emailPasswordResetLink": "Email Link Reset Password"
+        },
         "badge": "Lencana",
         "close": "Tutup",
         "dataIterator": {
@@ -89,6 +93,7 @@
         "customers": "Customer",
         "customersNutrition": "Nutrisi Customer",
         "add": "Tambah",
+        "edit": "Ubah",
         "staffs": "Staf",
         "search": "Cari",
         "fieldIsRequired": "Kolom ini harus diisi.",
@@ -99,7 +104,10 @@
             "dashboard": "Dashboard",
             "customer": "Customer",
             "profile": "Profil",
-            "nutrition": "Nutrisi"
+            "nutrition": "Nutrisi",
+            "login": "Masuk",
+            "resetPassword": "Reset password",
+            "register": "Pendaftaran"
         },
         "customer": {
             "customer": "Customer",
@@ -116,7 +124,9 @@
             "deleteUser": "Delete User",
             "successfullyDeleted": "Customer {0} telah berhasil dihapus",
             "successfullyEdited": "Customer {0} telah berhasil diubah",
-            "successfullyAdded": "Customer {0} telah berhasil ditambahkan"
+            "successfullyAdded": "Customer {0} telah berhasil ditambahkan",
+            "addCustomer": "Tambah Customer",
+            "editCustomer": "Ubah Customer"
         },
         "nutrition": {
             "customerId": "ID Customer",
@@ -131,9 +141,11 @@
             "successfullyDeleted": "Nutrisi untuk {0} telah berhasil dihapus",
             "successfullyEdited": "Nutrisi untuk {0} telah berhasil diubah",
             "successfullyAdded": "Nutrisi untuk {0} telah berhasil ditambahkan",
-            "created_at": "Dibuat pada",
-            "updated_at": "Terakhir diubah pada",
-            "downloadPdfSummary": "PDF"
+            "createdAt": "Dibuat pada",
+            "updatedAt": "Terakhir diubah pada",
+            "downloadPdfSummary": "PDF",
+            "addNutrition": "Tambah Nutrisi",
+            "editNutrition": "Edit Nutrisi"
         },
         "profile": {
             "profileInformation": "Profil",
@@ -148,6 +160,14 @@
             "currentPassword": "Password Saat Ini",
             "newPassword": "Password Baru",
             "confirmPassword": "Konfirmasi Password"
-        }
+        },
+        "rememberMe": "Ingat saya di komputer ini",
+        "login": "Masuk",
+        "forgotPassword": "Lupa password?",
+        "password": "Password",
+        "register": "Daftar",
+        "alreadyRegistered": "Sudah terdaftar?",
+        "iAgreeToThe": "Saya setuju dengan",
+        "and": "dan"
     }
 }

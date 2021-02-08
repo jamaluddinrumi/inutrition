@@ -18,5 +18,5 @@ class Customer extends Model
         return $this->hasOne(Nutrition::class);
     }
 
-    protected $hidden = ['created_at', 'updated_at'];
+    protected $hidden = ['created_at'];
 }

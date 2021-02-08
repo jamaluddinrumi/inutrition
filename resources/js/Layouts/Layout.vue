@@ -5,8 +5,8 @@
                 <v-list-item>
                     <v-list-item-avatar>
                         <v-img
-                            :src="$page.user.profile_photo_url"
-                            :alt="$page.user.name"
+                            :src="$page.props.user.profile_photo_url"
+                            :alt="$page.props.user.name"
                         ></v-img>
                     </v-list-item-avatar>
                 </v-list-item>
@@ -18,7 +18,7 @@
                         </v-list-item-title>
                         <v-list-item-subtitle class="text-left">
                             <!-- <v-skeleton-loader class="mx-auto" type="text"></v-skeleton-loader> -->
-                            <span>{{ $page.user.email }}</span>
+                            <span>{{ $page.props.user.email }}</span>
                         </v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
@@ -64,7 +64,7 @@
         <v-app-bar app elevate-on-scroll>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-app-bar-title shrink-on-scroll>{{
-                $vuetify.lang.t("$vuetify.title." + $page.title)
+                $vuetify.lang.t("$vuetify.title." + $page.props.title)
             }}</v-app-bar-title>
             <v-spacer></v-spacer>
             <v-switch
@@ -211,7 +211,7 @@ export default {
     watch: {},
     computed: {
         userName: function () {
-            return _.startCase(this.$page.user.name);
+            return _.startCase(this.$page.props.user.name);
         },
         menu: function () {
             return [
@@ -252,7 +252,8 @@ export default {
             ];
         },
     },
-    created() {},
+    created() {
+    },
     methods: {
         onLocaleChange() {
             axios.defaults.headers.common[
@@ -278,7 +279,7 @@ export default {
         },
         logout() {
             this.isLogouting = true;
-            axios.post(route("logout").url()).then((response) => {
+            axios.post(this.route("logout")).then((response) => {
                 window.location = "login";
             });
         },

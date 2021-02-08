@@ -12,7 +12,7 @@
             <!-- Profile Photo -->
             <div
                 class="col-span-6 sm:col-span-4"
-                v-if="$page.jetstream.managesProfilePhotos"
+                v-if="$page.props.jetstream.managesProfilePhotos"
             >
                 <!-- Profile Photo File Input -->
                 <input
@@ -27,8 +27,8 @@
                 <!-- Current Profile Photo -->
                 <div class="mt-2" v-show="!photoPreview">
                     <v-img
-                        :src="user.profile_photo_url"
-                        :alt="user.name"
+                        :src="$page.props.user.profile_photo_url"
+                        :alt="$page.props.user.name"
                         class="rounded-full h-20 w-20 object-cover"
                     />
                 </div>
@@ -50,7 +50,7 @@
                     small
                     fab
                     color="primary"
-                    class="mt-2 mr-2"
+                    class="mt-2 mr-2 mb-2"
                     @click="selectNewPhoto"
                 >
                     <v-icon small>fas fa-camera</v-icon>
@@ -60,9 +60,9 @@
                     small
                     fab
                     color="error"
-                    class="mt-2"
+                    class="mt-2 mb-2"
                     @click.native.prevent="deletePhoto"
-                    v-if="user.profile_photo_path"
+                    v-if="$page.props.user.profile_photo_path"
                 >
                     <v-icon small>fas fa-trash</v-icon>
                 </v-btn>
@@ -95,7 +95,7 @@
                 <jet-input-error :message="form.error('email')" class="mt-2" />
             </div>
 
-            <v-overlay absolute="absolute" :value="isSubmitted">
+            <v-overlay absolute :value="isSubmitted">
                 <v-progress-circular indeterminate></v-progress-circular>
             </v-overlay>
         </template>
@@ -109,8 +109,7 @@
                 rounded
                 type="submit"
                 color="primary"
-                class="font-bold"
-                :class="{ 'opacity-25': form.processing }"
+                class="elevation-2 font-bold px-4"
                 :disabled="form.processing"
             >
                 <v-icon small dark class="mr-2">fas fa-save</v-icon>
@@ -207,3 +206,28 @@ export default {
     },
 };
 </script>
+<style>
+[type="text"],
+[type="email"],
+[type="url"],
+[type="password"],
+[type="number"],
+[type="date"],
+[type="datetime-local"],
+[type="month"],
+[type="search"],
+[type="tel"],
+[type="time"],
+[type="week"],
+[multiple],
+textarea,
+select [role="button"],
+[type="button"],
+[type="reset"],
+[type="submit"],
+button {
+    @apply ring-0;
+    @apply bg-transparent;
+    @apply bg-opacity-0;
+}
+</style>

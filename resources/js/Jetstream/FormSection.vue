@@ -5,43 +5,38 @@
             <template #description><slot name="description"></slot></template>
         </jet-section-title>
 
-        <v-card class="mt-5 md:mt-0 md:col-span-2">
-            <form @submit.prevent="$emit('submitted')">
-                <div class="shadow overflow-hidden sm:rounded-md">
-                    <div class="px-4 py-5 sm:p-6">
-                        <div class="grid grid-cols-6 gap-6">
-                            <slot name="form"></slot>
-                        </div>
-                    </div>
-
-                    <div
-                        class="flex items-center justify-end px-4 py-3 text-right sm:px-6"
-                        v-if="hasActions"
-                    >
+        <div class="mt-5 md:mt-0 md:col-span-2">
+            <v-form @submit.prevent="$emit('submitted')">
+                <v-card>
+                    <v-card-text>
+                        <slot name="form"></slot>
+                    </v-card-text>
+                    <v-card-actions class="flex justify-end">
                         <slot name="actions"></slot>
-                    </div>
-                </div>
-            </form>
-        </v-card>
+                    </v-card-actions>
+                </v-card>
+            </v-form>
+        </div>
     </div>
 </template>
 
 <script>
-import JetSectionTitle from "./SectionTitle";
+    import JetSectionTitle from './SectionTitle'
 
-export default {
-    components: {
-        JetSectionTitle,
-    },
-
-    computed: {
-        hasActions() {
-            return !!this.$slots.actions;
+    export default {
+        components: {
+            JetSectionTitle,
         },
-    },
-};
+
+        computed: {
+            hasActions() {
+                return !! this.$slots.actions
+            }
+        }
+    }
 </script>
-<style scope>
+
+<style>
 [type="text"],
 [type="email"],
 [type="url"],
@@ -56,8 +51,13 @@ export default {
 [type="week"],
 [multiple],
 textarea,
-select {
+select [role="button"],
+[type="button"],
+[type="reset"],
+[type="submit"],
+button {
     @apply ring-0;
     @apply bg-transparent;
+    @apply bg-opacity-0;
 }
 </style>

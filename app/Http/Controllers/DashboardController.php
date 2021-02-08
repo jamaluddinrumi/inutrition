@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
 
 class DashboardController extends Controller
 {
@@ -15,6 +17,9 @@ class DashboardController extends Controller
             "title" => "dashboard",
             "customers" => $customers,
             "users" => $users,
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
         ];
         return Inertia::render("Dashboard", $data);
     }

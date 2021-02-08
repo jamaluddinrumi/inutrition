@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\NutritionResource;
 use Illuminate\Support\Facades\Validator;
+use phpDocumentor\Reflection\Types\Resource_;
 
 class NutritionController extends Controller
 {
@@ -89,7 +90,7 @@ class NutritionController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
-        $nutrition = Nutrition::findOrFail($request->id);
+        $nutrition = Nutrition::findOrFail($request->id)->load('customer');
 
         if ($nutrition) {
 
@@ -112,9 +113,9 @@ class NutritionController extends Controller
      * @param  \App\Models\Nutrition  $nutrition
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $nutrition = Nutrition::findOrFail($id);
+        $nutrition = Nutrition::findOrFail($id)->load('customer');
 
         if ($nutrition) {
 

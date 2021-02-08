@@ -14,10 +14,11 @@ require("vuetifyjs-mix-extension");
 
 mix.combine("resources/js/login.js", "public/js/login.js")
     .js("resources/js/app.js", "public/js")
-    .vuetify()
+    .vuetify("", { postcss: true })
     .postCss("resources/css/app.css", "public/css", [
         require("postcss-import"),
-        require("tailwindcss")
+        require("tailwindcss"),
+        require("autoprefixer")
     ])
     .webpackConfig(require("./webpack.config"))
     .browserSync("http://127.0.0.1:8000");

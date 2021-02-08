@@ -4,7 +4,8 @@
             :headers="headers"
             :items="customers"
             :items-per-page="itemsPerPage"
-            sort-by="firstName"
+            :sort-by="['updatedAt']"
+            :sort-desc="[true]"
             class="elevation-1 mb-20"
             :loading="isLoading"
             :search="search"
@@ -32,7 +33,7 @@
                             <v-btn
                                 color="primary"
                                 rounded
-                                class="mb-2 font-bold"
+                                class="mb-2 font-bold elevation-2"
                                 v-bind="attrs"
                                 v-on="on"
                             >
@@ -151,15 +152,17 @@
                                     color="grey darken-1"
                                     text
                                     @click="close"
-                                    class="px-4"
+                                    class="px-4 elevation-2"
                                 >
                                     {{ $vuetify.lang.t("$vuetify.cancel") }}
                                 </v-btn>
                                 <v-btn
                                     rounded
                                     color="primary"
-                                    class="font-bold px-4"
+                                    class="font-bold px-4 elevation-2"
                                     @click="save"
+                                    :loading="isButtonSaveLoading"
+                                    :disabled="isButtonSaveLoading"
                                 >
                                     <v-icon small class="mr-2"
                                         >fas fa-save</v-icon
@@ -185,6 +188,7 @@
                                             rounded
                                             text
                                             @click="closeDelete"
+                                            class="elevation-2"
                                             >{{
                                                 $vuetify.lang.t(
                                                     "$vuetify.cancel"
@@ -194,8 +198,10 @@
                                         <v-btn
                                             color="error"
                                             rounded
-                                            class="px-4 ml-2 font-bold"
+                                            class="px-4 ml-2 font-bold elevation-2"
                                             @click="deleteItemConfirm"
+                                            :loading="isButtonDeleteLoading"
+                                            :disabled="isButtonDeleteLoading"
                                             ><v-icon small class="mr-2"
                                                 >fas fa-trash</v-icon
                                             >
@@ -220,7 +226,7 @@
                                 icon
                                 color="primary"
                                 @click="editItem(item)"
-                                class="mr-1"
+                                class="mr-1 elevation-1"
                                 v-bind="attrs"
                                 v-on="on"
                             >
@@ -237,6 +243,7 @@
                                 icon
                                 color="error"
                                 @click="deleteItem(item)"
+                                class="elevation-1"
                                 v-bind="attrs"
                                 v-on="on"
                             >
@@ -284,6 +291,8 @@ export default {
     },
     data() {
         return {
+            isButtonDeleteLoading: false,
+            isButtonSaveLoading: false,
             snackbar: false,
             snackbarMessage: "",
             required: [
@@ -319,7 +328,9 @@ export default {
     },
     computed: {
         formTitle() {
-            return this.editedIndex === -1 ? "Tambah Item" : "Ubah Item";
+            return this.editedIndex === -1
+                ? this.$vuetify.lang.t("$vuetify.customer.addCustomer")
+                : this.$vuetify.lang.t("$vuetify.customer.editCustomer");
         },
         headers() {
             return [
@@ -389,7 +400,7 @@ export default {
             self.isLoading = true;
 
             axios
-                .get("/api/customer")
+                .get(route("customer.index"))
                 .then(function (response) {
                     console.log(response);
 
@@ -404,6 +415,7 @@ export default {
                             streetAddress: customer.street_address,
                             phoneNumber: customer.phone_number,
                             email: customer.email,
+                            updatedAt: customer.updated_at,
                         });
                     });
                 })
@@ -432,10 +444,11 @@ export default {
         deleteItemConfirm() {
             // this.customers.splice(this.editedIndex, 1);
             let self = this;
+            self.isButtonDeleteLoading = true;
             self.customers = [];
 
             axios
-                .delete(`/api/customer/${self.editedIndex}`)
+                .delete(route("customer.destroy", self.editedIndex))
                 .then(function (response) {
                     console.log(response);
 
@@ -455,6 +468,7 @@ export default {
                 })
                 .then(function () {
                     self.closeDelete();
+                    self.isButtonDeleteLoading = false;
                 });
         },
 
@@ -480,6 +494,7 @@ export default {
 
         save() {
             let self = this;
+            self.isButtonSaveLoading = true;
 
             if (this.editedIndex > -1) {
                 axios
@@ -505,12 +520,14 @@ export default {
                     .catch(function (response) {
                         console.error(response);
                     })
-                    .then(function () {});
+                    .then(function () {
+                        self.isButtonSaveLoading = false;
+                    });
             } else {
                 // this.customers.push(this.editedItem);
 
                 axios
-                    .post("/api/customer", self.editedItem)
+                    .post(route("customer.store"), self.editedItem)
                     .then(function (response) {
                         console.log(response);
 
@@ -532,7 +549,9 @@ export default {
                     .catch(function (response) {
                         console.error(response);
                     })
-                    .then(function () {});
+                    .then(function () {
+                        self.isButtonSaveLoading = false;
+                    });
             }
         },
     },
@@ -553,7 +572,22 @@ export default {
 [type="week"],
 [multiple],
 textarea,
-select {
+select,
+[type="text"]:focus,
+[type="email"]:focus,
+[type="url"]:focus,
+[type="password"]:focus,
+[type="number"]:focus,
+[type="date"]:focus,
+[type="datetime-local"]:focus,
+[type="month"]:focus,
+[type="search"]:focus,
+[type="tel"]:focus,
+[type="time"]:focus,
+[type="week"]:focus,
+[multiple]:focus,
+textarea:focus,
+select:focus {
     @apply ring-0;
     @apply bg-transparent;
 }

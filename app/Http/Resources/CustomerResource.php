@@ -24,6 +24,7 @@ class CustomerResource extends JsonResource
             'street_address' => $this->street_address,
             'phone_number' => $this->phone_number,
             'email' => $this->email,
+            'updated_at' => $this->updated_at,
             'nutrition' => new NutritionResource($this->whenLoaded('nutrition')),
         ];
     }

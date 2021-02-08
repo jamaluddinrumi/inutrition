@@ -1,10 +1,12 @@
 <?php
 
+use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NutritionController;
 
 /*
@@ -18,17 +20,25 @@ use App\Http\Controllers\NutritionController;
 |
 */
 
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//     ]);
+// });
+
+Route::post('/lang/{locale}', [LanguageController::class, 'switch'])->name('language.switch');
+
 Route::middleware('auth:sanctum', 'verified')->group(function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('welcome');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
-    Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
+    Route::get('/customer', [CustomerController::class, 'index'])->name('customer');
 
-    Route::get('/nutrition', [NutritionController::class, 'index'])->name('customer.index');
-
-    Route::post('/lang/{locale}', [LanguageController::class, 'switch'])->name('language.switch');
+    Route::get('/nutrition', [NutritionController::class, 'index'])->name('nutrition');
 });

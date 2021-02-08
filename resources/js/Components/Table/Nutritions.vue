@@ -4,7 +4,8 @@
             :headers="headers"
             :items="nutritions"
             :items-per-page="itemsPerPage"
-            sort-by="updatedAt"
+            :sort-by="['updatedAt']"
+            :sort-desc="[true]"
             class="elevation-1 mb-20"
             :loading="isLoadingNutritionsData"
             :search="search"
@@ -32,7 +33,7 @@
                             <v-btn
                                 color="primary"
                                 rounded
-                                class="mb-2 font-bold"
+                                class="mb-2 font-bold elevation-2"
                                 v-bind="attrs"
                                 v-on="on"
                                 @click="loadingCustomersData"
@@ -43,9 +44,9 @@
                                 {{ $vuetify.lang.t("$vuetify.add") }}
                             </v-btn>
                         </template>
-                        <v-card :loading="isLoadingCustomersData">
+                        <v-card :loading="isLoadingCustomersData || isButtonSaveLoading">
                             <v-card-title>
-                                <span class="headline">{{ formfat }}</span>
+                                <span class="headline">{{ formTitle }}</span>
                             </v-card-title>
 
                             <v-card-text>
@@ -124,15 +125,17 @@
                                     color="grey darken-1"
                                     text
                                     @click="close"
-                                    class="px-4"
+                                    class="px-4 elevation-2"
                                 >
                                     {{ $vuetify.lang.t("$vuetify.cancel") }}
                                 </v-btn>
                                 <v-btn
                                     rounded
                                     color="primary"
-                                    class="font-bold px-4"
+                                    class="font-bold px-4 elevation-2"
                                     @click="save"
+                                    :loading="isButtonSaveLoading"
+                                    :disabled="isButtonSaveLoading"
                                 >
                                     <v-icon small class="mr-2"
                                         >fas fa-save</v-icon
@@ -155,6 +158,7 @@
                                     <v-row justify="end">
                                         <v-btn
                                             color="blue darken-1"
+                                            class="elevation-2"
                                             rounded
                                             text
                                             @click="closeDelete"
@@ -167,7 +171,7 @@
                                         <v-btn
                                             color="error"
                                             rounded
-                                            class="px-4 ml-2 font-bold"
+                                            class="px-4 ml-2 font-bold elevation-2"
                                             @click="deleteItemConfirm"
                                             ><v-icon small class="mr-2"
                                                 >fas fa-trash</v-icon
@@ -192,7 +196,7 @@
                 <span>{{ new Date(item.updatedAt).toLocaleString() }}</span>
             </template>
             <template v-slot:item.downloadPdfSummary="{ item }">
-                <v-btn icon color="primary">
+                <v-btn icon color="primary" class="elevation-1">
                     <v-icon small>fa-file-pdf</v-icon>
                 </v-btn>
             </template>
@@ -204,7 +208,7 @@
                                 icon
                                 color="primary"
                                 @click="editItem(item)"
-                                class="mr-1"
+                                class="mr-1 elevation-1"
                                 v-bind="attrs"
                                 v-on="on"
                             >
@@ -221,6 +225,7 @@
                                 icon
                                 color="error"
                                 @click="deleteItem(item)"
+                                class="elevation-1"
                                 v-bind="attrs"
                                 v-on="on"
                             >
@@ -268,6 +273,8 @@ export default {
     },
     data() {
         return {
+            isButtonDeleteLoading: false,
+            isButtonSaveLoading: false,
             isFormValid: false,
             isLoadingCustomersData: false,
             customers: [],
@@ -299,8 +306,10 @@ export default {
         };
     },
     computed: {
-        formfat() {
-            return this.editedIndex === -1 ? "Tambah Item" : "Ubah Item";
+        formTitle() {
+            return this.editedIndex === -1
+                ? this.$vuetify.lang.t("$vuetify.nutrition.addNutrition")
+                : this.$vuetify.lang.t("$vuetify.nutrition.editNutrition");
         },
         headers() {
             return [
@@ -333,12 +342,12 @@ export default {
                     value: "protein",
                 },
                 {
-                    text: this.$vuetify.lang.t("$vuetify.nutrition.created_at"),
+                    text: this.$vuetify.lang.t("$vuetify.nutrition.createdAt"),
                     // sortable: false,
                     value: "createdAt",
                 },
                 {
-                    text: this.$vuetify.lang.t("$vuetify.nutrition.updated_at"),
+                    text: this.$vuetify.lang.t("$vuetify.nutrition.updatedAt"),
                     // sortable: false,
                     value: "updatedAt",
                 },
@@ -372,7 +381,7 @@ export default {
             self.isLoadingCustomersData = true;
 
             axios
-                .get("/api/customer")
+                .get(route("customer.index"))
                 .then(function (response) {
                     console.log(response);
 
@@ -408,7 +417,7 @@ export default {
             self.isLoadingNutritionsData = true;
 
             axios
-                .get("/api/nutrition")
+                .get(route("nutrition.index"))
                 .then(function (response) {
                     console.log(response);
 
@@ -446,6 +455,7 @@ export default {
 
         editItem(item) {
             // console.log(item);
+            this.loadingCustomersData();
             this.editedIndex = item.id;
             this.editedItem = Object.assign({}, item);
             this.dialog = true;
@@ -464,7 +474,7 @@ export default {
             self.nutritions = [];
 
             axios
-                .delete(`/api/nutrition/${self.editedIndex}`)
+                .delete(route("nutrition.destroy", self.editedIndex))
                 .then(function (response) {
                     console.log(response);
 
@@ -509,6 +519,7 @@ export default {
 
         save() {
             let self = this;
+            self.isButtonSaveLoading = true;
 
             if (this.editedIndex > -1) {
                 axios
@@ -538,12 +549,14 @@ export default {
                     .catch(function (response) {
                         console.error(response);
                     })
-                    .then(function () {});
+                    .then(function () {
+                        self.isButtonSaveLoading = false;
+                    });
             } else {
                 // this.nutritions.push(this.editedItem);
 
                 axios
-                    .post("/api/nutrition", self.editedItem)
+                    .post(route("nutrition.store"), self.editedItem)
                     .then(function (response) {
                         console.log(response);
 
@@ -569,7 +582,9 @@ export default {
                     .catch(function (response) {
                         console.error(response);
                     })
-                    .then(function () {});
+                    .then(function () {
+                        self.isButtonSaveLoading = false;
+                    });
             }
         },
     },
@@ -590,7 +605,22 @@ export default {
 [type="week"],
 [multiple],
 textarea,
-select {
+select,
+[type="text"]:focus,
+[type="email"]:focus,
+[type="url"]:focus,
+[type="password"]:focus,
+[type="number"]:focus,
+[type="date"]:focus,
+[type="datetime-local"]:focus,
+[type="month"]:focus,
+[type="search"]:focus,
+[type="tel"]:focus,
+[type="time"]:focus,
+[type="week"]:focus,
+[multiple]:focus,
+textarea:focus,
+select:focus {
     @apply ring-0;
     @apply bg-transparent;
 }

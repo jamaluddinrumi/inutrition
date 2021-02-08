@@ -8,7 +8,7 @@
                     <v-list-item-avatar>
                         <v-img
                             :src="
-                                $page.storageUrl + '/' + user.profile_photo_path
+                                $page.props.storageUrl + '/' + user.profile_photo_path
                             "
                         ></v-img>
                     </v-list-item-avatar>
