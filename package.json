@@ -28,6 +28,7 @@
         "laravel-jetstream": "^1.2.0",
         "laravel-mix": "^5.0.1",
         "lodash": "^4.17.19",
+        "minify-css-string": "^1.0.0",
         "moment": "^2.26.0",
         "portal-vue": "^2.1.7",
         "postcss": "^7.0.35",

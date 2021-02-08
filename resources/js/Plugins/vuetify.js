@@ -5,6 +5,7 @@ import Vue from "vue";
 import Vuetify from "vuetify";
 import VueI18n from "vue-i18n";
 import { messages } from "@/Locales/index.js";
+import minifyTheme from "minify-css-string";
 
 Vue.use(Vuetify);
 Vue.use(VueI18n);
@@ -34,7 +35,12 @@ const opts = {
             }
         },
         options: {
-            icons: { iconfont: "fa" }
+            icons: { iconfont: "fa" },
+            minifyTheme,
+            themeCache: {
+                get: key => localStorage.getItem(key),
+                set: (key, value) => localStorage.setItem(key, value)
+            }
         }
     },
     lang: {
