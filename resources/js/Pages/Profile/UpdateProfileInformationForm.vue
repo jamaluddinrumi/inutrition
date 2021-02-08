@@ -109,7 +109,7 @@
                 rounded
                 type="submit"
                 color="primary"
-                class="elevation-2 font-bold px-4"
+                class="elevation-2 text-button px-4"
                 :disabled="form.processing"
             >
                 <v-icon small dark class="mr-2">fas fa-save</v-icon>

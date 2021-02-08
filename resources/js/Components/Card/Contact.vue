@@ -28,7 +28,7 @@
                 rounded
                 color="primary"
                 :href="'mailto:' + user.email"
-                class="font-bold px-4 mb-6"
+                class="text-button px-4 mb-6"
                 ><v-icon small class="mr-2">fas fa-envelope</v-icon>Email</v-btn
             >
         </v-card-actions>

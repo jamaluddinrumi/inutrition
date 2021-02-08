@@ -33,7 +33,7 @@
                             <v-btn
                                 color="primary"
                                 rounded
-                                class="mb-2 font-bold elevation-2"
+                                class="mb-2 text-button elevation-2"
                                 v-bind="attrs"
                                 v-on="on"
                             >
@@ -159,7 +159,7 @@
                                 <v-btn
                                     rounded
                                     color="primary"
-                                    class="font-bold px-4 elevation-2"
+                                    class="text-button px-4 elevation-2"
                                     @click="save"
                                     :loading="isButtonSaveLoading"
                                     :disabled="isButtonSaveLoading"
@@ -198,7 +198,7 @@
                                         <v-btn
                                             color="error"
                                             rounded
-                                            class="px-4 ml-2 font-bold elevation-2"
+                                            class="px-4 ml-2 text-button elevation-2"
                                             @click="deleteItemConfirm"
                                             :loading="isButtonDeleteLoading"
                                             :disabled="isButtonDeleteLoading"
@@ -260,7 +260,7 @@
                 <v-btn
                     rounded
                     color="primary"
-                    class="font-bold"
+                    class="text-button"
                     @click="loadingData"
                 >
                     <v-icon small class="mr-2">fas fa-redo</v-icon>

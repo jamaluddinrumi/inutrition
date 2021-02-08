@@ -69,7 +69,7 @@
                 type="submit"
                 rounded
                 color="primary"
-                class="font-bold elevation-2 px-4"
+                class="text-button elevation-2 px-4"
                 :disabled="form.processing"
             >
                 <v-icon small class="mr-2">fa fa-save</v-icon>

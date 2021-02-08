@@ -17,7 +17,7 @@
             <v-btn
                 rounded
                 color="primary"
-                class="font-bold"
+                class="text-button"
                 @click="loadingData"
             >
                 <v-icon small class="mr-2">fas fa-redo</v-icon>

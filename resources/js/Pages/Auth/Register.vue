@@ -112,7 +112,7 @@
                             <v-btn
                                 rounded
                                 class="ml-4"
-                                color="primary font-bold"
+                                color="primary text-button"
                                 :disabled="form.processing"
                                 :loading="form.processing"
                                 type="submit"
