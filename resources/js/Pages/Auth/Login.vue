@@ -43,10 +43,10 @@
                                 <template v-slot:append>
                                     <v-btn icon @click="togglePasswordRevealed">
                                         <v-icon v-if="passwordRevealed" small
-                                            >fas fa-eye</v-icon
+                                            >fas fa-eye-slash</v-icon
                                         >
                                         <v-icon v-else small
-                                            >fas fa-eye-slash</v-icon
+                                            >fas fa-eye</v-icon
                                         >
                                     </v-btn>
                                 </template>
@@ -138,7 +138,7 @@ export default {
     data() {
         return {
             snackbar: true,
-            passwordType: false,
+            passwordType: true,
             passwordRevealed: false,
             remember: false,
             form: this.$inertia.form({
