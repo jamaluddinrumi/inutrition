@@ -190,6 +190,9 @@
                 <v-icon small>fas fa-arrow-up</v-icon>
             </v-btn>
         </v-fab-transition>
+        <v-overlay :value="loading">
+            <v-progress-circular indeterminate></v-progress-circular>
+        </v-overlay>
     </v-app>
 </template>
 <script>
@@ -199,7 +202,12 @@ export default {
     components: {
         CountryFlag,
     },
-    props: {},
+    props: {
+        loading: {
+            type: Boolean,
+            default: false,
+        },
+    },
     data() {
         return {
             fab: false,
@@ -287,6 +295,7 @@ export default {
             this.fab = top > 20;
         },
         logout() {
+            this.loading = true;
             this.isLogouting = true;
             axios.post(this.route("logout")).then((response) => {
                 window.location = "login";
