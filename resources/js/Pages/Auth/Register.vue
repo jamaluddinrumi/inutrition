@@ -100,7 +100,7 @@
                         <div class="flex items-center justify-end mt-12">
                             <inertia-link
                                 :href="route('login')"
-                                class="underline text-sm"
+                                class="text-button text-decoration-underline"
                             >
                                 {{
                                     $vuetify.lang.t(

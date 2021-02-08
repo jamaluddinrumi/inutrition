@@ -5,7 +5,7 @@
                 <jet-authentication-card-logo />
             </template>
 
-            <div class="mb-4 text-sm">
+            <div class="mb-4 text-body-1">
                 {{ $vuetify.lang.t("$vuetify.laravel.forgotYourPassword") }}
             </div>
 
