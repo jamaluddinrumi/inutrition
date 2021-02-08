@@ -29,6 +29,7 @@ const opts = {
                 anchor: "#424242"
             },
             dark: {
+                primary: "#0057ff",
                 anchor: "#ffffff"
             }
         },
