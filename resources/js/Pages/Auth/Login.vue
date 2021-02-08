@@ -23,6 +23,8 @@
                                 required
                                 autofocus
                                 :label="$vuetify.lang.t('$vuetify.email')"
+                                hint="(demo@demo.com)"
+                                persistent-hint
                             />
                         </div>
 
@@ -35,12 +37,11 @@
                                 required
                                 autocomplete="current-password"
                                 :label="$vuetify.lang.t('$vuetify.password')"
+                                hint="(demo1234)"
+                                persistent-hint
                             >
                                 <template v-slot:append>
-                                    <v-btn
-                                        icon
-                                        @click="togglePasswordRevealed"
-                                    >
+                                    <v-btn icon @click="togglePasswordRevealed">
                                         <v-icon v-if="passwordRevealed" small
                                             >fas fa-eye</v-icon
                                         >
@@ -136,6 +137,7 @@ export default {
 
     data() {
         return {
+            snackbar: true,
             passwordType: false,
             passwordRevealed: false,
             remember: false,

@@ -1,5 +1,6 @@
 <template>
     <v-app>
+        <v-system-bar color="primary"> </v-system-bar>
         <v-navigation-drawer app v-model="drawer">
             <v-list>
                 <v-list-item>
@@ -252,8 +253,7 @@ export default {
             ];
         },
     },
-    created() {
-    },
+    created() {},
     methods: {
         onLocaleChange() {
             axios.defaults.headers.common[
