@@ -9,12 +9,12 @@ module.exports = {
         "./resources/js/**/*.vue"
     ],
 
-    darkMode: false, // or 'media' or 'class'
+    darkMode: 'class', // or 'media' or 'class'
 
     theme: {
         extend: {
             fontFamily: {
-                sans: ["IBM Plex Sans", ...defaultTheme.fontFamily.sans]
+                sans: ["Roboto", ...defaultTheme.fontFamily.sans]
             }
         }
     },

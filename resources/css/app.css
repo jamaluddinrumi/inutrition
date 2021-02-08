@@ -2,10 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-#app {
-    font-family: "IBM Plex Sans", sans;
-}
-
 [type="text"],
 [type="email"],
 [type="url"],
