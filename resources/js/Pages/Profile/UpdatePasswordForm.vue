@@ -55,7 +55,7 @@
                 />
             </div>
 
-            <v-overlay absolute :value="isSubmitted">
+            <v-overlay absolute :value="isSubmitted" z-index="-1">
                 <v-progress-circular indeterminate></v-progress-circular>
             </v-overlay>
         </template>

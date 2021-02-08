@@ -29,14 +29,29 @@
                         <div class="mt-4">
                             <v-text-field
                                 id="password"
-                                type="password"
+                                :type="passwordType ? 'password' : 'text'"
                                 class="mt-1 block w-full"
                                 v-model="form.password"
                                 required
                                 autocomplete="current-password"
                                 :label="$vuetify.lang.t('$vuetify.password')"
-                            /></div
-                    ></v-card-text>
+                            >
+                                <template v-slot:append>
+                                    <v-btn
+                                        icon
+                                        @click="togglePasswordRevealed"
+                                    >
+                                        <v-icon v-if="passwordRevealed" small
+                                            >fas fa-eye</v-icon
+                                        >
+                                        <v-icon v-else small
+                                            >fas fa-eye-slash</v-icon
+                                        >
+                                    </v-btn>
+                                </template>
+                            </v-text-field>
+                        </div></v-card-text
+                    >
                     <v-card-actions class="p-4 flex flex-wrap">
                         <div>
                             <v-checkbox
@@ -121,6 +136,8 @@ export default {
 
     data() {
         return {
+            passwordType: false,
+            passwordRevealed: false,
             remember: false,
             form: this.$inertia.form({
                 email: "",
@@ -138,6 +155,10 @@ export default {
     },
 
     methods: {
+        togglePasswordRevealed() {
+            this.passwordRevealed = !this.passwordRevealed;
+            this.passwordType = !this.passwordType;
+        },
         submit() {
             this.form.post(this.route("login"), {
                 onSuccess: () => {
