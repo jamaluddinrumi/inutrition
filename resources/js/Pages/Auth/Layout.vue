@@ -35,6 +35,7 @@
                 inset
                 v-model="$vuetify.theme.dark"
                 class="mx-4"
+                @click="onDarkModeChange"
             >
                 <template v-slot:label>
                     <v-icon v-if="$vuetify.theme.dark" small class="-ml-2"
@@ -52,7 +53,9 @@
             ></v-progress-linear>
         </v-app-bar>
         <v-main class="">
-            <v-container class="p-0 min-h-screen flex items-center justify-center m-auto">
+            <v-container
+                class="p-0 min-h-screen flex items-center justify-center m-auto"
+            >
                 <slot></slot>
             </v-container>
         </v-main>
@@ -74,6 +77,14 @@ export default {
     },
 
     methods: {
+        onDarkModeChange() {
+            localStorage.theme = this.$vuetify.theme.dark ? "dark" : "light";
+            if (localStorage.theme === "dark") {
+                document.documentElement.classList.add("dark");
+            } else {
+                document.documentElement.classList.remove("dark");
+            }
+        },
         onLocaleChange() {
             axios.defaults.headers.common[
                 "Accept-Language"

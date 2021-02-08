@@ -101,6 +101,7 @@
                 inset
                 v-model="$vuetify.theme.dark"
                 class="mx-4"
+                @click="onDarkModeChange"
             >
                 <template v-slot:label>
                     <v-icon v-if="$vuetify.theme.dark" small class="-ml-2"
@@ -255,6 +256,14 @@ export default {
     },
     created() {},
     methods: {
+        onDarkModeChange() {
+            localStorage.theme = this.$vuetify.theme.dark ? "dark" : "light";
+            if (localStorage.theme === "dark") {
+                document.documentElement.classList.add("dark");
+            } else {
+                document.documentElement.classList.remove("dark");
+            }
+        },
         onLocaleChange() {
             axios.defaults.headers.common[
                 "Accept-Language"
