@@ -2,7 +2,8 @@
     <layout :loading="form.processing">
         <jet-authentication-card>
             <template #logo>
-                <jet-authentication-card-logo />
+                <jet-authentication-card-logo v-if="!$vuetify.theme.dark" />
+                <jet-authentication-card-logo-dark v-else />
             </template>
 
             <jet-validation-errors class="mb-4" />
@@ -138,6 +139,7 @@
 <script>
 import JetAuthenticationCard from "@/Jetstream/AuthenticationCard";
 import JetAuthenticationCardLogo from "@/Jetstream/AuthenticationCardLogo";
+import JetAuthenticationCardLogoDark from "@/Jetstream/AuthenticationCardLogoDark";
 import JetButton from "@/Jetstream/Button";
 import JetInput from "@/Jetstream/Input";
 import JetLabel from "@/Jetstream/Label";
@@ -161,6 +163,7 @@ export default {
     components: {
         JetAuthenticationCard,
         JetAuthenticationCardLogo,
+        JetAuthenticationCardLogoDark,
         JetButton,
         JetInput,
         JetLabel,
