@@ -33,7 +33,10 @@
                         :href="menu_item.href"
                         class="no-underline"
                     >
-                        <v-list-item :key="menu_item.id" class="text-button px-4">
+                        <v-list-item
+                            :key="menu_item.id"
+                            class="text-button px-4"
+                        >
                             <v-list-item-icon
                                 ><v-icon small>{{
                                     menu_item.icon
@@ -125,45 +128,41 @@
                     </v-btn>
                 </template>
                 <v-list rounded>
-                    <v-list-item-group>
-                        <v-list-item
+                    <v-list-item-group
+                        ><inertia-link
                             v-for="(menu_item, index) in user_menu"
                             :key="index"
+                            :href="
+                                menu_item.href !== '/logout'
+                                    ? menu_item.href
+                                    : 'javascript:void(0)'
+                            "
+                            class="no-underline"
                         >
-                            <template v-slot:default="{ active }">
-                                <v-list-item-content
-                                    v-if="menu_item.href !== '/logout'"
-                                >
-                                    <v-list-item-title>
-                                        <inertia-link
-                                            :href="menu_item.href"
-                                            class="no-underline text-button dark:text-white"
-                                        >
-                                            <v-icon small class="mr-2">{{
-                                                menu_item.icon
-                                            }}</v-icon>
+                            <v-list-item class="text-button dark:text-white">
+                                <!-- <template v-slot:default="{ active }"> -->
+                                <v-list-item-icon>
+                                    <v-icon small>{{ menu_item.icon }}</v-icon>
+                                </v-list-item-icon>
+                                <v-list-item-content>
+                                    <v-list-item-title
+                                        v-if="menu_item.href !== '/logout'"
+                                    >
+                                        <span>
                                             {{ menu_item.title }}
-                                        </inertia-link>
+                                        </span>
+                                    </v-list-item-title>
+                                    <v-list-item-title
+                                        v-else-if="menu_item.href === '/logout'"
+                                    >
+                                        <span @click="logout">
+                                            {{ menu_item.title }}
+                                        </span>
                                     </v-list-item-title>
                                 </v-list-item-content>
-
-                                <v-list-item-content
-                                    v-else-if="menu_item.href === '/logout'"
-                                >
-                                    <form
-                                        method="POST"
-                                        @submit.prevent="logout"
-                                    >
-                                        <div class="no-underline text-button" @click="logout">
-                                            <v-icon small class="mr-2">{{
-                                                menu_item.icon
-                                            }}</v-icon>
-                                            {{ menu_item.title }}
-                                        </div>
-                                    </form>
-                                </v-list-item-content>
-                            </template>
-                        </v-list-item>
+                                <!-- </template> -->
+                            </v-list-item>
+                        </inertia-link>
                     </v-list-item-group>
                 </v-list>
             </v-menu>
@@ -202,14 +201,9 @@ export default {
     components: {
         CountryFlag,
     },
-    props: {
-        loading: {
-            type: Boolean,
-            default: false,
-        },
-    },
     data() {
         return {
+            loading: false,
             fab: false,
             footer: !this.$vuetify.breakpoint.mobile,
             isLogoutButtonDisabled: false,
@@ -305,7 +299,7 @@ export default {
         logout() {
             this.loading = true;
             this.isLogouting = true;
-            axios.post(this.route("logout")).then((response) => {
+            axios.post(route("logout")).then((response) => {
                 window.location = "login";
             });
         },
