@@ -190,7 +190,7 @@
                 <v-icon small>fas fa-arrow-up</v-icon>
             </v-btn>
         </v-fab-transition>
-        <v-overlay :value="loading">
+        <v-overlay :value="loading" z-index="9999">
             <v-progress-circular indeterminate></v-progress-circular>
         </v-overlay>
     </v-app>
