@@ -288,6 +288,14 @@ export default {
                 .then(function (response) {
                     console.log(response);
                 });
+
+            this.title = route().current();
+            if (this.title) {
+                let translationTitle = this.$vuetify.lang.t(
+                    "$vuetify.title." + this.title
+                );
+                document.title = translationTitle ?? _.capitalize(this.title);
+            }
         },
         onScroll(e) {
             if (typeof window === "undefined") return;

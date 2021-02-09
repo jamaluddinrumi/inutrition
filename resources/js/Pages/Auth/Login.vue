@@ -45,9 +45,7 @@
                                         <v-icon v-if="passwordRevealed" small
                                             >fas fa-eye-slash</v-icon
                                         >
-                                        <v-icon v-else small
-                                            >fas fa-eye</v-icon
-                                        >
+                                        <v-icon v-else small>fas fa-eye</v-icon>
                                     </v-btn>
                                 </template>
                             </v-text-field>

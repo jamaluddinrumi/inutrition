@@ -101,6 +101,7 @@
         "positiveTrend": "Tren Positif",
         "negativeTrend": "Tren Negatif",
         "title": {
+            "welcome": "Dashboard",
             "dashboard": "Dashboard",
             "customer": "Customer",
             "profile": "Profil",

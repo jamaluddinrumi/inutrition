@@ -76,6 +76,12 @@ export default {
         },
     },
 
+    data() {
+        return {
+            title: "",
+        };
+    },
+
     methods: {
         onDarkModeChange() {
             localStorage.theme = this.$vuetify.theme.dark ? "dark" : "light";
@@ -98,9 +104,15 @@ export default {
                 .catch(function (error) {
                     console.error(error);
                 })
-                .then(function (response) {
-                    console.log(response);
-                });
+                .then(function () {});
+
+            this.title = route().current();
+            if (this.title) {
+                let translationTitle = this.$vuetify.lang.t(
+                    "$vuetify.title." + this.title
+                );
+                document.title = translationTitle ?? _.capitalize(this.title);
+            }
         },
     },
 };
