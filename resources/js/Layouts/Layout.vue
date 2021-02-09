@@ -33,7 +33,7 @@
                         :href="menu_item.href"
                         class="no-underline"
                     >
-                        <v-list-item :key="menu_item.id" class="font-bold px-4">
+                        <v-list-item :key="menu_item.id" class="text-button px-4">
                             <v-list-item-icon
                                 ><v-icon small>{{
                                     menu_item.icon
@@ -53,7 +53,7 @@
             <template v-slot:append>
                 <v-row
                     justify="center"
-                    class="py-6 font-bold text-sm opacity-50 hover:opacity-100 transition-opacity"
+                    class="py-6 text-body-2 opacity-50 hover:opacity-100 transition-opacity"
                 >
                     <v-icon small class="mr-1">fas fa-copyright</v-icon>
                     {{ new Date().getFullYear() }}
@@ -137,7 +137,7 @@
                                     <v-list-item-title>
                                         <inertia-link
                                             :href="menu_item.href"
-                                            class="no-underline font-bold"
+                                            class="no-underline text-button dark:text-white"
                                         >
                                             <v-icon small class="mr-2">{{
                                                 menu_item.icon
@@ -154,7 +154,7 @@
                                         method="POST"
                                         @submit.prevent="logout"
                                     >
-                                        <div class="font-bold" @click="logout">
+                                        <div class="no-underline text-button" @click="logout">
                                             <v-icon small class="mr-2">{{
                                                 menu_item.icon
                                             }}</v-icon>
