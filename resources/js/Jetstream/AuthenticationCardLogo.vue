@@ -1,5 +1,5 @@
 <template>
-    <inertia-link href="/">
+    <inertia-link href="/" class="no-underline">
         <svg width="187px" height="32px" viewBox="0 0 187 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
             <title>inutrition</title>
