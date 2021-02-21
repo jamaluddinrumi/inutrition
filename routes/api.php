@@ -3,7 +3,6 @@
 use App\Http\Controllers\API\CustomerController;
 use App\Http\Controllers\API\NutritionController;
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
