@@ -66,7 +66,7 @@
                             <inertia-link
                                 v-if="canResetPassword"
                                 :href="route('password.request')"
-                                class="text-button text-decoration-underline"
+                                class="text-button text-decoration-underline text-opacity-60 dark:text-white dark:text-opacity-70"
                             >
                                 {{ $vuetify.lang.t("$vuetify.forgotPassword") }}
                             </inertia-link>
