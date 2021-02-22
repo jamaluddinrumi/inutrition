@@ -113,9 +113,12 @@
                     <v-icon v-else small class="-ml-2">fas fa-sun</v-icon>
                 </template>
             </v-switch>
-            <v-btn icon>
-                <v-icon small>fas fa-bell</v-icon>
-            </v-btn>
+            <v-badge color="red" overlap bordered content="1" offset-x="20" offset-y="20">
+                <v-btn icon>
+                    <v-icon small>fas fa-bell</v-icon>
+                </v-btn>
+            </v-badge>
+
             <!-- <inertia-link href="/profile">
                 <v-btn icon>
                     <v-icon small>fas fa-user</v-icon>
@@ -200,6 +203,11 @@ import CountryFlag from "vue-country-flag";
 export default {
     components: {
         CountryFlag,
+    },
+    mounted() {
+        Echo.channel("items").listen("ItemAdded", (e) => {
+            this.items = e.items;
+        });
     },
     data() {
         return {
