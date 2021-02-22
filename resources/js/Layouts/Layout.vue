@@ -113,7 +113,7 @@
                     <v-icon v-else small class="-ml-2">fas fa-sun</v-icon>
                 </template>
             </v-switch>
-            <v-badge color="red" overlap bordered content="1" offset-x="20" offset-y="20">
+            <v-badge color="red" overlap content="1" offset-x="24" offset-y="24">
                 <v-btn icon>
                     <v-icon small>fas fa-bell</v-icon>
                 </v-btn>
