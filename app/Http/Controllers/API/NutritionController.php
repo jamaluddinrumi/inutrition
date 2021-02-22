@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Events\NutritionAdded;
 use App\Models\Nutrition;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -42,6 +43,8 @@ class NutritionController extends Controller
 
             return response()->json($validator->errors(), 400);
         }
+
+        event(new NutritionAdded);
 
         return new NutritionResource(Nutrition::create([
             'customer_id' => $request->customerId,
