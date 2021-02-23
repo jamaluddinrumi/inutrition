@@ -3,10 +3,14 @@
         <v-row>
             <v-col>
                 <graphic-card
-                    :data="latestCalorieTestedData.data"
-                    :labels="latestCalorieTestedData.labels"
-                    :color="latestCalorieTestedData.color"
-                    :title="latestCalorieTestedData.title"
+                    :data="this.latestCalories.value"
+                    :labels="this.latestCalories.labels"
+                    color="green"
+                    :title="
+                        this.$vuetify.lang.t(
+                            '$vuetify.latestCalorieTestedTrend'
+                        )
+                    "
                 ></graphic-card>
             </v-col>
         </v-row>
@@ -57,18 +61,7 @@ export default {
         GraphicCard,
     },
 
-    mounted() {
-        axios
-            .get(route("nutrition.latestCalorieCheckedTrend"))
-            .then(function (response) {
-                // console.log(this);
-                // this.latestCalorieTestedData.data = response.data;
-            })
-            .catch(function (error) {
-                console.error(error);
-            })
-            .then();
-    },
+    mounted() {},
 
     props: {
         currentRouteName: {
@@ -97,21 +90,11 @@ export default {
         },
         latestCalories: {
             type: Object,
-        }
+        },
     },
 
     data() {
-        return {
-            latestCalorieTestedData: {
-                id: 0,
-                data: this.latestCalories.value,
-                labels: this.latestCalories.labels,
-                color: "green",
-                title: this.$vuetify.lang.t(
-                    "$vuetify.latestCalorieTestedTrend"
-                ),
-            },
-        };
+        return {};
     },
 
     computed: {},
