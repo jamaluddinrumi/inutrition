@@ -43,7 +43,11 @@
                                 {{ $vuetify.lang.t("$vuetify.add") }}
                             </v-btn>
                         </template>
-                        <v-card>
+                        <v-card
+                            :loading="
+                                isLoadingCustomersData || isButtonSaveLoading
+                            "
+                        >
                             <v-card-title>
                                 <span class="headline">{{ formTitle }}</span>
                             </v-card-title>
@@ -170,6 +174,15 @@
                                     {{ $vuetify.lang.t("$vuetify.save") }}
                                 </v-btn>
                             </v-card-actions>
+                            <v-overlay
+                                absolute
+                                z-index="6"
+                                :value="isButtonSaveLoading"
+                                ><v-progress-circular
+                                    indeterminate
+                                    size="64"
+                                ></v-progress-circular
+                            ></v-overlay>
                         </v-card>
                     </v-dialog>
                     <v-dialog v-model="dialogDelete" max-width="500px">
@@ -268,13 +281,14 @@
                 </v-btn>
             </template>
         </v-data-table>
-        <v-snackbar v-model="snackbar" :timeout="3000">
+        <v-snackbar
+            v-model="snackbar"
+            :timeout="3000"
+            elevation="24"
+            color="green accent-4"
+        >
+            <v-icon small class="mr-2">fas fa-check-circle</v-icon>
             {{ snackbarMessage }}
-            <template v-slot:action="{ attrs }">
-                <v-btn icon x-small v-bind="attrs" @click="snackbar = false">
-                    <v-icon x-small>fas fa-window-close</v-icon>
-                </v-btn>
-            </template>
         </v-snackbar>
     </div>
 </template>
