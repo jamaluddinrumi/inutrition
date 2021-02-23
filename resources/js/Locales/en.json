@@ -100,6 +100,7 @@
         "readMore": "Read more",
         "positiveTrend": "Positive Trend",
         "negativeTrend": "Negative Trend",
+        "latestCalorieTestedTrend": "Latest 10 Calorie Test Trend",
         "title": {
             "welcome": "Dashboard",
             "dashboard": "Dashboard",

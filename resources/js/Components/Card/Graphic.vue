@@ -1,11 +1,19 @@
 <template>
-    <v-card class="mx-auto text-center" :color="color" dark max-width="600">
+    <v-card class="mx-auto text-center" max-width="800">
         <v-card-text>
-            <v-sheet color="rgba(0, 0, 0, .12)">
+            <v-sheet
+                class="v-sheet--offset mx-auto"
+                :color="color"
+                elevation="12"
+                max-width="calc(100% - 8px)"
+            >
                 <v-sparkline
+                    :labels="labels"
                     :value="data"
-                    color="rgba(255, 255, 255, .7)"
+                    auto-line-width
+                    color="white"
                     height="100"
+                    width="600"
                     padding="24"
                     stroke-linecap="round"
                     smooth
@@ -22,10 +30,14 @@
         <v-divider></v-divider>
 
         <v-card-actions class="justify-center">
-            <v-btn block text>
-                <v-icon small class="mr-2">fas fa-table</v-icon>
-                {{ $vuetify.lang.t("$vuetify.readMore") }}</v-btn
-            >
+            <inertia-link href="/nutrition" class="no-underline">
+                <v-btn text block class="text-decoration-none" elevation="2">
+                    <v-icon small class="mr-2">fas fa-table</v-icon>
+                    <span class="text-button">{{
+                        $vuetify.lang.t("$vuetify.readMore")
+                    }}</span></v-btn
+                >
+            </inertia-link>
         </v-card-actions>
     </v-card>
 </template>
@@ -44,9 +56,16 @@ export default {
             type: String,
             default: "",
         },
+        labels: {
+            type: Array,
+        },
     },
 };
 </script>
 
 <style>
+.v-sheet--offset {
+    top: -24px;
+    position: relative;
+}
 </style>

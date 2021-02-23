@@ -1,11 +1,12 @@
 <template>
     <layout>
         <v-row>
-            <v-col v-for="graphicData in graphicsData" :key="graphicData.id">
+            <v-col>
                 <graphic-card
-                    :data="graphicData.data"
-                    :color="graphicData.color"
-                    :title="graphicData.title"
+                    :data="latestCalorieTestedData.data"
+                    :labels="latestCalorieTestedData.labels"
+                    :color="latestCalorieTestedData.color"
+                    :title="latestCalorieTestedData.title"
                 ></graphic-card>
             </v-col>
         </v-row>
@@ -56,6 +57,19 @@ export default {
         GraphicCard,
     },
 
+    mounted() {
+        axios
+            .get(route("nutrition.latestCalorieCheckedTrend"))
+            .then(function (response) {
+                // console.log(this);
+                // this.latestCalorieTestedData.data = response.data;
+            })
+            .catch(function (error) {
+                console.error(error);
+            })
+            .then();
+    },
+
     props: {
         currentRouteName: {
             type: String,
@@ -81,24 +95,22 @@ export default {
         title: {
             type: String,
         },
+        latestCalories: {
+            type: Object,
+        }
     },
 
     data() {
         return {
-            graphicsData: [
-                {
-                    id: 0,
-                    data: [423, 446, 675, 510, 590, 610, 760],
-                    color: "green",
-                    title: this.$vuetify.lang.t("$vuetify.positiveTrend"),
-                },
-                {
-                    id: 1,
-                    data: [760, 610, 590, 510, 675, 446, 423],
-                    color: "red",
-                    title: this.$vuetify.lang.t("$vuetify.negativeTrend"),
-                },
-            ],
+            latestCalorieTestedData: {
+                id: 0,
+                data: this.latestCalories.value,
+                labels: this.latestCalories.labels,
+                color: "green",
+                title: this.$vuetify.lang.t(
+                    "$vuetify.latestCalorieTestedTrend"
+                ),
+            },
         };
     },
 
