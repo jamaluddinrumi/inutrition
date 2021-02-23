@@ -1,11 +1,11 @@
 <template>
-    <v-card class="mx-auto text-center" max-width="800">
+    <v-card class="mx-auto text-center">
         <v-card-text>
             <v-sheet
                 class="v-sheet--offset mx-auto"
                 :color="color"
                 elevation="12"
-                max-width="calc(100% - 8px)"
+                max-width="calc(100% - 32px)"
             >
                 <v-sparkline
                     :labels="labels"
@@ -13,10 +13,9 @@
                     auto-line-width
                     color="white"
                     height="100"
-                    width="600"
+                    width="500"
                     padding="24"
                     stroke-linecap="round"
-                    smooth
                 >
                     <template v-slot:label="item"> {{ item.value }} </template>
                 </v-sparkline>
