@@ -15,7 +15,6 @@
                     <v-toolbar-title>{{
                         $vuetify.lang.t("$vuetify.nutrition.nutritionsDetail")
                     }}</v-toolbar-title>
-                    <v-divider class="mx-4" inset vertical></v-divider>
                     <v-spacer></v-spacer>
                     <v-text-field
                         v-model="search"
