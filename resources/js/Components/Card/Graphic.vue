@@ -21,23 +21,6 @@
                 </v-sparkline>
             </v-sheet>
         </v-card-text>
-
-        <v-card-text>
-            <div class="display-1 font-weight-thin">{{ title }}</div>
-        </v-card-text>
-
-        <v-divider></v-divider>
-
-        <v-card-actions class="justify-center">
-            <inertia-link href="/nutrition" class="no-underline">
-                <v-btn text block class="text-decoration-none" elevation="2">
-                    <v-icon small class="mr-2">fas fa-table</v-icon>
-                    <span class="text-button">{{
-                        $vuetify.lang.t("$vuetify.readMore")
-                    }}</span></v-btn
-                >
-            </inertia-link>
-        </v-card-actions>
     </v-card>
 </template>
 
@@ -50,10 +33,6 @@ export default {
         color: {
             type: String,
             default: "primary",
-        },
-        title: {
-            type: String,
-            default: "",
         },
         labels: {
             type: Array,

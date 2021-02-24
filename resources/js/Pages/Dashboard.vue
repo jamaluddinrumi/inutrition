@@ -1,16 +1,14 @@
 <template>
     <layout>
+        <div class="text-h4 mb-6">
+            {{ $vuetify.lang.t("$vuetify.latestCalorieTestedTrend") }}
+        </div>
         <v-row>
             <v-col>
                 <graphic-card
-                    :data="this.latestCalories.value"
-                    :labels="this.latestCalories.labels"
+                    :data="latestCalories.value"
+                    :labels="latestCalories.labels"
                     color="green"
-                    :title="
-                        this.$vuetify.lang.t(
-                            '$vuetify.latestCalorieTestedTrend'
-                        )
-                    "
                 ></graphic-card>
             </v-col>
         </v-row>
