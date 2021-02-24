@@ -114,7 +114,7 @@ export default {
             axios
                 .get(route("customer.index"))
                 .then(function (response) {
-                    console.log(response);
+                    // console.log(response);
 
                     response.data.forEach((customer) => {
                         if (customer.nutrition) {
@@ -210,6 +210,7 @@ export default {
 [multiple],
 textarea,
 select {
+    @apply ring-0;
     @apply bg-transparent;
 }
 .v-data-table-header th.sortable {
