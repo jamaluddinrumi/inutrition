@@ -13,7 +13,7 @@
             </div>
 
             <v-form @submit.prevent="submit">
-                <v-card>
+                <v-card elevation="3" rounded>
                     <v-card-text
                         ><div>
                             <v-text-field
@@ -156,6 +156,8 @@ export default {
             this.form.remember = value ? "on" : "";
         },
     },
+
+    computed: {},
 
     methods: {
         togglePasswordRevealed() {
