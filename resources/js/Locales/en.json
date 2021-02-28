@@ -170,6 +170,7 @@
         "register": "Register",
         "alreadyRegistered": "Already registered?",
         "iAgreeToThe": "I agree to the",
-        "and": "and"
+        "and": "and",
+        "whoops": "Whoops! Something went wrong."
     }
 }

@@ -170,6 +170,7 @@
         "register": "Daftar",
         "alreadyRegistered": "Sudah terdaftar?",
         "iAgreeToThe": "Saya setuju dengan",
-        "and": "dan"
+        "and": "dan",
+        "whoops": "Ups! Ada yang salah."
     }
 }
