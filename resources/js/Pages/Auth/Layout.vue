@@ -92,27 +92,32 @@ export default {
             }
         },
         onLocaleChange() {
+            let self = this;
+
             axios.defaults.headers.common[
                 "Accept-Language"
             ] = this.$i18n.locale;
+
+            // it should use <inertia-link /> to make appropriate validation errors works
 
             axios
                 .post(`/lang/${this.$i18n.locale}`)
                 .then(function (response) {
                     console.log(response);
+
+                    self.title = route().current();
+                    if (self.title) {
+                        let translationTitle = self.$vuetify.lang.t(
+                            "$vuetify.title." + self.title
+                        );
+                        document.title =
+                            translationTitle ?? _.capitalize(self.title);
+                    }
                 })
                 .catch(function (error) {
                     console.error(error);
                 })
                 .then(function () {});
-
-            this.title = route().current();
-            if (this.title) {
-                let translationTitle = this.$vuetify.lang.t(
-                    "$vuetify.title." + this.title
-                );
-                document.title = translationTitle ?? _.capitalize(this.title);
-            }
         },
     },
 };
