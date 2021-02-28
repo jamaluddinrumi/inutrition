@@ -113,17 +113,40 @@
                     <v-icon v-else small class="-ml-2">fas fa-sun</v-icon>
                 </template>
             </v-switch>
-            <v-badge color="red" overlap content="1" offset-x="24" offset-y="24">
-                <v-btn icon>
-                    <v-icon small>fas fa-bell</v-icon>
-                </v-btn>
-            </v-badge>
+            <v-menu offset-y transition="slide-y-transition">
+                <template v-slot:activator="{ on, attrs }">
+                    <v-badge
+                        overlap
+                        color="red"
+                        offset-x="24"
+                        offset-y="24"
+                        content="1"
+                    >
+                        <v-btn icon v-bind="attrs" v-on="on">
+                            <v-icon small>fas fa-bell</v-icon>
+                        </v-btn>
+                    </v-badge>
+                </template>
+                <v-list dense>
+                    <template v-for="item in menu">
+                        <v-divider
+                            v-if="item.id > 0"
+                            :key="item.id"
+                        ></v-divider>
+                        <v-list-item :key="item.id" link>
+                            <v-list-item-icon>
+                                <v-icon small>{{ item.icon }}</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-content>
+                                <v-list-item-title>{{
+                                    item.title
+                                }}</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </template>
+                </v-list>
+            </v-menu>
 
-            <!-- <inertia-link href="/profile">
-                <v-btn icon>
-                    <v-icon small>fas fa-user</v-icon>
-                </v-btn>
-            </inertia-link> -->
             <v-menu offset-y transition="slide-y-transition">
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn icon v-bind="attrs" v-on="on">
@@ -204,13 +227,10 @@ export default {
     components: {
         CountryFlag,
     },
-    mounted() {
-        Echo.channel("items").listen("ItemAdded", (e) => {
-            this.items = e.items;
-        });
-    },
+    mounted() {},
     data() {
         return {
+            notifMenu: [{}],
             loading: false,
             fab: false,
             footer: !this.$vuetify.breakpoint.mobile,
@@ -275,6 +295,8 @@ export default {
             }
         },
         onLocaleChange() {
+            let self = this;
+
             axios.defaults.headers.common[
                 "Accept-Language"
             ] = this.$i18n.locale;
@@ -283,6 +305,15 @@ export default {
                 .post(`/lang/${this.$i18n.locale}`)
                 .then(function (response) {
                     console.log(response);
+
+                    self.title = route().current();
+                    if (self.title) {
+                        let translationTitle = self.$vuetify.lang.t(
+                            "$vuetify.title." + self.title
+                        );
+                        document.title =
+                            translationTitle ?? _.capitalize(self.title);
+                    }
                 })
                 .catch(function (error) {
                     console.error(error);
@@ -290,14 +321,6 @@ export default {
                 .then(function (response) {
                     console.log(response);
                 });
-
-            this.title = route().current();
-            if (this.title) {
-                let translationTitle = this.$vuetify.lang.t(
-                    "$vuetify.title." + this.title
-                );
-                document.title = translationTitle ?? _.capitalize(this.title);
-            }
         },
         onScroll(e) {
             if (typeof window === "undefined") return;
