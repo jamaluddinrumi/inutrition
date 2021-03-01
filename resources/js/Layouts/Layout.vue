@@ -131,7 +131,7 @@
 
             <v-menu transition="slide-y-transition">
                 <template v-slot:activator="{ on, attrs }">
-                    <v-btn icon v-bind="attrs" v-on="on" class="mr-2">
+                    <v-btn icon v-bind="attrs" v-on="on" class="mx-2">
                         <v-avatar size="24">
                             <img
                                 :src="$page.props.user.profile_photo_url"
