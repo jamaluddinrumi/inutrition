@@ -2,29 +2,14 @@
     <v-app>
         <v-system-bar color="primary"> </v-system-bar>
         <v-navigation-drawer app v-model="drawer">
-            <v-list>
-                <v-list-item>
-                    <v-list-item-avatar>
-                        <v-img
-                            :src="$page.props.user.profile_photo_url"
-                            :alt="$page.props.user.name"
-                        ></v-img>
-                    </v-list-item-avatar>
-                </v-list-item>
-                <v-list-item>
-                    <v-list-item-content>
-                        <v-list-item-title class="text-left">
-                            <!-- <v-skeleton-loader class="mx-auto" type="text"></v-skeleton-loader> -->
-                            <span>{{ userName }}</span>
-                        </v-list-item-title>
-                        <v-list-item-subtitle class="text-left">
-                            <!-- <v-skeleton-loader class="mx-auto" type="text"></v-skeleton-loader> -->
-                            <span>{{ $page.props.user.email }}</span>
-                        </v-list-item-subtitle>
-                    </v-list-item-content>
-                </v-list-item>
-            </v-list>
+            <div class="flex justify-center my-4">
+                <jet-authentication-card-logo v-if="!$vuetify.theme.dark" />
+                <jet-authentication-card-logo-dark v-else />
+            </div>
             <v-divider></v-divider>
+            <v-subheader>{{
+                $vuetify.lang.t("$vuetify.mainMenu")
+            }}</v-subheader>
             <v-list rounded>
                 <v-list-item-group>
                     <inertia-link
@@ -127,16 +112,13 @@
                         </v-btn>
                     </v-badge>
                 </template>
-                <v-list dense>
-                    <template v-for="item in menu">
+                <v-list dense flat>
+                    <template v-for="item in notifMenu">
                         <v-divider
                             v-if="item.id > 0"
                             :key="item.id"
                         ></v-divider>
                         <v-list-item :key="item.id" link>
-                            <v-list-item-icon>
-                                <v-icon small>{{ item.icon }}</v-icon>
-                            </v-list-item-icon>
                             <v-list-item-content>
                                 <v-list-item-title>{{
                                     item.title
@@ -147,16 +129,42 @@
                 </v-list>
             </v-menu>
 
-            <v-menu offset-y transition="slide-y-transition">
+            <v-menu transition="slide-y-transition">
                 <template v-slot:activator="{ on, attrs }">
-                    <v-btn icon v-bind="attrs" v-on="on">
-                        <v-icon small>fas fa-user</v-icon>
+                    <v-btn icon v-bind="attrs" v-on="on" class="mr-2">
+                        <v-avatar size="24">
+                            <img
+                                :src="$page.props.user.profile_photo_url"
+                                :alt="$page.props.user.name"
+                            />
+                        </v-avatar>
                     </v-btn>
                 </template>
                 <v-list rounded>
-                    <v-list-item-group
-                        ><inertia-link
-                            v-for="(menu_item, index) in user_menu"
+                    <v-list>
+                        <v-list-item>
+                            <v-list-item-avatar>
+                                <v-img
+                                    :src="$page.props.user.profile_photo_url"
+                                    :alt="$page.props.user.name"
+                                ></v-img>
+                            </v-list-item-avatar>
+                            <v-list-item-content>
+                                <v-list-item-title class="text-left">
+                                    <!-- <v-skeleton-loader class="mx-auto" type="text"></v-skeleton-loader> -->
+                                    <span>{{ userName }}</span>
+                                </v-list-item-title>
+                                <v-list-item-subtitle class="text-left">
+                                    <!-- <v-skeleton-loader class="mx-auto" type="text"></v-skeleton-loader> -->
+                                    <span>{{ $page.props.user.email }}</span>
+                                </v-list-item-subtitle>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list>
+                    <v-divider></v-divider>
+                    <v-list-item-group>
+                        <inertia-link
+                            v-for="(menu_item, index) in userMenu"
                             :key="index"
                             :href="
                                 menu_item.href !== '/logout'
@@ -222,15 +230,18 @@
 </template>
 <script>
 import CountryFlag from "vue-country-flag";
+import JetAuthenticationCardLogo from "@/Jetstream/AuthenticationCardLogo";
+import JetAuthenticationCardLogoDark from "@/Jetstream/AuthenticationCardLogoDark";
 
 export default {
     components: {
         CountryFlag,
+        JetAuthenticationCardLogo,
+        JetAuthenticationCardLogoDark,
     },
     mounted() {},
     data() {
         return {
-            notifMenu: [{}],
             loading: false,
             fab: false,
             footer: !this.$vuetify.breakpoint.mobile,
@@ -244,6 +255,24 @@ export default {
     computed: {
         userName: function () {
             return _.startCase(this.$page.props.user.name);
+        },
+        notifMenu: function () {
+            return [
+                {
+                    id: 0,
+                    title:
+                        "Maecenas sed diam eget risus varius blandit sit amet non magna.",
+                },
+                {
+                    id: 1,
+                    title: "Vestibulum id ligula porta felis euismod semper.",
+                },
+                {
+                    id: 2,
+                    title:
+                        "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.",
+                },
+            ];
         },
         menu: function () {
             return [
@@ -267,7 +296,7 @@ export default {
                 },
             ];
         },
-        user_menu: function () {
+        userMenu: function () {
             return [
                 {
                     id: 0,
