@@ -26,11 +26,12 @@ class CustomerController extends Controller
     public function generate($id)
     {
 
-        Settings::setPdfRendererPath(base_path('vendor/dompdf/dompdf'));
-        Settings::setPdfRendererName(Settings::PDF_RENDERER_DOMPDF);
-        Settings::setZipClass(Settings::PCLZIP);
+        // Settings::setPdfRendererPath(base_path('vendor/dompdf/dompdf'));
+        // Settings::setPdfRendererName(Settings::PDF_RENDERER_DOMPDF);
+        // Settings::setZipClass(Settings::PCLZIP);
+        Settings::setOutputEscapingEnabled(true);
 
-        $template = new TemplateProcessor(storage_path('docx/customer_details.docx'));
+        $template = new TemplateProcessor(storage_path('docx/customer.docx'));
 
         $customer = Customer::findOrFail($id);
 
@@ -55,26 +56,15 @@ class CustomerController extends Controller
         $template->setValue('updated_at', $updated_at);
 
         $filename_docx = Str::snake("$first_name$last_name.docx");
-        // $filename_pdf = Str::snake("$first_name$last_name.pdf");
 
         $temp_docx_path = storage_path("temp/$filename_docx");
 
-        ob_clean();
         $template->saveAs($temp_docx_path);
 
-        // header("Content-Type: application/octet-stream");
-        // header("Content-Type: application/pdf");
-        // header("Content-Disposition: attachment; filename=$filename_pdf");
-
-        // $temp_docx = IOFactory::load(storage_path('docx/customer_details.docx'));
-        // $xmlWriter = IOFactory::createWriter($temp_docx, 'PDF');
-        // $xmlWriter->save(storage_path("temp/$filename_pdf"), TRUE);
-        // $xmlWriter->save('php//output');
-
-        // return response()->download(storage_path("temp/$filename_pdf"));
         return response()->download($temp_docx_path);
+
+        // header("Content-Disposition: attachment; filename=$filename_docx");
+
         // $template->saveAs('php://output');
-
-
     }
 }
