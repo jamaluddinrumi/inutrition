@@ -59,6 +59,7 @@ class CustomerController extends Controller
 
         $temp_docx_path = storage_path("temp/$filename_docx");
 
+        ob_clean();
         $template->saveAs($temp_docx_path);
 
         // header("Content-Type: application/octet-stream");
