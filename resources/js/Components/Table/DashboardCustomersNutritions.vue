@@ -88,12 +88,12 @@ export default {
                     text: this.$vuetify.lang.t("$vuetify.protein") + " (g)",
                     value: "protein",
                 },
-                {
-                    text: this.$vuetify.lang.t(
-                        "$vuetify.nutrition.downloadPdfSummary"
-                    ),
-                    value: "downloadPdfSummary",
-                },
+                // {
+                //     text: this.$vuetify.lang.t(
+                //         "$vuetify.nutrition.downloadPdfSummary"
+                //     ),
+                //     value: "downloadPdfSummary",
+                // },
             ];
         },
     },

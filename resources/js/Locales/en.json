@@ -145,7 +145,7 @@
             "successfullyAdded": "Nutrition for {0} is successfully added",
             "createdAt": "Created At",
             "updateAt": "Updated At",
-            "downloadPdfSummary": "PDF",
+            "downloadSummary": "Summary",
             "addNutrition": "Add Nutrition",
             "editNutrition": "Edit Nutrition"
         },

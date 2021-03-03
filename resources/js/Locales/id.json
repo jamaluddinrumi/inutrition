@@ -145,7 +145,7 @@
             "successfullyAdded": "Nutrisi untuk {0} telah berhasil ditambahkan",
             "createdAt": "Dibuat pada",
             "updatedAt": "Terakhir diubah pada",
-            "downloadPdfSummary": "PDF",
+            "downloadSummary": "Ringkasan",
             "addNutrition": "Tambah Nutrisi",
             "editNutrition": "Edit Nutrisi"
         },

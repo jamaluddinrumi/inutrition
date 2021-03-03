@@ -364,13 +364,13 @@ export default {
                     // sortable: false,
                     value: "updatedAt",
                 },
-                {
-                    text: this.$vuetify.lang.t(
-                        "$vuetify.nutrition.downloadPdfSummary"
-                    ),
-                    // sortable: false,
-                    value: "downloadPdfSummary",
-                },
+                // {
+                //     text: this.$vuetify.lang.t(
+                //         "$vuetify.nutrition.downloadPdfSummary"
+                //     ),
+                //     // sortable: false,
+                //     value: "downloadPdfSummary",
+                // },
                 {
                     text: this.$vuetify.lang.t("$vuetify.actions"),
                     // sortable: false,

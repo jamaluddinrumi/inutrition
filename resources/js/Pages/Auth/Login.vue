@@ -1,5 +1,5 @@
 <template>
-    <layout :loading="form.processing">
+    <layout>
         <jet-authentication-card>
             <template #logo>
                 <jet-authentication-card-logo v-if="!$vuetify.theme.dark" />
@@ -13,7 +13,7 @@
             </div>
 
             <v-form @submit.prevent="submit">
-                <v-card elevation="3" rounded>
+                <v-card :loading="form.processing" :disabled="form.processing" elevation="3" rounded>
                     <v-card-text
                         ><div>
                             <v-text-field

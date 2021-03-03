@@ -42,11 +42,7 @@
                                 {{ $vuetify.lang.t("$vuetify.add") }}
                             </v-btn>
                         </template>
-                        <v-card
-                            :loading="
-                                isLoadingCustomersData || isButtonSaveLoading
-                            "
-                        >
+                        <v-card :loading="isLoading || isButtonSaveLoading">
                             <v-card-title>
                                 <span class="headline">{{ formTitle }}</span>
                             </v-card-title>
@@ -230,6 +226,16 @@
                     </v-dialog>
                 </v-toolbar>
             </template>
+            <template v-slot:item.downloadSummary="{ item }">
+                <v-btn
+                    icon
+                    color="primary"
+                    class="elevation-1"
+                    :href="route('customer.generate', item.id)"
+                >
+                    <v-icon small>fa-file-word</v-icon>
+                </v-btn>
+            </template>
             <template v-slot:item.actions="{ item }" class="justify">
                 <div class="d-flex">
                     <v-tooltip left>
@@ -389,6 +395,13 @@ export default {
                     text: this.$vuetify.lang.t("$vuetify.customer.email"),
                     // sortable: false,
                     value: "email",
+                },
+                {
+                    text: this.$vuetify.lang.t(
+                        "$vuetify.nutrition.downloadSummary"
+                    ),
+                    // sortable: false,
+                    value: "downloadSummary",
                 },
                 {
                     text: this.$vuetify.lang.t("$vuetify.actions"),
