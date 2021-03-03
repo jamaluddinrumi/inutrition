@@ -26,9 +26,6 @@ class CustomerController extends Controller
     public function generate($id)
     {
 
-        // Settings::setPdfRendererPath(base_path('vendor/dompdf/dompdf'));
-        // Settings::setPdfRendererName(Settings::PDF_RENDERER_DOMPDF);
-        // Settings::setZipClass(Settings::PCLZIP);
         Settings::setOutputEscapingEnabled(true);
 
         $template = new TemplateProcessor(storage_path('docx/customer.docx'));
