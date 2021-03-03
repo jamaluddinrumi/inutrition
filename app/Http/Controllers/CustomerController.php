@@ -28,6 +28,7 @@ class CustomerController extends Controller
 
         Settings::setPdfRendererPath(base_path('vendor/dompdf/dompdf'));
         Settings::setPdfRendererName(Settings::PDF_RENDERER_DOMPDF);
+        Settings::setZipClass(Settings::PCLZIP);
 
         $template = new TemplateProcessor(storage_path('docx/customer_details.docx'));
 
