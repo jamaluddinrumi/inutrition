@@ -8,9 +8,14 @@
         :loading="isLoading"
         :search="search"
     >
-        <template v-slot:item.downloadPdfSummary="{ item }">
-            <v-btn icon color="primary">
-                <v-icon small>fa-file-pdf</v-icon>
+        <template v-slot:item.downloadSummary="{ item }">
+            <v-btn
+                icon
+                color="primary"
+                class="elevation-1"
+                :href="route('dashboard.generate', item.id)"
+            >
+                <v-icon small>fa-file-word</v-icon>
             </v-btn>
         </template>
         <template v-slot:no-data>
@@ -34,8 +39,8 @@ export default {
     props: {
         itemsPerPage: {
             type: Number,
-            default: "10",
-        },
+            default: "10"
+        }
     },
     data() {
         return {
@@ -49,16 +54,16 @@ export default {
                 calories: 0,
                 fat: 0,
                 carbs: 0,
-                protein: 0,
+                protein: 0
             },
             defaultItem: {
                 name: "",
                 calories: 0,
                 fat: 0,
                 carbs: 0,
-                protein: 0,
+                protein: 0
             },
-            customersNutritions: [],
+            customersNutritions: []
         };
     },
     computed: {
@@ -70,32 +75,33 @@ export default {
                 {
                     text: this.$vuetify.lang.t("$vuetify.name"),
                     align: "start",
-                    value: "name",
+                    value: "name"
                 },
                 {
                     text: this.$vuetify.lang.t("$vuetify.calories") + " (cal)",
-                    value: "calories",
+                    value: "calories"
                 },
                 {
                     text: this.$vuetify.lang.t("$vuetify.fat") + " (g)",
-                    value: "fat",
+                    value: "fat"
                 },
                 {
                     text: this.$vuetify.lang.t("$vuetify.carbs") + " (g)",
-                    value: "carbs",
+                    value: "carbs"
                 },
                 {
                     text: this.$vuetify.lang.t("$vuetify.protein") + " (g)",
-                    value: "protein",
+                    value: "protein"
                 },
-                // {
-                //     text: this.$vuetify.lang.t(
-                //         "$vuetify.nutrition.downloadPdfSummary"
-                //     ),
-                //     value: "downloadPdfSummary",
-                // },
+                {
+                    text: this.$vuetify.lang.t(
+                        "$vuetify.nutrition.downloadSummary"
+                    ),
+                    // sortable: false,
+                    value: "downloadSummary"
+                }
             ];
-        },
+        }
     },
     watch: {
         dialog(val) {
@@ -103,7 +109,7 @@ export default {
         },
         dialogDelete(val) {
             val || this.closeDelete();
-        },
+        }
     },
     methods: {
         loadingData() {
@@ -113,12 +119,15 @@ export default {
 
             axios
                 .get(route("customer.index"))
-                .then(function (response) {
+                .then(function(response) {
                     // console.log(response);
 
-                    response.data.forEach((customer) => {
+                    response.data.forEach(customer => {
                         if (customer.nutrition) {
                             self.customersNutritions.push({
+                                id: customer.nutrition
+                                    ? customer.nutrition.id
+                                    : null,
                                 name:
                                     customer.first_name +
                                     " " +
@@ -134,15 +143,15 @@ export default {
                                     : null,
                                 protein: customer.nutrition
                                     ? customer.nutrition.protein
-                                    : null,
+                                    : null
                             });
                         }
                     });
                 })
-                .catch(function (response) {
+                .catch(function(response) {
                     console.error(response);
                 })
-                .then(function () {
+                .then(function() {
                     self.isLoading = false;
                 });
         },
@@ -190,8 +199,8 @@ export default {
                 this.customersNutritions.push(this.editedItem);
             }
             this.close();
-        },
-    },
+        }
+    }
 };
 </script>
 <style>

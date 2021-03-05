@@ -226,7 +226,7 @@
                     </v-dialog>
                 </v-toolbar>
             </template>
-            <template v-slot:item.downloadSummary="{ item }">
+            <!-- <template v-slot:item.downloadSummary="{ item }">
                 <v-btn
                     icon
                     color="primary"
@@ -235,7 +235,7 @@
                 >
                     <v-icon small>fa-file-word</v-icon>
                 </v-btn>
-            </template>
+            </template> -->
             <template v-slot:item.actions="{ item }" class="justify">
                 <div class="d-flex">
                     <v-tooltip left>
@@ -396,13 +396,13 @@ export default {
                     // sortable: false,
                     value: "email",
                 },
-                {
-                    text: this.$vuetify.lang.t(
-                        "$vuetify.nutrition.downloadSummary"
-                    ),
-                    // sortable: false,
-                    value: "downloadSummary",
-                },
+                // {
+                //     text: this.$vuetify.lang.t(
+                //         "$vuetify.nutrition.downloadSummary"
+                //     ),
+                //     // sortable: false,
+                //     value: "downloadSummary",
+                // },
                 {
                     text: this.$vuetify.lang.t("$vuetify.actions"),
                     // sortable: false,
