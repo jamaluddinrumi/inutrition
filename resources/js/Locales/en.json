@@ -172,6 +172,7 @@
         "iAgreeToThe": "I agree to the",
         "and": "and",
         "whoops": "Whoops! Something went wrong.",
-        "mainMenu": "Main Menu"
+        "mainMenu": "Main Menu",
+        "preferencesMenu": "Preferences"
     }
 }

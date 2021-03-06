@@ -59,6 +59,16 @@
                 <slot></slot>
             </v-container>
         </v-main>
+        <v-footer app padless>
+            <v-row
+                justify="center"
+                class="py-6 text-body-2 opacity-50 hover:opacity-100 transition-opacity"
+            >
+                <v-icon small class="mr-1">fas fa-copyright</v-icon>
+                {{ new Date().getFullYear() }}
+                {{ $vuetify.lang.t("$vuetify.company") }}
+            </v-row></v-footer
+        >
     </v-app>
 </template>
 
@@ -67,18 +77,18 @@ import CountryFlag from "vue-country-flag";
 
 export default {
     components: {
-        CountryFlag,
+        CountryFlag
     },
 
     props: {
         loading: {
-            type: Boolean,
-        },
+            type: Boolean
+        }
     },
 
     data() {
         return {
-            title: "",
+            title: ""
         };
     },
 
@@ -102,7 +112,7 @@ export default {
 
             axios
                 .post(`/lang/${this.$i18n.locale}`)
-                .then(function (response) {
+                .then(function(response) {
                     console.log(response);
 
                     self.title = route().current();
@@ -114,12 +124,12 @@ export default {
                             translationTitle ?? _.capitalize(self.title);
                     }
                 })
-                .catch(function (error) {
+                .catch(function(error) {
                     console.error(error);
                 })
-                .then(function () {});
-        },
-    },
+                .then(function() {});
+        }
+    }
 };
 </script>
 

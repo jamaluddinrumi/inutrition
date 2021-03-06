@@ -396,7 +396,7 @@ export default {
             axios
                 .get(route("customer.index"))
                 .then(function (response) {
-                    console.log(response);
+                    // console.log(response);
 
                     response.data.forEach((customer) => {
                         self.customers.push({
@@ -432,7 +432,7 @@ export default {
             axios
                 .get(route("nutrition.index"))
                 .then(function (response) {
-                    console.log(response);
+                    // console.log(response);
 
                     response.data.forEach((nutrition) => {
                         self.nutritions.push({
@@ -489,7 +489,7 @@ export default {
             axios
                 .delete(route("nutrition.destroy", self.editedIndex))
                 .then(function (response) {
-                    console.log(response);
+                    // console.log(response);
 
                     self.loadingNutritionsData();
                     self.snackbarMessage = self.$vuetify.lang.t(
@@ -538,7 +538,7 @@ export default {
                 axios
                     .put(`/api/nutrition/${this.editedIndex}`, self.editedItem)
                     .then(function (response) {
-                        console.log(response);
+                        // console.log(response);
 
                         self.snackbarMessage = self.$vuetify.lang.t(
                             "$vuetify.nutrition.successfullyEdited",
@@ -571,7 +571,7 @@ export default {
                 axios
                     .post(route("nutrition.store"), self.editedItem)
                     .then(function (response) {
-                        console.log(response);
+                        // console.log(response);
 
                         self.snackbarMessage = self.$vuetify.lang.t(
                             "$vuetify.nutrition.successfullyAdded",

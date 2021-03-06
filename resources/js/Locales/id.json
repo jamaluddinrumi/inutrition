@@ -172,6 +172,7 @@
         "iAgreeToThe": "Saya setuju dengan",
         "and": "dan",
         "whoops": "Ups! Ada yang salah.",
-        "mainMenu": "Menu Utama"
+        "mainMenu": "Menu Utama",
+        "preferencesMenu": "Pengaturan"
     }
 }

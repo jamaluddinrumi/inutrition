@@ -428,7 +428,7 @@ export default {
             axios
                 .get(route("customer.index"))
                 .then(function (response) {
-                    console.log(response);
+                    // console.log(response);
 
                     response.data.forEach((customer) => {
                         self.customers.push({
@@ -476,7 +476,7 @@ export default {
             axios
                 .delete(route("customer.destroy", self.editedIndex))
                 .then(function (response) {
-                    console.log(response);
+                    // console.log(response);
 
                     self.loadingData();
                     self.snackbarMessage = self.$vuetify.lang.t(
@@ -526,7 +526,7 @@ export default {
                 axios
                     .put(`/api/customer/${this.editedIndex}`, self.editedItem)
                     .then(function (response) {
-                        console.log(response);
+                        // console.log(response);
 
                         self.snackbarMessage = self.$vuetify.lang.t(
                             "$vuetify.customer.successfullyEdited",
@@ -555,7 +555,7 @@ export default {
                 axios
                     .post(route("customer.store"), self.editedItem)
                     .then(function (response) {
-                        console.log(response);
+                        // console.log(response);
 
                         self.snackbarMessage = self.$vuetify.lang.t(
                             "$vuetify.customer.successfullyAdded",
