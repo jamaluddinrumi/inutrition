@@ -278,14 +278,14 @@ export default {
         },
         activeMainMenu: {
             get: function() {
+                if (this.$page.url === "/") {
+                    return 0;
+                }
                 let selectedMenu = this.menu.find(
                     element => element.href === this.$page.url
                 );
                 if (selectedMenu) {
                     return selectedMenu.id;
-                }
-                if (this.$page.url === "/") {
-                    return 0;
                 }
                 return null;
             },
@@ -301,7 +301,7 @@ export default {
                 {
                     id: 0,
                     title:
-                        "Maecenas sed diam eget risus varius blandit sit amet non magna."
+                        "Lorem ipsum dolor sit amet consectetur adipiscing elit."
                 },
                 {
                     id: 1,
@@ -310,7 +310,7 @@ export default {
                 {
                     id: 2,
                     title:
-                        "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit."
+                        "Duis mollis, est non commodo luctus, nisi erat porttitor ligula."
                 }
             ];
         },

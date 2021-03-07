@@ -17,7 +17,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "inertiajs/inertia-laravel": "^0.3",
         "laravel-lang/lang": "~7.0",
-        "laravel/framework": "^8.12",
+        "laravel/framework": "^8.3",
         "laravel/jetstream": "^2.0",
         "laravel/passport": "^10.0",
         "laravel/sanctum": "^2.6",
