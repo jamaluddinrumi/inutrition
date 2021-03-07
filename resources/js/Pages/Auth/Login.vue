@@ -17,6 +17,7 @@
                     <v-card-text
                         ><div>
                             <v-text-field
+                                outlined
                                 id="email"
                                 type="email"
                                 class="mt-1 block w-full"
@@ -31,6 +32,7 @@
 
                         <div class="mt-4">
                             <v-text-field
+                                outlined
                                 id="password"
                                 :type="passwordType ? 'password' : 'text'"
                                 class="mt-1 block w-full"

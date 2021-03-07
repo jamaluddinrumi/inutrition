@@ -71,8 +71,9 @@
             </div>
 
             <!-- Name -->
-            <div class="col-span-6 sm:col-span-4">
+            <div class="col-span-6 sm:col-span-4 mt-6">
                 <v-text-field
+                    outlined
                     :label="$vuetify.lang.t('$vuetify.name')"
                     id="name"
                     type="text"
@@ -86,6 +87,7 @@
             <!-- Email -->
             <div class="col-span-6 sm:col-span-4">
                 <v-text-field
+                    outlined
                     :label="$vuetify.lang.t('$vuetify.email')"
                     id="email"
                     type="email"

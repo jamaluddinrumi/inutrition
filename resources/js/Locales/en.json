@@ -161,7 +161,8 @@
             "ensurePassword": "Ensure your account is using a long, random password to stay secure.",
             "currentPassword": "Current Password",
             "newPassword": "New Password",
-            "confirmPassword": "Confirm Password"
+            "confirmPassword": "Confirm Password",
+            "password": "Password"
         },
         "rememberMe": "Remember me",
         "login": "Login",

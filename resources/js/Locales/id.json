@@ -161,7 +161,8 @@
             "ensurePassword": "Pastikan untuk menggunakan password yang panjang & acak agar tetap aman.",
             "currentPassword": "Password Saat Ini",
             "newPassword": "Password Baru",
-            "confirmPassword": "Konfirmasi Password"
+            "confirmPassword": "Konfirmasi Password",
+            "password": "Password"
         },
         "rememberMe": "Ingat saya di komputer ini",
         "login": "Masuk",
