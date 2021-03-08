@@ -38,7 +38,6 @@ Route::middleware('auth:sanctum', 'verified')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
     Route::get('/customer', [CustomerController::class, 'index'])->name('customer');
-    Route::get('/customer/generate/{id}', [CustomerController::class, 'generate'])->name('customer.generate');
 
     Route::get('/nutrition', [NutritionController::class, 'index'])->name('nutrition');
 });
