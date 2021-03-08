@@ -69,7 +69,6 @@
                     id="password_confirmation"
                     class="mt-1 block w-full"
                     v-model="form.password_confirmation"
-                    autocomplete="new-password"
                 />
             </div>
 
@@ -140,7 +139,7 @@ export default {
             this.form
                 .put(route("user-password.update"), {
                     preserveScroll: true,
-                    onStart: visit => {
+                    onStart: () => {
                         this.isSubmitted = true;
                     },
                     onFinish: () => {
