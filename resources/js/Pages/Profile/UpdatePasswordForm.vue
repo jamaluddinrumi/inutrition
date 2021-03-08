@@ -73,7 +73,17 @@
             </div>
 
             <v-overlay absolute :value="isSubmitted" z-index="0">
-                <v-progress-circular indeterminate></v-progress-circular>
+                <v-progress-circular
+                    v-show="loadingIndicator"
+                    indeterminate
+                ></v-progress-circular>
+                <v-icon
+                    v-show="isSuccessChanged"
+                    color="white"
+                    size="120"
+                    z-index="1"
+                    >fas fa-check-circle</v-icon
+                >
             </v-overlay>
         </template>
 
@@ -87,7 +97,7 @@
                 rounded
                 color="primary"
                 class="text-button elevation-2 px-4"
-                :disabled="form.processing"
+                :disabled="loadingIndicator || isSuccessChanged"
             >
                 <v-icon small class="mr-2">fa fa-save</v-icon>
                 {{ $vuetify.lang.t("$vuetify.save") }}
@@ -116,6 +126,8 @@ export default {
 
     data() {
         return {
+            isSuccessChanged: false,
+            loadingIndicator: false,
             showConfirmPassword: false,
             showNewPassword: false,
             showCurrentPassword: false,
@@ -140,10 +152,23 @@ export default {
                 .put(route("user-password.update"), {
                     preserveScroll: true,
                     onStart: () => {
+                        this.loadingIndicator = true;
                         this.isSubmitted = true;
                     },
+                    onSuccess: () => {
+                        this.loadingIndicator = false;
+                        if (Object.keys(this.$page.props.errors).length <= 0)
+                            this.isSuccessChanged = true;
+                    },
                     onFinish: () => {
-                        this.isSubmitted = false;
+                        if (Object.keys(this.$page.props.errors).length <= 0) {
+                            setTimeout(() => {
+                                this.isSubmitted = false;
+                                this.isSuccessChanged = false;
+                            }, 1000);
+                        } else {
+                            this.isSubmitted = false;
+                        }
                     }
                 })
                 .then(() => {

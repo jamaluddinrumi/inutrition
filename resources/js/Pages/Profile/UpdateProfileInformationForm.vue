@@ -101,7 +101,17 @@
             </div>
 
             <v-overlay absolute :value="isSubmitted" z-index="0">
-                <v-progress-circular indeterminate></v-progress-circular>
+                <v-progress-circular
+                    v-show="loadingIndicator"
+                    indeterminate
+                ></v-progress-circular>
+                <v-icon
+                    v-show="isSuccessChanged"
+                    color="white"
+                    size="120"
+                    z-index="1"
+                    >fas fa-check-circle</v-icon
+                >
             </v-overlay>
         </template>
 
@@ -115,7 +125,7 @@
                 type="submit"
                 color="primary"
                 class="elevation-2 text-button px-4"
-                :disabled="form.processing"
+                :disabled="loadingIndicator || isSuccessChanged"
             >
                 <v-icon small dark class="mr-2">fas fa-save</v-icon>
                 {{ $vuetify.lang.t("$vuetify.save") }}
@@ -148,6 +158,8 @@ export default {
 
     data() {
         return {
+            isSuccessChanged: false,
+            loadingIndicator: false,
             rules: {
                 required: value =>
                     !!value || this.$vuetify.lang.t("$vuetify.fieldIsRequired"),
@@ -185,11 +197,24 @@ export default {
 
             this.form.post(route("user-profile-information.update"), {
                 preserveScroll: true,
-                onStart: visit => {
+                onStart: () => {
+                    this.loadingIndicator = true;
                     this.isSubmitted = true;
                 },
+                onSuccess: () => {
+                    this.loadingIndicator = false;
+                    if (Object.keys(this.$page.props.errors).length <= 0)
+                        this.isSuccessChanged = true;
+                },
                 onFinish: () => {
-                    this.isSubmitted = false;
+                    if (Object.keys(this.$page.props.errors).length <= 0) {
+                        setTimeout(() => {
+                            this.isSubmitted = false;
+                            this.isSuccessChanged = false;
+                        }, 1000);
+                    } else {
+                        this.isSubmitted = false;
+                    }
                 }
             });
         },
