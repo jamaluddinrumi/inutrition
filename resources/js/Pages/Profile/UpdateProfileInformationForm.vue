@@ -39,8 +39,8 @@
                         class="block rounded-full w-20 h-20"
                         :style="
                             'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' +
-                            photoPreview +
-                            '\');'
+                                photoPreview +
+                                '\');'
                         "
                     >
                     </span>
@@ -73,6 +73,7 @@
             <!-- Name -->
             <div class="col-span-6 sm:col-span-4 mt-6">
                 <v-text-field
+                    clearable
                     outlined
                     :label="$vuetify.lang.t('$vuetify.name')"
                     id="name"
@@ -87,6 +88,8 @@
             <!-- Email -->
             <div class="col-span-6 sm:col-span-4">
                 <v-text-field
+                    :rules="[rules.required, rules.email]"
+                    clearable
                     outlined
                     :label="$vuetify.lang.t('$vuetify.email')"
                     id="email"
@@ -138,28 +141,37 @@ export default {
         JetInput,
         JetInputError,
         JetLabel,
-        JetSecondaryButton,
+        JetSecondaryButton
     },
 
     props: ["user"],
 
     data() {
         return {
+            rules: {
+                required: value =>
+                    !!value || this.$vuetify.lang.t("$vuetify.fieldIsRequired"),
+                counter: value => value.length <= 20 || "Max 20 characters",
+                email: value => {
+                    const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    return pattern.test(value) || "Invalid e-mail.";
+                }
+            },
             form: this.$inertia.form(
                 {
                     _method: "PUT",
                     name: this.user.name,
                     email: this.user.email,
-                    photo: null,
+                    photo: null
                 },
                 {
                     bag: "updateProfileInformation",
-                    resetOnSuccess: false,
+                    resetOnSuccess: false
                 }
             ),
 
             photoPreview: null,
-            isSubmitted: false,
+            isSubmitted: false
         };
     },
 
@@ -173,12 +185,12 @@ export default {
 
             this.form.post(route("user-profile-information.update"), {
                 preserveScroll: true,
-                onStart: (visit) => {
+                onStart: visit => {
                     this.isSubmitted = true;
                 },
                 onFinish: () => {
                     this.isSubmitted = false;
-                },
+                }
             });
         },
 
@@ -189,7 +201,7 @@ export default {
         updatePhotoPreview() {
             const reader = new FileReader();
 
-            reader.onload = (e) => {
+            reader.onload = e => {
                 this.photoPreview = e.target.result;
             };
 
@@ -199,13 +211,13 @@ export default {
         deletePhoto() {
             this.$inertia
                 .delete(route("current-user-photo.destroy"), {
-                    preserveScroll: true,
+                    preserveScroll: true
                 })
                 .then(() => {
                     this.photoPreview = null;
                 });
-        },
-    },
+        }
+    }
 };
 </script>
 <style>

@@ -18,10 +18,15 @@
                     class=""
                 />
                 <v-text-field
+                    :append-icon="
+                        showCurrentPassword ? 'mdi-eye' : 'mdi-eye-off'
+                    "
+                    :type="showCurrentPassword ? 'text' : 'password'"
+                    @click:append="showCurrentPassword = !showCurrentPassword"
+                    clearable
                     outlined
                     :label="$vuetify.lang.t('$vuetify.profile.currentPassword')"
                     id="current_password"
-                    type="password"
                     class="mt-1 block w-full"
                     v-model="form.current_password"
                     ref="current_password"
@@ -30,15 +35,16 @@
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <jet-input-error
-                    :message="form.error('password')"
-                    class=""
-                />
+                <jet-input-error :message="form.error('password')" class="" />
                 <v-text-field
+                    :append-icon="showNewPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                    :type="showNewPassword ? 'text' : 'password'"
+                    @click:append="showNewPassword = !showNewPassword"
+                    counter
+                    clearable
                     outlined
                     :label="$vuetify.lang.t('$vuetify.profile.newPassword')"
                     id="password"
-                    type="password"
                     class="mt-1 block w-full"
                     v-model="form.password"
                     autocomplete="new-password"
@@ -51,10 +57,16 @@
                     class=""
                 />
                 <v-text-field
+                    :append-icon="
+                        showConfirmPassword ? 'mdi-eye' : 'mdi-eye-off'
+                    "
+                    :type="showConfirmPassword ? 'text' : 'password'"
+                    @click:append="showConfirmPassword = !showConfirmPassword"
+                    counter
+                    clearable
                     outlined
                     :label="$vuetify.lang.t('$vuetify.profile.confirmPassword')"
                     id="password_confirmation"
-                    type="password"
                     class="mt-1 block w-full"
                     v-model="form.password_confirmation"
                     autocomplete="new-password"
@@ -105,6 +117,9 @@ export default {
 
     data() {
         return {
+            showConfirmPassword: false,
+            showNewPassword: false,
+            showCurrentPassword: false,
             form: this.$inertia.form(
                 {
                     current_password: "",

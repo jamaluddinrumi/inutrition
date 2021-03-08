@@ -13,10 +13,17 @@
             </div>
 
             <v-form @submit.prevent="submit">
-                <v-card :loading="form.processing" :disabled="form.processing" elevation="3" rounded>
+                <v-card
+                    :loading="form.processing"
+                    :disabled="form.processing"
+                    elevation="3"
+                    rounded
+                >
                     <v-card-text
                         ><div>
                             <v-text-field
+                                :rules="[rules.required, rules.email]"
+                                clearable
                                 outlined
                                 id="email"
                                 type="email"
@@ -32,9 +39,15 @@
 
                         <div class="mt-4">
                             <v-text-field
+                                :append-icon="
+                                    showPassword ? 'mdi-eye' : 'mdi-eye-off'
+                                "
+                                :rules="[rules.required]"
+                                :type="showPassword ? 'text' : 'password'"
+                                @click:append="showPassword = !showPassword"
+                                clearable
                                 outlined
                                 id="password"
-                                :type="passwordType ? 'password' : 'text'"
                                 class="mt-1 block w-full"
                                 v-model="form.password"
                                 required
@@ -43,14 +56,14 @@
                                 hint="(demo1234)"
                                 persistent-hint
                             >
-                                <template v-slot:append>
+                                <!-- <template v-slot:append>
                                     <v-btn icon @click="togglePasswordRevealed">
-                                        <v-icon v-if="passwordRevealed" small
+                                        <v-icon v-if="passwordRevealed"
                                             >fas fa-eye-slash</v-icon
                                         >
                                         <v-icon v-else small>fas fa-eye</v-icon>
                                     </v-btn>
-                                </template>
+                                </template> -->
                             </v-text-field>
                         </div></v-card-text
                     >
@@ -130,16 +143,27 @@ export default {
         JetInput,
         JetLabel,
         JetValidationErrors,
-        Layout,
+        Layout
     },
 
     props: {
         canResetPassword: Boolean,
-        status: String,
+        status: String
     },
 
     data() {
         return {
+            showPassword: false,
+            rules: {
+                required: value =>
+                    !!value || this.$vuetify.lang.t("$vuetify.fieldIsRequired"),
+                min: v => v.length >= 8 || "Min 8 characters",
+                counter: value => value.length <= 20 || "Max 20 characters",
+                email: value => {
+                    const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    return pattern.test(value) || "Invalid e-mail.";
+                }
+            },
             snackbar: true,
             passwordType: true,
             passwordRevealed: false,
@@ -147,16 +171,16 @@ export default {
             form: this.$inertia.form({
                 email: "",
                 password: "",
-                remember: "",
+                remember: ""
             }),
-            title: "login",
+            title: "login"
         };
     },
 
     watch: {
         remember(value) {
             this.form.remember = value ? "on" : "";
-        },
+        }
     },
 
     computed: {},
@@ -170,9 +194,9 @@ export default {
             this.form.post(this.route("login"), {
                 onSuccess: () => {
                     this.remember = false;
-                },
+                }
             });
-        },
-    },
+        }
+    }
 };
 </script>
