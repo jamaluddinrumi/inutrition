@@ -16,7 +16,7 @@ class DashboardController extends Controller
     public function index()
     {
 
-        $latestNutritions = \App\Models\Nutrition::take(10)->with('customer')->orderBy('updated_at', 'desc')->get()->reverse()->values();
+        $latestNutritions = \App\Models\Nutrition::take(10)->with('customer')->orderBy('created_at', 'desc')->get()->reverse()->values();
 
         $latestCalories['value'] = [];
         $latestCalories['labels'] = [];
