@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <v-system-bar color="primary"> </v-system-bar>
-        <v-navigation-drawer app v-model="drawer">
+        <v-navigation-drawer bottom app v-model="drawer">
             <div class="flex justify-center my-4">
                 <jet-authentication-card-logo v-if="!$vuetify.theme.dark" />
                 <jet-authentication-card-logo-dark v-else />
