@@ -56,17 +56,8 @@
                                 hint="(demo1234)"
                                 persistent-hint
                             >
-                                <!-- <template v-slot:append>
-                                    <v-btn icon @click="togglePasswordRevealed">
-                                        <v-icon v-if="passwordRevealed"
-                                            >fas fa-eye-slash</v-icon
-                                        >
-                                        <v-icon v-else small>fas fa-eye</v-icon>
-                                    </v-btn>
-                                </template> -->
-                            </v-text-field>
-                        </div></v-card-text
-                    >
+                            </v-text-field></div
+                    ></v-card-text>
                     <v-card-actions class="p-4 flex flex-wrap">
                         <div>
                             <v-checkbox
