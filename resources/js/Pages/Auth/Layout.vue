@@ -1,6 +1,10 @@
 <template>
     <v-app>
         <v-app-bar app elevate-on-scroll>
+            <v-app-bari-title>
+                <jet-authentication-card-logo v-if="!$vuetify.theme.dark" />
+                <jet-authentication-card-logo-dark v-else />
+            </v-app-bari-title>
             <v-spacer></v-spacer>
             <v-switch
                 dense
@@ -74,10 +78,14 @@
 
 <script>
 import CountryFlag from "vue-country-flag";
+import JetAuthenticationCardLogo from "@/Jetstream/AuthenticationCardLogo";
+import JetAuthenticationCardLogoDark from "@/Jetstream/AuthenticationCardLogoDark";
 
 export default {
     components: {
-        CountryFlag
+        CountryFlag,
+        JetAuthenticationCardLogo,
+        JetAuthenticationCardLogoDark
     },
 
     props: {

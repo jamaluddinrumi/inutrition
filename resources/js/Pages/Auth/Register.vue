@@ -1,10 +1,7 @@
 <template>
     <layout :loading="form.processing">
         <jet-authentication-card>
-            <template #logo>
-                <jet-authentication-card-logo v-if="!$vuetify.theme.dark" />
-                <jet-authentication-card-logo-dark v-else />
-            </template>
+            <template #logo></template>
 
             <jet-validation-errors class="mb-4" />
 
@@ -13,6 +10,7 @@
                     <v-card-text>
                         <div>
                             <v-text-field
+                                outlined
                                 id="name"
                                 type="text"
                                 class="mt-1 block w-full"
@@ -26,6 +24,7 @@
 
                         <div class="mt-4">
                             <v-text-field
+                                outlined
                                 id="email"
                                 type="email"
                                 class="mt-1 block w-full"
@@ -37,6 +36,7 @@
 
                         <div class="mt-4">
                             <v-text-field
+                                outlined
                                 id="password"
                                 type="password"
                                 class="mt-1 block w-full"
@@ -49,6 +49,7 @@
 
                         <div class="mt-4">
                             <v-text-field
+                                outlined
                                 id="password_confirmation"
                                 type="password"
                                 class="mt-1 block w-full"

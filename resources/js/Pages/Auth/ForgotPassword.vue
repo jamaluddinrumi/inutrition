@@ -1,10 +1,7 @@
 <template>
     <layout :loading="form.processing">
         <jet-authentication-card>
-            <template #logo>
-                <jet-authentication-card-logo v-if="!$vuetify.theme.dark" />
-                <jet-authentication-card-logo-dark v-else />
-            </template>
+            <template #logo> </template>
 
             <div class="mb-4 text-body-1">
                 {{ $vuetify.lang.t("$vuetify.laravel.forgotYourPassword") }}
@@ -21,6 +18,7 @@
                     <v-card-text>
                         <div>
                             <v-text-field
+                                outlined
                                 id="email"
                                 type="email"
                                 class="mt-1 block w-full"
@@ -33,6 +31,16 @@
                     </v-card-text>
                     <v-card-actions class="p-4">
                         <div class="flex items-center justify-end mt-4">
+                            <inertia-link
+                                :href="route('login')"
+                                class="text-button text-decoration-underline"
+                            >
+                                {{
+                                    $vuetify.lang.t(
+                                        "$vuetify.alreadyRegistered"
+                                    )
+                                }}
+                            </inertia-link>
                             <v-btn
                                 rounded
                                 class="ml-4"
@@ -92,26 +100,26 @@ export default {
         JetInput,
         JetLabel,
         JetValidationErrors,
-        Layout,
+        Layout
     },
 
     props: {
-        status: String,
+        status: String
     },
 
     data() {
         return {
             form: this.$inertia.form({
-                email: "",
+                email: ""
             }),
-            title: "resetPassword",
+            title: "resetPassword"
         };
     },
 
     methods: {
         submit() {
             this.form.post(this.route("password.email"));
-        },
-    },
+        }
+    }
 };
 </script>
