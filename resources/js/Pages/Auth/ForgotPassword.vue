@@ -33,13 +33,9 @@
                         <div class="flex items-center justify-end mt-4">
                             <inertia-link
                                 :href="route('login')"
-                                class="text-button text-decoration-underline"
+                                class="text-button text-decoration-underline text-opacity-60 dark:text-white dark:text-opacity-70"
                             >
-                                {{
-                                    $vuetify.lang.t(
-                                        "$vuetify.alreadyRegistered"
-                                    )
-                                }}
+                                {{ $vuetify.lang.t("$vuetify.login") }}?
                             </inertia-link>
                             <v-btn
                                 rounded
