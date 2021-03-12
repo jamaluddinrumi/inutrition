@@ -1,6 +1,6 @@
 {
-    "name": "LaraVue",
-    "short_name": "LaraVue",
+    "name": "iNutrition",
+    "short_name": "iNutrition",
     "icons": [
         {
             "src": "/android-chrome-48x48.png",
@@ -18,7 +18,7 @@
     "display": "fullscreen",
     "start_url": "/",
     "scope": ".",
-    "description": "Laravel Vue Admin for Career",
+    "description": "Nutrition Management App",
     "dir": "ltr",
     "lang": "id-ID",
     "offline_enabled": true
