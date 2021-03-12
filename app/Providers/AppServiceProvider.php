@@ -28,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(UrlGenerator $url)
     {
+        Inertia::share('appUrl', env('APP_URL'));
         Inertia::share('storagePath', storage_path());
         Inertia::share('publicPath', public_path());
         Inertia::share('storageUrl', asset('storage'));

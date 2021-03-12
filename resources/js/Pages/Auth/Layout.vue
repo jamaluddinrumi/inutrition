@@ -1,14 +1,13 @@
 <template>
     <v-app
-        style="
-    background-image: url('https://djponline.pajak.go.id/account/assets/media/bg/gedung_djp.jpg');
-    background-size: cover;"
+        style="background-size: cover; background-position: top center"
+        :style="{ 'background-image': backgroundImage }"
     >
         <v-app-bar app elevate-on-scroll>
-            <v-app-bari-title>
+            <v-app-bar-title>
                 <jet-authentication-card-logo v-if="!$vuetify.theme.dark" />
                 <jet-authentication-card-logo-dark v-else />
-            </v-app-bari-title>
+            </v-app-bar-title>
             <v-spacer></v-spacer>
             <v-switch
                 dense
@@ -100,6 +99,7 @@ export default {
 
     data() {
         return {
+            backgroundImage: `url('${this.$page.props.appUrl}/img/we-are-woman-together.png')`,
             title: ""
         };
     },
