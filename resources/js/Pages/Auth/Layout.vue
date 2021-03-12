@@ -1,5 +1,9 @@
 <template>
-    <v-app>
+    <v-app
+        style="
+    background-image: url('https://djponline.pajak.go.id/account/assets/media/bg/gedung_djp.jpg');
+    background-size: cover;"
+    >
         <v-app-bar app elevate-on-scroll>
             <v-app-bari-title>
                 <jet-authentication-card-logo v-if="!$vuetify.theme.dark" />
