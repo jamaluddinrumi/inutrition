@@ -59,6 +59,17 @@
                 $vuetify.lang.t("$vuetify.title." + $page.props.title)
             }}</v-app-bar-title>
             <v-spacer></v-spacer>
+            <v-autocomplete
+                class="mr-8"
+                append-icon="mdi-file-search-outline"
+                cache-items
+                clearable
+                full-width
+                outlined
+                hide-details
+                dense
+                :placeholder="$vuetify.lang.t('$vuetify.discover')"
+            ></v-autocomplete>
             <v-switch
                 dense
                 hide-details
@@ -406,4 +417,42 @@ export default {
     }
 };
 </script>
-<style></style>
+<style>
+[type="text"],
+[type="email"],
+[type="url"],
+[type="password"],
+[type="number"],
+[type="date"],
+[type="datetime-local"],
+[type="month"],
+[type="search"],
+[type="tel"],
+[type="time"],
+[type="week"],
+[multiple],
+textarea,
+select,
+[type="text"]:focus,
+[type="email"]:focus,
+[type="url"]:focus,
+[type="password"]:focus,
+[type="number"]:focus,
+[type="date"]:focus,
+[type="datetime-local"]:focus,
+[type="month"]:focus,
+[type="search"]:focus,
+[type="tel"]:focus,
+[type="time"]:focus,
+[type="week"]:focus,
+[multiple]:focus,
+textarea:focus,
+select:focus {
+    @apply ring-0;
+    @apply bg-transparent;
+}
+
+.v-data-table-header th.sortable {
+    white-space: nowrap;
+}
+</style>
