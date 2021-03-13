@@ -3,7 +3,7 @@
         style="background-size: cover; background-position: top center"
         :style="{ 'background-image': backgroundImage }"
     >
-        <v-app-bar app elevate-on-scroll>
+        <v-app-bar app>
             <v-app-bar-title>
                 <jet-authentication-card-logo v-if="!$vuetify.theme.dark" />
                 <jet-authentication-card-logo-dark v-else />
@@ -99,7 +99,7 @@ export default {
 
     data() {
         return {
-            backgroundImage: `url('${this.$page.props.appUrl}/img/we-are-woman-together.png')`,
+            backgroundImage: `url('${this.$page.props.appUrl}/img/healthy-food.jpg')`,
             title: ""
         };
     },

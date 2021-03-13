@@ -262,6 +262,7 @@ export default {
     mounted() {},
     data() {
         return {
+            backgroundImage: `${this.$page.props.appUrl}/img/healthy-food-blur-for-nav-drawer.jpg`,
             loading: false,
             fab: false,
             footer: !this.$vuetify.breakpoint.mobile,
