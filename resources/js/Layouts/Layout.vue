@@ -60,6 +60,7 @@
             }}</v-app-bar-title>
             <v-spacer></v-spacer>
             <v-autocomplete
+                v-if="!$vuetify.breakpoint.mobile"
                 class="mr-8"
                 append-icon="mdi-file-search-outline"
                 cache-items
@@ -265,7 +266,6 @@ export default {
             backgroundImage: `${this.$page.props.appUrl}/img/healthy-food-blur-for-nav-drawer.jpg`,
             loading: false,
             fab: false,
-            footer: !this.$vuetify.breakpoint.mobile,
             isLogoutButtonDisabled: false,
             isLogouting: false,
             drawer: !this.$vuetify.breakpoint.mobile,
