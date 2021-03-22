@@ -5,8 +5,10 @@
     >
         <v-app-bar app>
             <v-app-bar-title>
-                <jet-authentication-card-logo v-if="!$vuetify.theme.dark" />
-                <jet-authentication-card-logo-dark v-else />
+                <template v-if="!$vuetify.breakpoint.mobile">
+                    <jet-authentication-card-logo v-if="!$vuetify.theme.dark" />
+                    <jet-authentication-card-logo-dark v-else />
+                </template>
             </v-app-bar-title>
             <v-spacer></v-spacer>
             <v-switch
@@ -99,9 +101,16 @@ export default {
 
     data() {
         return {
-            backgroundImage: `url('${this.$page.props.appUrl}/img/healthy-food.jpg')`,
             title: ""
         };
+    },
+
+    computed: {
+        backgroundImage: function() {
+            return this.$vuetify.theme.dark
+                ? `url('${this.$page.props.appUrl}/img/healthy-food-dark.jpg')`
+                : `url('${this.$page.props.appUrl}/img/healthy-food.jpg')`;
+        }
     },
 
     methods: {
