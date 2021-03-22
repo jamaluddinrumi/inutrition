@@ -126,7 +126,7 @@
                             </v-btn>
                         </div>
                     </v-card-actions class="p-4">
-                    <v-overlay absolute :value="form.processing">
+                    <v-overlay absolute :value="form.processing" z-index="0">
                         <v-progress-circular
                             indeterminate
                         ></v-progress-circular>
