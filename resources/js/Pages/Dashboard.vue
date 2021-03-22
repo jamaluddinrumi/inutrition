@@ -26,7 +26,7 @@
             {{ $vuetify.lang.t("$vuetify.staffs") }}
         </div>
         <v-row>
-            <v-col v-for="user_item in users" :key="user_item.id"
+            <v-col v-for="user_item in users" :key="user_item.id" cols="4"
                 ><contact-card :user="user_item"></contact-card
             ></v-col>
         </v-row>
@@ -56,39 +56,39 @@ export default {
         Layout,
         DashboardCustomersNutritionsTable,
         ContactCard,
-        GraphicCard,
+        GraphicCard
     },
 
     mounted() {},
 
     props: {
         currentRouteName: {
-            type: String,
+            type: String
         },
         errorBags: {
-            type: Array,
+            type: Array
         },
         errors: {
-            type: Object,
+            type: Object
         },
         jetstream: {
-            type: Object,
+            type: Object
         },
         user: {
-            type: Object,
+            type: Object
         },
         customers: {
-            type: Array,
+            type: Array
         },
         users: {
-            type: Array,
+            type: Array
         },
         title: {
-            type: String,
+            type: String
         },
         latestCalories: {
-            type: Object,
-        },
+            type: Object
+        }
     },
 
     data() {
@@ -99,6 +99,6 @@ export default {
 
     watch: {},
 
-    methods: {},
+    methods: {}
 };
 </script>
