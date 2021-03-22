@@ -12,7 +12,7 @@
         >
             <template v-slot:top>
                 <v-toolbar flat>
-                    <v-toolbar-title>{{
+                    <v-toolbar-title v-if="!$vuetify.breakpoint.mobile">{{
                         $vuetify.lang.t("$vuetify.customer.customersDetail")
                     }}</v-toolbar-title>
                     <v-spacer></v-spacer>
@@ -305,8 +305,8 @@ export default {
     props: {
         itemsPerPage: {
             type: Number,
-            default: "10",
-        },
+            default: "10"
+        }
     },
     data() {
         return {
@@ -315,7 +315,7 @@ export default {
             snackbar: false,
             snackbarMessage: "",
             required: [
-                (v) => !!v || this.$vuetify.lang.t("$vuetify.fieldIsRequired"),
+                v => !!v || this.$vuetify.lang.t("$vuetify.fieldIsRequired")
             ],
             search: "",
             isLoading: false,
@@ -330,7 +330,7 @@ export default {
                 postcode: "",
                 streetAddress: "",
                 phoneNumber: "",
-                email: "",
+                email: ""
             },
             defaultItem: {
                 firstName: "",
@@ -340,9 +340,9 @@ export default {
                 postcode: "",
                 streetAddress: "",
                 phoneNumber: "",
-                email: "",
+                email: ""
             },
-            customers: [],
+            customers: []
         };
     },
     computed: {
@@ -357,44 +357,44 @@ export default {
                     text: this.$vuetify.lang.t("$vuetify.customer.firstName"),
                     align: "start",
                     // sortable: false,
-                    value: "firstName",
+                    value: "firstName"
                 },
                 {
                     text: this.$vuetify.lang.t("$vuetify.customer.lastName"),
                     // sortable: false,
-                    value: "lastName",
+                    value: "lastName"
                 },
                 {
                     text: this.$vuetify.lang.t("$vuetify.customer.title"),
                     // sortable: false,
-                    value: "title",
+                    value: "title"
                 },
                 {
                     text: this.$vuetify.lang.t("$vuetify.customer.city"),
                     // sortable: false,
-                    value: "city",
+                    value: "city"
                 },
                 {
                     text: this.$vuetify.lang.t("$vuetify.customer.postcode"),
                     // sortable: false,
-                    value: "postcode",
+                    value: "postcode"
                 },
                 {
                     text: this.$vuetify.lang.t(
                         "$vuetify.customer.streetAddress"
                     ),
                     // sortable: false,
-                    value: "streetAddress",
+                    value: "streetAddress"
                 },
                 {
                     text: this.$vuetify.lang.t("$vuetify.customer.phoneNumber"),
                     // sortable: false,
-                    value: "phoneNumber",
+                    value: "phoneNumber"
                 },
                 {
                     text: this.$vuetify.lang.t("$vuetify.customer.email"),
                     // sortable: false,
-                    value: "email",
+                    value: "email"
                 },
                 // {
                 //     text: this.$vuetify.lang.t(
@@ -406,10 +406,10 @@ export default {
                 {
                     text: this.$vuetify.lang.t("$vuetify.actions"),
                     // sortable: false,
-                    value: "actions",
-                },
+                    value: "actions"
+                }
             ];
-        },
+        }
     },
     watch: {
         dialog(val) {
@@ -417,7 +417,7 @@ export default {
         },
         dialogDelete(val) {
             val || this.closeDelete();
-        },
+        }
     },
     methods: {
         loadingData() {
@@ -427,10 +427,10 @@ export default {
 
             axios
                 .get(route("customer.index"))
-                .then(function (response) {
+                .then(function(response) {
                     // console.log(response);
 
-                    response.data.forEach((customer) => {
+                    response.data.forEach(customer => {
                         self.customers.push({
                             id: customer.id,
                             firstName: customer.first_name,
@@ -441,14 +441,14 @@ export default {
                             streetAddress: customer.street_address,
                             phoneNumber: customer.phone_number,
                             email: customer.email,
-                            updatedAt: customer.updated_at,
+                            updatedAt: customer.updated_at
                         });
                     });
                 })
-                .catch(function (response) {
+                .catch(function(response) {
                     console.error(response);
                 })
-                .then(function () {
+                .then(function() {
                     self.isLoading = false;
                 });
         },
@@ -475,7 +475,7 @@ export default {
 
             axios
                 .delete(route("customer.destroy", self.editedIndex))
-                .then(function (response) {
+                .then(function(response) {
                     // console.log(response);
 
                     self.loadingData();
@@ -484,15 +484,15 @@ export default {
                         [
                             _.capitalize(response.data.first_name) +
                                 " " +
-                                _.capitalize(response.data.last_name),
+                                _.capitalize(response.data.last_name)
                         ]
                     );
                     self.snackbar = true;
                 })
-                .catch(function (response) {
+                .catch(function(response) {
                     console.error(response);
                 })
-                .then(function () {
+                .then(function() {
                     self.closeDelete();
                     self.isButtonDeleteLoading = false;
                 });
@@ -525,7 +525,7 @@ export default {
             if (this.editedIndex > -1) {
                 axios
                     .put(`/api/customer/${this.editedIndex}`, self.editedItem)
-                    .then(function (response) {
+                    .then(function(response) {
                         // console.log(response);
 
                         self.snackbarMessage = self.$vuetify.lang.t(
@@ -533,7 +533,7 @@ export default {
                             [
                                 _.capitalize(response.data.first_name) +
                                     " " +
-                                    _.capitalize(response.data.last_name),
+                                    _.capitalize(response.data.last_name)
                             ]
                         );
 
@@ -543,10 +543,10 @@ export default {
 
                         self.snackbar = true;
                     })
-                    .catch(function (response) {
+                    .catch(function(response) {
                         console.error(response);
                     })
-                    .then(function () {
+                    .then(function() {
                         self.isButtonSaveLoading = false;
                     });
             } else {
@@ -554,7 +554,7 @@ export default {
 
                 axios
                     .post(route("customer.store"), self.editedItem)
-                    .then(function (response) {
+                    .then(function(response) {
                         // console.log(response);
 
                         self.snackbarMessage = self.$vuetify.lang.t(
@@ -562,7 +562,7 @@ export default {
                             [
                                 _.capitalize(response.data.first_name) +
                                     " " +
-                                    _.capitalize(response.data.last_name),
+                                    _.capitalize(response.data.last_name)
                             ]
                         );
 
@@ -572,15 +572,15 @@ export default {
 
                         self.snackbar = true;
                     })
-                    .catch(function (response) {
+                    .catch(function(response) {
                         console.error(response);
                     })
-                    .then(function () {
+                    .then(function() {
                         self.isButtonSaveLoading = false;
                     });
             }
-        },
-    },
+        }
+    }
 };
 </script>
 <style>

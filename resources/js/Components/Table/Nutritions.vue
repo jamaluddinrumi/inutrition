@@ -12,7 +12,7 @@
         >
             <template v-slot:top>
                 <v-toolbar flat>
-                    <v-toolbar-title>{{
+                    <v-toolbar-title v-if="!$vuetify.breakpoint.mobile">{{
                         $vuetify.lang.t("$vuetify.nutrition.nutritionsDetail")
                     }}</v-toolbar-title>
                     <v-spacer></v-spacer>
@@ -58,6 +58,7 @@
                                         <v-row>
                                             <v-col cols="12" sm="6" md="4">
                                                 <v-autocomplete
+                                                    disabled
                                                     v-model="
                                                         editedItem.customerId
                                                     "
@@ -281,8 +282,8 @@ export default {
     props: {
         itemsPerPage: {
             type: Number,
-            default: "10",
-        },
+            default: "10"
+        }
     },
     data() {
         return {
@@ -294,7 +295,7 @@ export default {
             snackbar: false,
             snackbarMessage: "",
             required: [
-                (v) => !!v || this.$vuetify.lang.t("$vuetify.fieldIsRequired"),
+                v => !!v || this.$vuetify.lang.t("$vuetify.fieldIsRequired")
             ],
             search: "",
             isLoadingNutritionsData: false,
@@ -306,16 +307,16 @@ export default {
                 calories: "",
                 fat: "",
                 carbs: "",
-                protein: "",
+                protein: ""
             },
             defaultItem: {
                 customer_id: "",
                 calories: "",
                 fat: "",
                 carbs: "",
-                protein: "",
+                protein: ""
             },
-            nutritions: [],
+            nutritions: []
         };
     },
     computed: {
@@ -332,37 +333,37 @@ export default {
                     ),
                     align: "start",
                     // sortable: false,
-                    value: "customer.fullName",
+                    value: "customer.fullName"
                 },
                 {
                     text: this.$vuetify.lang.t("$vuetify.nutrition.calories"),
                     // sortable: false,
-                    value: "calories",
+                    value: "calories"
                 },
                 {
                     text: this.$vuetify.lang.t("$vuetify.nutrition.fat"),
                     // sortable: false,
-                    value: "fat",
+                    value: "fat"
                 },
                 {
                     text: this.$vuetify.lang.t("$vuetify.nutrition.carbs"),
                     // sortable: false,
-                    value: "carbs",
+                    value: "carbs"
                 },
                 {
                     text: this.$vuetify.lang.t("$vuetify.nutrition.protein"),
                     // sortable: false,
-                    value: "protein",
+                    value: "protein"
                 },
                 {
                     text: this.$vuetify.lang.t("$vuetify.nutrition.createdAt"),
                     // sortable: false,
-                    value: "createdAt",
+                    value: "createdAt"
                 },
                 {
                     text: this.$vuetify.lang.t("$vuetify.nutrition.updatedAt"),
                     // sortable: false,
-                    value: "updatedAt",
+                    value: "updatedAt"
                 },
                 // {
                 //     text: this.$vuetify.lang.t(
@@ -374,10 +375,10 @@ export default {
                 {
                     text: this.$vuetify.lang.t("$vuetify.actions"),
                     // sortable: false,
-                    value: "actions",
-                },
+                    value: "actions"
+                }
             ];
-        },
+        }
     },
     watch: {
         dialog(val) {
@@ -385,7 +386,7 @@ export default {
         },
         dialogDelete(val) {
             val || this.closeDelete();
-        },
+        }
     },
     methods: {
         loadingCustomersData() {
@@ -395,16 +396,16 @@ export default {
 
             axios
                 .get(route("customer.index"))
-                .then(function (response) {
+                .then(function(response) {
                     // console.log(response);
 
-                    response.data.forEach((customer) => {
+                    response.data.forEach(customer => {
                         self.customers.push({
                             text:
                                 _.capitalize(customer.first_name) +
                                 " " +
                                 _.capitalize(customer.last_name),
-                            value: customer.id,
+                            value: customer.id
                             // id: customer.id,
                             // firstName: customer.first_name,
                             // lastName: customer.last_name,
@@ -417,10 +418,10 @@ export default {
                         });
                     });
                 })
-                .catch(function (response) {
+                .catch(function(response) {
                     console.error(response);
                 })
-                .then(function () {
+                .then(function() {
                     self.isLoadingCustomersData = false;
                 });
         },
@@ -431,10 +432,10 @@ export default {
 
             axios
                 .get(route("nutrition.index"))
-                .then(function (response) {
+                .then(function(response) {
                     // console.log(response);
 
-                    response.data.forEach((nutrition) => {
+                    response.data.forEach(nutrition => {
                         self.nutritions.push({
                             id: nutrition.id,
                             calories: nutrition.calories,
@@ -453,15 +454,15 @@ export default {
                                         nutrition.customer.first_name
                                     ) +
                                     " " +
-                                    _.capitalize(nutrition.customer.last_name),
-                            },
+                                    _.capitalize(nutrition.customer.last_name)
+                            }
                         });
                     });
                 })
-                .catch(function (response) {
+                .catch(function(response) {
                     console.error(response);
                 })
-                .then(function () {
+                .then(function() {
                     self.isLoadingNutritionsData = false;
                 });
         },
@@ -488,7 +489,7 @@ export default {
 
             axios
                 .delete(route("nutrition.destroy", self.editedIndex))
-                .then(function (response) {
+                .then(function(response) {
                     // console.log(response);
 
                     self.loadingNutritionsData();
@@ -497,15 +498,15 @@ export default {
                         [
                             _.capitalize(response.data.customer.first_name) +
                                 " " +
-                                _.capitalize(response.data.customer.last_name),
+                                _.capitalize(response.data.customer.last_name)
                         ]
                     );
                     self.snackbar = true;
                 })
-                .catch(function (response) {
+                .catch(function(response) {
                     console.error(response);
                 })
-                .then(function () {
+                .then(function() {
                     self.closeDelete();
                 });
         },
@@ -537,7 +538,7 @@ export default {
             if (this.editedIndex > -1) {
                 axios
                     .put(`/api/nutrition/${this.editedIndex}`, self.editedItem)
-                    .then(function (response) {
+                    .then(function(response) {
                         // console.log(response);
 
                         self.snackbarMessage = self.$vuetify.lang.t(
@@ -549,7 +550,7 @@ export default {
                                     " " +
                                     _.capitalize(
                                         response.data.customer.last_name
-                                    ),
+                                    )
                             ]
                         );
 
@@ -559,10 +560,10 @@ export default {
 
                         self.snackbar = true;
                     })
-                    .catch(function (response) {
+                    .catch(function(response) {
                         console.error(response);
                     })
-                    .then(function () {
+                    .then(function() {
                         self.isButtonSaveLoading = false;
                     });
             } else {
@@ -570,7 +571,7 @@ export default {
 
                 axios
                     .post(route("nutrition.store"), self.editedItem)
-                    .then(function (response) {
+                    .then(function(response) {
                         // console.log(response);
 
                         self.snackbarMessage = self.$vuetify.lang.t(
@@ -582,7 +583,7 @@ export default {
                                     " " +
                                     _.capitalize(
                                         response.data.customer.last_name
-                                    ),
+                                    )
                             ]
                         );
 
@@ -592,15 +593,15 @@ export default {
 
                         self.snackbar = true;
                     })
-                    .catch(function (response) {
+                    .catch(function(response) {
                         console.error(response);
                     })
-                    .then(function () {
+                    .then(function() {
                         self.isButtonSaveLoading = false;
                     });
             }
-        },
-    },
+        }
+    }
 };
 </script>
 <style>
