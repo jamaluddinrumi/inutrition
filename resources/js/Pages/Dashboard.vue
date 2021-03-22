@@ -26,7 +26,7 @@
             {{ $vuetify.lang.t("$vuetify.staffs") }}
         </div>
         <v-row>
-            <v-col v-for="user_item in users" :key="user_item.id" cols="4"
+            <v-col v-for="user_item in users" :key="user_item.id" md="4" sm="12"
                 ><contact-card :user="user_item"></contact-card
             ></v-col>
         </v-row>
