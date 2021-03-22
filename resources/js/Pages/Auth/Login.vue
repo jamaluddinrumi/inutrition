@@ -1,7 +1,12 @@
 <template>
     <layout>
         <jet-authentication-card>
-            <template #logo> </template>
+            <template #logo>
+                <template v-if="$vuetify.breakpoint.mobile">
+                    <jet-authentication-card-logo v-if="!$vuetify.theme.dark" />
+                    <jet-authentication-card-logo-dark v-else />
+                </template>
+            </template>
 
             <jet-validation-errors class="mb-4" />
 
@@ -106,6 +111,8 @@ import JetInput from "@/Jetstream/Input";
 import JetLabel from "@/Jetstream/Label";
 import JetValidationErrors from "@/Jetstream/ValidationErrors";
 import Layout from "@/Pages/Auth/Layout";
+import JetAuthenticationCardLogo from "@/Jetstream/AuthenticationCardLogo";
+import JetAuthenticationCardLogoDark from "@/Jetstream/AuthenticationCardLogoDark";
 
 export default {
     title() {
@@ -127,7 +134,9 @@ export default {
         JetInput,
         JetLabel,
         JetValidationErrors,
-        Layout
+        Layout,
+        JetAuthenticationCardLogo,
+        JetAuthenticationCardLogoDark
     },
 
     props: {
