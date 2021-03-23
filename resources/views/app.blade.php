@@ -8,6 +8,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
     <link href="{{ url('img/splashscreens/iphone5_splash.png') }}" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
     <link href="{{ url('img/splashscreens/iphone6_splash.png') }}" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
     <link href="{{ url('img/splashscreens/iphoneplus_splash.png') }}" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
