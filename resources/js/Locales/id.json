@@ -107,7 +107,7 @@
             "customer": "Customer",
             "profile": "Profil",
             "nutrition": "Nutrisi",
-            "login": "Masuk",
+            "login": "Login",
             "resetPassword": "Reset password",
             "register": "Pendaftaran"
         },
@@ -165,7 +165,7 @@
             "password": "Password"
         },
         "rememberMe": "Ingat saya di komputer ini",
-        "login": "Masuk",
+        "login": "Login",
         "forgotPassword": "Lupa password?",
         "password": "Password",
         "register": "Daftar",
