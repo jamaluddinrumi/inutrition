@@ -1,7 +1,12 @@
 <template>
-    <layout :loading="form.processing">
+    <layout>
         <jet-authentication-card>
-            <template #logo> </template>
+            <template #logo>
+                <template v-if="$vuetify.breakpoint.mobile">
+                    <jet-authentication-card-logo v-if="!$vuetify.theme.dark" />
+                    <jet-authentication-card-logo-dark v-else />
+                </template>
+            </template>
 
             <div class="mb-4 text-body-1">
                 {{ $vuetify.lang.t("$vuetify.laravel.forgotYourPassword") }}
@@ -13,8 +18,13 @@
 
             <jet-validation-errors class="mb-4" />
 
-            <form @submit.prevent="submit">
-                <v-card>
+            <v-form @submit.prevent="submit">
+                <v-card
+                    :loading="form.processing"
+                    :disabled="form.processing"
+                    elevation="3"
+                    rounded
+                >
                     <v-card-text>
                         <div>
                             <v-text-field
@@ -59,7 +69,7 @@
                         ></v-progress-circular>
                     </v-overlay>
                 </v-card>
-            </form>
+            </v-form>
         </jet-authentication-card>
     </layout>
 </template>
