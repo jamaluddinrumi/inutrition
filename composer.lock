@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "60d3b2b2cb8fbdda6d0d83422866ca82",
+    "content-hash": "0e5a911d7077741be5ca9128880b338b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2542,6 +2542,52 @@
                 }
             ],
             "time": "2020-07-01T11:33:50+00:00"
+        },
+        {
+            "name": "litespeed/lscache-laravel",
+            "version": "v1.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/litespeedtech/lscache-laravel.git",
+                "reference": "a6df556d76ab7181e03984e8e3b88dffce0e25b6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/litespeedtech/lscache-laravel/zipball/a6df556d76ab7181e03984e8e3b88dffce0e25b6",
+                "reference": "a6df556d76ab7181e03984e8e3b88dffce0e25b6",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^5.1|^6|^7|^8"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Litespeed\\LSCache\\LSCacheServiceProvider"
+                    ],
+                    "aliases": {
+                        "LSCache": "Litespeed\\LSCache\\LSCache"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Litespeed\\LSCache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Lucas Rolff",
+                    "email": "lrolff@litespeedtech.com"
+                }
+            ],
+            "description": "LSCache Implementation for Laravel",
+            "time": "2020-10-12T09:19:53+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
