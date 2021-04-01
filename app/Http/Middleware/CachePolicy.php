@@ -18,6 +18,6 @@ class CachePolicy
     {
         // return $next($request);
         $response = $next($request);
-        return $response->header('Cache-Control', 'max-age=300, public');
+        return $response->header('Cache-Control', 'no-cache, public');
     }
 }
