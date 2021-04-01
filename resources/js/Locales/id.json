@@ -1,7 +1,7 @@
 {
     "$vuetify": {
         "laravel": {
-            "forgotYourPassword": "Lupa kata sandi Anda? Tidak masalah. Beri tahu kami alamat email Anda dan kami akan mengirimkan email berisi tautan pengaturan ulang kata sandi yang memungkinkan Anda memilih kata sandi yang baru.",
+            "forgotYourPassword": "Lupa password Anda? Tidak masalah. Beri tahu kami alamat email Anda dan kami akan mengirimkan email berisi tautan pengaturan ulang password yang memungkinkan Anda memilih password yang baru.",
             "emailPasswordResetLink": "Reset Password"
         },
         "badge": "Lencana",
