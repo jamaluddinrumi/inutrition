@@ -41,6 +41,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\HandleInertiaRequests::class,
             \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
+            \App\Http\Middleware\CachePolicy::class,
         ],
 
         'api' => [
