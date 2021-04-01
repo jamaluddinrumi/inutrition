@@ -28,8 +28,6 @@ use App\Http\Controllers\NutritionController;
 
 Route::post('/lang/{locale}', [LanguageController::class, 'switch'])->name('language.switch');
 
-Route::get('/login')->middleware('lscache:max-age=300;public');
-
 Route::middleware('auth:sanctum', 'verified')->group(function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('welcome');
