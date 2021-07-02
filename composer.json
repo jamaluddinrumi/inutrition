@@ -1,7 +1,4 @@
 {
-    "post-install-cmd": [
-        "ln -sr storage/app/public public/storage"
-    ],
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
@@ -65,6 +62,9 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
+        "post-install-cmd": [
+            "ln -sr storage/app/public public/storage"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
