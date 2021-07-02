@@ -7,8 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
     <meta name="description" content="{{ env('APP_DESCRIPTION', 'Nutrition Management App') }}">
+
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
